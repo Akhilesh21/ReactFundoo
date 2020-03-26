@@ -1,0 +1,31 @@
+/* #card_registation{
+  width: 60%;
+}
+#button{
+  background-color:chartreuse;
+
+}
+.button{
+  width: 20%;
+  height: 5vh;
+  justify-content: center;
+  display: flex;
+} */
+/********************FORGET CSS****************** */
+.main_dive{
+  display: flex;
+  justify-content: center;
+  margin-top: 8em;
+}
+.name{
+  display: flex;
+    padding: 10em;
+    margin-top: -8em;
+}
+.forget_card{
+  width: 30em;
+    height: 45vh;
+    align-items: center;
+    align-content: center;
+    display: flex;
+}

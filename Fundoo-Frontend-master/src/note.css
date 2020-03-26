@@ -1,0 +1,105 @@
+/* createNotes CSS */
+  .new_card {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+  @media screen and (max-width: 600px) {
+    .new_card {
+      width: 320px;
+    }
+  }
+  .create {
+    padding: 18px;
+    height: 18px;
+    width: 30em;
+  }
+  .create1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .create_icon {
+    width: 9em;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card_open {
+    margin-top: 125px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card1 {
+    padding: 18px;
+    height: 118px;
+    width: 30em;
+    /* width: 32em;
+    padding: 18px; */
+  }
+  .pin {
+    justify-content: flex-end;
+    width: -14em;
+    display: flex;
+    margin-top: -14px;
+  }
+  .unpin {
+    justify-content: flex-end;
+    width: -14em;
+    display: flex;
+    margin-top: -14px;
+  }
+  .unpin1 {
+    justify-content: flex-end;
+    width: 12em;
+    display: flex;
+  }
+  .pin1 {
+    justify-content: flex-end;
+    width: 12em;
+    display: flex;
+  }
+  
+  .icons2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    padding: 5px;
+  }
+  .icons23 {
+    left: 35px;
+    top: -8px;
+  }
+  .icons1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  
+  @media screen and (max-width: 360px) {
+    .new_card {
+      max-width: 600px;
+    }
+  }
+ 
+  .pin-over {
+    height: 1.6em;
+    width: 1.6em;
+    opacity: 0.9;  /* justify-content: space-between; */
+    /* display: flex; */
+    /* padding-left:  900px; */
+    /* margin-top: ; */
+  
+    /* width: 30em; */
+  }
+   
+  .pin-btnv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  } 

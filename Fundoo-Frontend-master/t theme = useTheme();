@@ -1,0 +1,257 @@
+[33mcommit 14194c2408d8a8f628109ef724d86e06c7f42093[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Mar 5 19:30:26 2020 +0530
+
+     [Akhilesh]refactor. props to  appbar
+
+[33mcommit c63d6c398aae38a7ff849635ad7eac1bf3f79b6f[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Mar 5 19:01:50 2020 +0530
+
+     [Akhilesh]refactor. menu button in appbar
+
+[33mcommit ef5c20deb917698d6e64d89cea077d3cfe5d33a1[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Mar 5 13:30:42 2020 +0530
+
+     [Akhilesh]refactor. added flexgrow to sidebar
+
+[33mcommit 5e54e8026ab81615f77aaee5da633a896438d50b[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Mar 5 13:21:10 2020 +0530
+
+     [Akhilesh]refactor. added drawerpaper top and width
+
+[33mcommit a664aad23bbc2be1bd0236448d525c8e6bb37b2c[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 18:21:31 2020 +0530
+
+     [Akhilesh]refactor. added Listitem icon to dashboard
+
+[33mcommit 826cf7af0213fbcf5cd8d6b54749ce977b7685be[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 18:20:27 2020 +0530
+
+     [Akhilesh]refactor. added inbox icon to dashboard
+
+[33mcommit d96b0abd5016f2ef0be72d467b7e500fe12abdb0[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 18:18:15 2020 +0530
+
+     [Akhilesh]refactor. added keep icon to dashboard
+
+[33mcommit fa8328d63fd7702471336328c2213c5bed7d76ca[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 18:13:36 2020 +0530
+
+     [Akhilesh]refactor. added side list drawer to dashboard
+
+[33mcommit 7848f8c4501d09328b1f8aa75e8e58dc72e7c52b[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 16:43:47 2020 +0530
+
+     [Akhilesh]Refactor. refactoring added function temporary drawer to  dashbord file
+
+[33mcommit 68845ca07bf3cafa80e39f76475a661f6b6aac7a[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 16:36:54 2020 +0530
+
+     [Akhilesh]Refactor. refactoring added function temporary drawer to  dashbord file
+
+[33mcommit 5388a55b32322d8b35d3265eaa98c9e2b4740573[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 16:34:33 2020 +0530
+
+     [Akhilesh]Refactor. refactoring added useStyles  dashbord file
+
+[33mcommit 3168601ca8caac5e4b2d9fb606565c1b4437894a[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 16:32:11 2020 +0530
+
+     [Akhilesh]Refactor. refactoring import material ui list core divider  dashbord file
+
+[33mcommit c8d5208f665dafcd4be8413455093318db98ab7d[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 16:31:37 2020 +0530
+
+     [Akhilesh]Refactor. refactoring import material ui list core divider  dashbord file
+
+[33mcommit 3a3129d523f5a35f42c724f92e6bfa1ef8b9d8fc[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 16:30:13 2020 +0530
+
+     [Akhilesh]Refactor. refactoring import material ui list to  dashbord file
+
+[33mcommit 46bd1447248a6ce53bc9d1b8ae6ccea201b57972[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 16:28:51 2020 +0530
+
+     [Akhilesh]Refactor. refactoring import material ui to  dashbord file
+
+[33mcommit 1bee5d88a1590888d9664e6624a21906b3cc0e3f[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Mar 4 16:25:27 2020 +0530
+
+     [Akhilesh]Add. added dashbord file to repository
+
+[33mcommit e1224c4e0320cff9ef3d13cb5c408129c03bd3d6[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Tue Mar 3 19:35:00 2020 +0530
+
+    [Akhilesh]refactor.modified forgot password page for getting response from backend
+
+[33mcommit aef918cbcb15a5b012f952d8181b35b1829649e9[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Tue Mar 3 18:01:51 2020 +0530
+
+    [Akhilesh]Refactor.modification handle close snackbar  to forgot password
+
+[33mcommit 27a7ac89fce0c1ad8714f61f51465d1c753cf2dc[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Tue Mar 3 17:37:51 2020 +0530
+
+    [Akhilesh]Refactor.modification changed snackbar message  to forgot password
+
+[33mcommit 05c91f5862ab33cb71b9157e68ce8aff1b8f6baa[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Tue Mar 3 17:15:25 2020 +0530
+
+    [Akhilesh]Refactor.modification snackbar message  to forgot password
+
+[33mcommit 638fa591b4cd1b24dd7e5d8fa4f11b5eeecb060a[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Tue Mar 3 16:38:36 2020 +0530
+
+    [Akhilesh]Refactor.modification meesage-id to forgot password
+
+[33mcommit e50af1eb3bafc050e351644d53f8d3c44d9b0391[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Tue Mar 3 16:15:18 2020 +0530
+
+    [Akhilesh]Refactor.modification added snackbar to forgot password
+
+[33mcommit 653d1e6122e22217b3f57a32fa16e351cc3f3451[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Sat Feb 29 18:59:17 2020 +0530
+
+    akhilesh adding css to login page
+
+[33mcommit 0c22babb114c987ca45c47de2ca8b5b3444117dd[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Sat Feb 29 18:18:13 2020 +0530
+
+    [Akhilesh] changed css for forgot password
+
+[33mcommit bb260d7fe44bbedf56d6e12f82e01dda3375ccd1[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Fri Feb 28 19:34:53 2020 +0530
+
+    akhilesh worked on rabbit mQ
+
+[33mcommit 5fb25f5a45bb71b7f740e551bfbeaaf7e91f76da[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Fri Feb 28 15:11:20 2020 +0530
+
+    [Akhilesh] modified forgot page
+
+[33mcommit 13048b8d1f31fb10c843ad8701bf0407c52be442[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Fri Feb 28 12:36:36 2020 +0530
+
+    [Akhilesh] modified forgot page
+
+[33mcommit c7d51c9bf31ff318f30ea0c07a98254086284267[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Feb 27 19:30:33 2020 +0530
+
+    [Akhilesh] added onchange  modified   forgot password
+
+[33mcommit 12a18bdb69328907cd291a6dd81cb4c35f368d9b[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Feb 27 18:49:43 2020 +0530
+
+    [Akhilesh] added onchange  modified for email  forgot password
+
+[33mcommit cb287a66b2d8ff15a228b5b6fcf520262d9d9d45[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Feb 27 18:42:39 2020 +0530
+
+    [Akhilesh] added onchange for email for forgot password
+
+[33mcommit a9887b110cff9f1452b9384fd729a3ec39c8274a[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Feb 27 18:40:16 2020 +0530
+
+    [Akhilesh] added textfield for email for forgot password
+
+[33mcommit 1a11fb9df9e6fb3f42c1f065db64833e2704e694[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Feb 27 18:32:35 2020 +0530
+
+    [Akhilesh] added render() method for forgot password
+
+[33mcommit 9984ca4a98ec72f507a3fa3defe02c7be01d653b[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Feb 27 17:55:19 2020 +0530
+
+    [Akhilesh] working on forgot password
+
+[33mcommit 3ba560bf933fdafe9d00b05a3825326a4525b00b[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Wed Feb 26 18:59:00 2020 +0530
+
+    [Akhilesh] modified on login and registration
+
+[33mcommit 259d595ff6370866831b9c1db52ef47b2836f77a[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Tue Feb 25 19:09:00 2020 +0530
+
+    [akhilesh] modified registration and login form
+
+[33mcommit 691ac8abb8cae20119662ed198532fab2d7a0bf4[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Tue Feb 25 12:17:07 2020 +0530
+
+    [akhilesh] completed validation for registration form
+
+[33mcommit 97e22fbc3c0319a1290a28454f1f16012d230e32[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Mon Feb 24 19:37:49 2020 +0530
+
+    [Akhilesh] modfied on registration page
+
+[33mcommit 6aa00fc06d848b198b535476cb97089ccf7c35c0[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Mon Feb 24 17:15:42 2020 +0530
+
+    [Akhilesh] added validation for react
+
+[33mcommit 7a4c0ad09c6d6432f67de5c5d5a799c9a936d675[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Sat Feb 22 18:42:30 2020 +0530
+
+    [akhilesh] modified registration page
+
+[33mcommit 3eee8eff5d95c1a8957d582fcbc4617df9c7ade1[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Fri Feb 21 19:00:35 2020 +0530
+
+    [Akhilesh] desined login and registration for frontend
+
+[33mcommit 9765c2e83baf8d418b9fe73b357e9b88177ed700[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Thu Feb 20 19:32:11 2020 +0530
+
+    uploaded
+
+[33mcommit 2271d9be6709899feee39d65bb8d6771c1d48d11[m
+Author: Akhilesh21 <Akhilesh.mc4@gmail.com>
+Date:   Mon Feb 17 19:45:46 2020 +0530
+
+    [Akhilesh] Adding fundoo frontend
+
+[33mcommit bf4df1114766549e0514328e6b3e6f546903dc7a[m
+Author: Akhilesh21 <akhilesh.mc4@gmail.com>
+Date:   Fri Feb 14 12:48:55 2020 +0530
+
+    Initial commit from Create React App
