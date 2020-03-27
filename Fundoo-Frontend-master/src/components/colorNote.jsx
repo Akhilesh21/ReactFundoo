@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Tooltip, IconButton, Popper, Paper, ClickAwayListener, } from '@material-ui/core'
 import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import { withRouter } from 'react-router-dom';
+
 const colorPalette = [{ name: "Default", colorCode: "#FDFEFE" },
 { name: "Red", colorCode: "#f28b82" },
 { name: "Orange", colorCode: "#fbbc04" },
@@ -28,9 +29,9 @@ class ColorComponent extends Component {
             anchorEl: false
         })
     }
-    handleChangeColor = (e) => {
+    handleChangeColor = (e,data) => {
         console.log("hiii" + e);
-        this.props.paletteProps(e.target.value, this.props.id)
+        this.props.paletteProps(e.target.value, data)
     }
     handleClose = () => {
         this.setState({
@@ -50,7 +51,7 @@ class ColorComponent extends Component {
                     <Tooltip title={key.name}>
                         <IconButton style={{ backgroundColor: key.colorCode, border: "silver 2px solid" }}
                             value={key.colorCode}
-                            onClick={this.handleChangeColor}>
+                            onClick={(event)=>{this.handleChangeColor(event,key.colorCode)}}>
                         </IconButton>
                     </Tooltip>
                 </div>
@@ -69,7 +70,7 @@ class ColorComponent extends Component {
                         anchorEl={this.state.anchorEl}
                         className="paint"
                         style={{
-                            zIndex: "9999", width: "25em", display: "flex", 
+                            zIndex: "9999", width: "100px", display: "flex", 
                             flexDirection: "row", margin: "25px"}}>
                         <Paper className="color-styles" style={{ display: "contents", width: "21em" }}>
                             {colorChange}

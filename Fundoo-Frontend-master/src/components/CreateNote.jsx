@@ -66,11 +66,15 @@ class Notes extends Component {
   handleColorClose = () => {
     this.setState({ color: true });
   };
-
+  paletteProps=(event,data)=>{
+    this.setState({
+      color:data
+    })
+  }
   colorChange = () => {
     this.setState();
   };
-
+ 
   newNote = () => {
     // try {
     if (this.state.title === "" && this.state.description === "") {
@@ -141,7 +145,7 @@ class Notes extends Component {
           <Card
             className="card1"
             style={{
-              backgroundColor: this.props.color,
+              backgroundColor: this.state.color,
               boxShadow: "0px 0px 3px 1px",
               opacity: "0.9"
             }}
