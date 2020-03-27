@@ -19,6 +19,10 @@ class reminder extends Component {
         this.reminderMenuClose()
         let date = new Date().toDateString();
         let reminder = date + ", 8:00 PM";
+        this.props.handleReminderDate(reminder)
+    }
+    handleTommorowDate = async () => {
+        
     }
     render() {
         return (
