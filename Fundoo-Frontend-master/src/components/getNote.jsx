@@ -71,7 +71,7 @@ class GetNote extends Component {
   }
 
   handleGetNotes = () => {
-  //   let formData = new FormData();
+   //   let formData = new FormData();
   // formData.fetch("noteid", noteId);
   // var data = {
   //   noteId: this.state.noteId,
