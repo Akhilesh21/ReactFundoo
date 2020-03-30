@@ -41,6 +41,7 @@ class App  extends React.Component{
         <Route path ="/note" component={Notes}/>
         <Route path ="/getNote" component={GetNote}/>
         <Route path ="/ColorComponent" component={ColorComponent}/>
+        
         <Route path ="/reminder" component={reminder}/>
       
    
