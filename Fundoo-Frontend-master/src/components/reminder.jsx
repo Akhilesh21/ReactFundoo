@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Tooltip, Button, Menu, MenuItem, IconButton,Card} from "@material-ui/core";
-
+import {MuiPickersUtilsProvider,KeyboardDatePicker,KeyboardTimePicker} from "@material-ui/pickers";
 class reminder extends Component {
   constructor(props) {
     super(props);
@@ -96,8 +96,59 @@ class reminder extends Component {
           open={Boolean(this.state.reminderAnchorEl)}
           onClose={this.reminderMenuClose}
         >
+        <div className="dateAndReminder">
+            <div>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  name="date"
+                  variant="inline"
+                  format="MM/dd/yyyy"
+                  margin="normal"
+                  value={this.state.date}
+                  onChange={(value, event) => this.handleDate(value, event)}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date"
+                  }}
+                />
+              </MuiPickersUtilsProvider>
           </div>
+          <div>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardTimePicker
+                  name="time"
+                  margin="normal"
+                  id="time-picker"
+                  value={this.state.time}
+                  onChange={(value, event) => this.handleTime(value, event)}
+                  KeyboardButtonProps={{
+                    "aria-label": "change time"
+                  }}
+                />
+              </MuiPickersUtilsProvider>
+          </div>
+          </div>
+          <div className="saveInReminder">
+            <Button
+              onClick={this.handleSave}
+              style={{ backgroundColor: "silver" }}
+            >
+              Save
+            </Button>
+          </div>
+        </Menu>
+      </div>
     );
+    return (
+      <div>
+        <IconButton aria-haspopup="true" onClick={this.reminderMenuOpen}>
+          <Tooltip title="Remind me">
+            <AddAlertOutlinedIcon />
+          </Tooltip>
+        </IconButton>
+        {reminderMenuItem}
+      </div>
+    );
+  
   }
 }
 export default withRouter(reminder);
