@@ -64,7 +64,9 @@ class reminder extends Component {
     this.props.handleReminderDate(this.state.date + "," + time);
     this.setState({ openReminderMenu: !this.state.openReminderMenu });
   };
-
+   setDateOpen = e => {
+    this.setState({ openReminderMenu: !this.state.openReminderMenu });
+  };
 
   render() {
     //      let reminderMenuItem = !this.state.openReminderMenu
