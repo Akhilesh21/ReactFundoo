@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Tooltip, Button, Menu, MenuItem, IconButton } from "@material-ui/core";
+import { Tooltip, Button, Menu, MenuItem, IconButton,Card} from "@material-ui/core";
 
 class reminder extends Component {
   constructor(props) {
@@ -72,9 +72,10 @@ class reminder extends Component {
   };
 
   render() {
-    //      let reminderMenuItem = !this.state.openReminderMenu
-    return (
+ let reminderMenuItem = !this.state.openReminderMenu ? (
+      
       <div>
+      <Card className="zoo" >
         <Menu id="reminder-menu" anchorEl={this.state.reminderAnchorEl}>
           open={Boolean(this.state.reminderAnchorEl)}
           onClose={this.reminderMenuClose}
@@ -85,7 +86,17 @@ class reminder extends Component {
           </MenuItem>
           <MenuItem onClick={this.setDateOpen}>Pick date & time</MenuItem>
         </Menu>
+        </Card>
       </div>
+    ):(
+          <div>
+          <Menu
+          id="reminder-menu"
+          anchorEl={this.state.reminderAnchorEl}
+          open={Boolean(this.state.reminderAnchorEl)}
+          onClose={this.reminderMenuClose}
+        >
+          </div>
     );
   }
 }
