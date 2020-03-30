@@ -29,3 +29,13 @@
     align-content: center;
     display: flex;
 }
+
+.paint {
+  flex-wrap: wrap;
+
+  /* margin: 25px; */
+    top: -6em;
+    left: 5em;
+
+    
+}

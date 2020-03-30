@@ -3,7 +3,8 @@ import { Tooltip, IconButton, Popper, Paper, ClickAwayListener, } from '@materia
 import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import { withRouter } from 'react-router-dom';
 
-const colorPalette = [{ name: "Default", colorCode: "#FDFEFE" },
+const colorPalette = [
+{ name: "Default", colorCode: "#FDFEFE" },
 { name: "Red", colorCode: "#f28b82" },
 { name: "Orange", colorCode: "#fbbc04" },
 { name: "Yellow", colorCode: "#fff475" },
@@ -16,6 +17,7 @@ const colorPalette = [{ name: "Default", colorCode: "#FDFEFE" },
 { name: "Brown", colorCode: "#e6c9a8" },
 { name: "Gray", colorCode: "#e8eaed" },
 ]
+
 class ColorComponent extends Component {
     constructor(props) {
         super(props);
@@ -70,8 +72,8 @@ class ColorComponent extends Component {
                         anchorEl={this.state.anchorEl}
                         className="paint"
                         style={{
-                            zIndex: "9999", width: "100px", display: "flex", 
-                            flexDirection: "row", margin: "25px"}}>
+                            zIndex: "9999", width: "115px", display: "flex", 
+                            flexDirection: "row", margin: "25px",flexwrap: "wrap"}}>
                         <Paper className="color-styles" style={{ display: "contents", width: "21em" }}>
                             {colorChange}
                         </Paper>

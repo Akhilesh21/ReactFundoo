@@ -13,7 +13,7 @@ import SideNavBar from './components/sideBar'
 import Notes from './components/CreateNote';
 import ColorComponent from './components/colorNote';
 import GetNote from './components/getNote'
-import Notee from './components/test'
+import reminder from './components/reminder'
 
 class App  extends React.Component{
   render()
@@ -41,7 +41,7 @@ class App  extends React.Component{
         <Route path ="/note" component={Notes}/>
         <Route path ="/getNote" component={GetNote}/>
         <Route path ="/ColorComponent" component={ColorComponent}/>
-        <Route path ="/note" component={Notee}/>
+        <Route path ="/reminder" component={reminder}/>
       
    
         </Switch>
