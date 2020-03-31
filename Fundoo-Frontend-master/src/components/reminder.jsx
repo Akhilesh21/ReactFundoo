@@ -95,7 +95,7 @@ class Reminder extends Component {
 
   render() {
     let reminderMenuItem = !this.state.openReminderMenu ? (
-      <div>
+      <div >
         <Card className="zoo">
           <Menu
             id="reminder-menu"

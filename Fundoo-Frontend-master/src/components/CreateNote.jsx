@@ -17,7 +17,7 @@ import UndoTwoToneIcon from "@material-ui/icons/UndoTwoTone";
 import RedoTwoToneIcon from "@material-ui/icons/RedoTwoTone";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
 import { create } from "../Services/NoteServices";
-//import image from '../assets/pin.png'
+import Reminder from "./reminder";
 import ColorComponent from "./colorNote";
 // import './Note.css'
 import { keys } from "@material-ui/core/styles/createBreakpoints";
@@ -36,7 +36,9 @@ class Notes extends Component {
       isPinned: false,
       isDeleted: false,
       archieve: false,
-      remainder: null
+      remainder: null,
+      openReminderMenu:false,
+
     };
   }
   openCard = () => {
@@ -86,7 +88,9 @@ class Notes extends Component {
       formData.append("decription", this.state.description);
       var data = {
         title: this.state.title,
-        description: this.state.description
+        description: this.state.description,
+        color:this.state.color,
+        
       };
       console.log(data);
       create(formData)
@@ -106,6 +110,9 @@ class Notes extends Component {
         });
       this.setState({ cardOpen: false });
     }
+  };
+  handleReminderDate = date => {
+    this.setState({reminder:date});
   };
 
   render() {
