@@ -5,9 +5,11 @@ import {
   Card,
   InputBase,
   Button,
-  IconButton
+  IconButton,
+  Chip
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
@@ -191,7 +193,18 @@ class Notes extends Component {
                 value={this.state.description}
               />
             </div>
-            <div></div>
+            <div>
+            <p>
+                  {this.state.reminder !== null ? (
+                    <Chip
+                      style={{ display: "flex", marginLeft: "-1em" }}
+                      icon={<AccessTimeIcon />}
+                      label={this.state.reminder}
+                      onDelete={this.removeReminder}
+                      variant="outlined" />
+                  ) : null}
+                </p>
+            </div>
             <div className="icons2">
               <div>
                 <Tooltip title="remind me">
