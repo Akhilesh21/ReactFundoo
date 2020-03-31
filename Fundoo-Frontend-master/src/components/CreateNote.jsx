@@ -114,6 +114,9 @@ class Notes extends Component {
   handleReminderDate = date => {
     this.setState({reminder:date});
   };
+  removeReminder = () => {
+    this.setState({reminder:null})
+  };
 
   render() {
     return !this.state.cardOpen ? (
