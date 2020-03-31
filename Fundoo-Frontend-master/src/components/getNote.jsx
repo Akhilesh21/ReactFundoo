@@ -5,7 +5,6 @@ import {
   InputBase,
   Button,
   Avatar,
-  Chip
 } from "@material-ui/core";
 
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";

@@ -9,7 +9,7 @@ import { useTheme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import NotesIcon from '@material-ui/icons/Notes';
 import NotificationsOutlinedIcon from '@material-ui/icons/NotificationsOutlined';
-import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
+//import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';

@@ -4,8 +4,6 @@ import {
   Tooltip,
   Card,
   InputBase,
-  Button,
-  IconButton,
   Chip
 } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -17,12 +15,12 @@ import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import UndoTwoToneIcon from "@material-ui/icons/UndoTwoTone";
 import RedoTwoToneIcon from "@material-ui/icons/RedoTwoTone";
-import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
+//import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
 import { create } from "../Services/NoteServices";
 import Reminder from "./reminder";
 import ColorComponent from "./colorNote";
 // import './Note.css'
-import { keys } from "@material-ui/core/styles/createBreakpoints";
+//import { keys } from "@material-ui/core/styles/createBreakpoints";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 
@@ -39,6 +37,8 @@ class Notes extends Component {
       isDeleted: false,
       archieve: false,
       remainder: null,
+      date: "",
+      time: "",
       openReminderMenu:false,
 
     };
@@ -57,13 +57,7 @@ class Notes extends Component {
       cardOpen: true
     });
   };
-  handleOpenPin = noteId => {
-    this.setState({ isPinned: true });
-    let date = {
-      noteId: noteId,
-      isPinned: this.state.isPinned
-    };
-  };
+  
   handleClosePin = () => {
     this.setState({ isPinned: false });
   };
@@ -206,10 +200,17 @@ class Notes extends Component {
                 </p>
             </div>
             <div className="icons2">
-              <div>
-                <Tooltip title="remind me">
-                  <AddAlertOutlinedIcon />
-                </Tooltip>
+              
+            <div>
+               
+                
+                  <Reminder
+                     anchorEl={this.state.anchorEl}
+                    closeMenu={this.handleClose}
+                    handleGetNotes={this.handleGetNotes}
+                    handleReminderDate={this.handleReminderDate} 
+                  />
+               
               </div>
               <div>
                 <Tooltip title="Collbrate">

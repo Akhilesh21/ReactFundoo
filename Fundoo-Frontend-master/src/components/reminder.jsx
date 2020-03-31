@@ -45,7 +45,7 @@ class Reminder extends Component {
       new Date().getDate() + 1
     );
     let date = tomorrow.toDateString();
-    let reminder1 = date + ", 8:00 PM";
+    let reminder1 = date + ", 8:00 AM";
     this.props.handleReminderDate(reminder1);
   };
 
