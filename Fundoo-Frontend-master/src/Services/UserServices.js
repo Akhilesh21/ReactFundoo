@@ -1,15 +1,17 @@
 import axios from 'axios';
 import useConstants from '../Constants/uesConstants';
 
-// let headers = {
-//   "Content-Type": "multipart/form-data",
-//   "Access-Control-Allow-Origin": "*"
-// }
+let headers = {
+   "Content-Type": "multipart/form-data",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin set to ":"*",
+  method: 'post',
+}
 
 
 export async function register(data) {
 
-  let response = axios.post(process.env.REACT_APP_BASE_URL + useConstants.Register, data);
+  let response = axios.post(process.env.REACT_APP_BASE_URL + useConstants.Register, data,);
   console.log("to check for response", response.id)
   return response
 }
@@ -18,7 +20,8 @@ export async function register(data) {
 
 
 export async function login(data) {
-  let response = axios.post(process.env.REACT_APP_BASE_URL + useConstants.Login, data);
+  let response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.Login, data);
+  localStorage.setItem('userData',JSON.stringify(response))
   console.log("to check for response", response.id)
   return response
 
@@ -39,7 +42,7 @@ export async function forgotpassword(data) {
 //   console.log("token is comuing",gettingtoken)
 //   let response = axios.post(process.env.REACT_APP_BASE_URL + useConstants.createNote, data).then((res=>{
 //     console.log("res",res);
-//     localStorage.setItem('email', res.success.email);
+//    // localStorage.setItem('email', res.success.email);
     
 //   })).catch((err)=>{
 //     console.log("err",err);

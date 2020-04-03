@@ -39,6 +39,7 @@ class Notes extends Component {
       remainder: null,
       date: "",
       time: "",
+      
       openReminderMenu:false,
 
     };
@@ -82,15 +83,16 @@ class Notes extends Component {
       let formData = new FormData();
       formData.append("title", this.state.title);
       formData.append("decription", this.state.description);
+      formData.append("userid", this.state.userid);
       var data = {
         title: this.state.title,
-        description: this.state.description,
-        color:this.state.color,
+        desription: this.state.description,
+       // color:this.state.color,
         
       };
       console.log(data);
       create(formData)
-        .then(response => {
+      .then(response => {
           console.log("response in ", response);
           if (response.status === 200) {
             setTimeout(() => {
@@ -191,7 +193,7 @@ class Notes extends Component {
             <p>
                   {this.state.reminder !== null ? (
                     <Chip
-                      style={{ display: "flex", marginLeft: "-1em" }}
+                      style={{ display: "flex", marginLeft: "0em" }}
                       icon={<AccessTimeIcon />}
                       label={this.state.reminder}
                       onDelete={this.removeReminder}

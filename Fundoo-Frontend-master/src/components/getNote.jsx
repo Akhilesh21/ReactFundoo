@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import {
   Tooltip,
   Card,
@@ -17,7 +18,7 @@ import ColorComponent from "./colorNote";
 import Dialog from "@material-ui/core/Dialog";
 import SvgPin from "../icons/svgPin";
 import SvgPinned from "../icons/svgUnpin";
-//import { getNotes } from "../Services/NoteServices";
+import { getNotes } from "../Services/NoteServices";
 const thm = createMuiTheme({
   overrides: {
     MuiCard: {
@@ -38,8 +39,8 @@ class GetNote extends Component {
       noteId: "",
       title: "",
       description: "",
-      color: ""
-    };
+    }
+    this.handleGetNotes()
   }
   menuOpen = () => {
     this.setState({ open: !this.state.open });
@@ -76,16 +77,16 @@ class GetNote extends Component {
   //   noteId: this.state.noteId,
   // };
   
-    // getNotes()
-    //   .then(res => {
-    //     this.setState({
-    //       notes: res
-    //     });
-    //     console.log("res in notesData", this.state.notes);
-    //   })
-    //   .catch(err => {
-    //     console.log("err", err);
-    //   });
+    getNotes()
+      .then(res => {
+        this.setState({
+          notes: res.data.data
+        });
+        console.log("res in notesData", this.state.notes);
+      })
+      .catch(err => {
+        console.log("err", err);
+      });
   };
 
   render() {
@@ -96,7 +97,7 @@ class GetNote extends Component {
             <div className="_notes_">
               {this.state.notes.map(key => {
                 {
-                  console.log("data", key.data().isPinned);
+                  // console.log("data", key.isPinned);
                   return (
                     <div className="notes_">
                       <Card
@@ -109,7 +110,7 @@ class GetNote extends Component {
                           boxShadow: "0px 1px 7px 0px",
                           marginTop: "10%",
                           borderRadius: "15px",
-                          background: key.data().color
+                          // background: key.color
                         }}
                       >
                         <div
@@ -120,10 +121,10 @@ class GetNote extends Component {
                           }}
                         >
                           <div>
-                            <div>{key.data().title}</div>
+                            <div>{key.title}</div>
 
                             <div style={{ marginTop: "25px" }}>
-                              {key.data().description}
+                              {key.description}
                             </div>
                           </div>
 
@@ -135,7 +136,7 @@ class GetNote extends Component {
                               }}
                               onClick={() => this.handlePin(key.id)}
                             >
-                              {key.data().isPinned === true ? (
+                              {key.isPinned === true ? (
                                 <SvgPinned />
                               ) : (
                                 <SvgPin />
@@ -150,8 +151,8 @@ class GetNote extends Component {
                               onClick={() =>
                                 this.handleEditNote(
                                   key.id,
-                                  key.data().title,
-                                  key.data().description
+                                  key.title,
+                                  key.description
                                 )
                               }
                             />
@@ -163,8 +164,8 @@ class GetNote extends Component {
                                 onClick={() =>
                                   this.handleEditNote(
                                     key.id,
-                                    key.data().title,
-                                    key.data().description
+                                    key.title,
+                                    key.description
                                   )
                                 }
                               />
@@ -278,4 +279,4 @@ class GetNote extends Component {
     );
   }
 }
-export default GetNote;
+export default withRouter(GetNote);
