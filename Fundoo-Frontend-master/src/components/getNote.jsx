@@ -14,6 +14,8 @@ import { createMuiTheme } from "@material-ui/core";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ColorComponent from "./colorNote";
+//import Reminder from "./reminder";
+
 
 import Dialog from "@material-ui/core/Dialog";
 import SvgPin from "../icons/svgPin";
@@ -123,15 +125,15 @@ class GetNote extends Component {
                           <div>
                             <div>{key.title}</div>
 
-                            <div style={{ marginTop: "25px" }}>
-                              {key.description}
+                            <div style={{ marginTop: "30px" }}>
+                              {key.decription}
                             </div>
                           </div>
 
                           <div>
                             <Avatar
                                 style={{
-                                background: "#d2cece",
+                           //     background: "#d2cece",
                                 marginLeft: "-25px"
                               }}
                               onClick={() => this.handlePin(key.id)}

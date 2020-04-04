@@ -5,8 +5,7 @@ import {
   Button,
   Menu,
   MenuItem,
-  IconButton,
-  Card
+  IconButton
 } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
@@ -15,6 +14,7 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
+
 class Reminder extends Component {
   constructor(props) {
     super(props);
@@ -94,9 +94,9 @@ class Reminder extends Component {
   };
 
   render() {
-    let reminderMenuItem = !this.state.openReminderMenu ? (
+    let reminderMenuItem = !this.state.openReminderMenu ? 
       <div >
-        <Card className="zoo">
+        
           <Menu
             id="reminder-menu"
             anchorEl={this.state.reminderAnchorEl}
@@ -115,9 +115,9 @@ class Reminder extends Component {
             </MenuItem>
             <MenuItem onClick={this.setDateOpen}>Pick date & time</MenuItem>
           </Menu>
-        </Card>
+        
       </div>
-    ) : (
+    :
       <div>
         <Menu
           id="reminder-menu"
@@ -166,7 +166,7 @@ class Reminder extends Component {
           </div>
         </Menu>
       </div>
-    );
+    
     return (
       <div>
         <IconButton aria-haspopup="true" onClick={this.reminderMenuOpen}>

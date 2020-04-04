@@ -22,6 +22,7 @@ export async function register(data) {
 export async function login(data) {
   let response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.Login, data);
   localStorage.setItem('userData',JSON.stringify(response))
+  
   console.log("to check for response", response.id)
   return response
 

@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {
-  Tooltip,
-  Card,
-  InputBase,
-  Chip
-} from "@material-ui/core";
+import { Tooltip, Card, InputBase, Chip } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
@@ -39,9 +34,8 @@ class Notes extends Component {
       remainder: null,
       date: "",
       time: "",
-      
-      openReminderMenu:false,
-
+      anchorElPooper: false,
+      openReminderMenu: false
     };
   }
   openCard = () => {
@@ -58,22 +52,22 @@ class Notes extends Component {
       cardOpen: true
     });
   };
-  
+
   handleClosePin = () => {
     this.setState({ isPinned: false });
   };
   handleColorClose = () => {
     this.setState({ color: true });
   };
-  paletteProps=(event,data)=>{
+  paletteProps = (event, data) => {
     this.setState({
-      color:data
-    })
-  }
+      color: data
+    });
+  };
   colorChange = () => {
     this.setState();
   };
- 
+
   newNote = () => {
     // try {
     if (this.state.title === "" && this.state.description === "") {
@@ -86,18 +80,14 @@ class Notes extends Component {
       formData.append("userid", this.state.userid);
       var data = {
         title: this.state.title,
-        desription: this.state.description,
-       // color:this.state.color,
-        
+        desription: this.state.description
+        // color:this.state.color,
       };
       console.log(data);
       create(formData)
-      .then(response => {
+        .then(response => {
           console.log("response in ", response);
           if (response.status === 200) {
-            setTimeout(() => {
-              this.props.history.push("/Note");
-            }, 2000);
             console.log("RESPONSE :", response);
           } else {
             console.log("qwerty");
@@ -110,10 +100,10 @@ class Notes extends Component {
     }
   };
   handleReminderDate = date => {
-    this.setState({reminder:date});
+    this.setState({ reminder: date });
   };
   removeReminder = () => {
-    this.setState({reminder:null})
+    this.setState({ reminder: null });
   };
 
   render() {
@@ -123,7 +113,7 @@ class Notes extends Component {
           className="create"
           style={{ boxShadow: "0px 0px 3px 1px", opacity: "0.9" }}
         >
-          <div className="create1">
+          <div className="a1">
             <div>
               <InputBase placeholder="Take a note..." />
             </div>
@@ -190,29 +180,26 @@ class Notes extends Component {
               />
             </div>
             <div>
-            <p>
-                  {this.state.reminder !== null ? (
-                    <Chip
-                      style={{ display: "flex", marginLeft: "0em" }}
-                      icon={<AccessTimeIcon />}
-                      label={this.state.reminder}
-                      onDelete={this.removeReminder}
-                      variant="outlined" />
-                  ) : null}
-                </p>
+              <p>
+                {this.state.reminder != null ? (
+                  <Chip
+                    style={{ display: "flex", marginLeft: "0em" }}
+                    icon={<AccessTimeIcon />}
+                    label={this.state.reminder}
+                    onDelete={this.removeReminder}
+                    variant="outlined"
+                  />
+                ) : null}
+              </p>
             </div>
             <div className="icons2">
-              
-            <div>
-               
-                
-                  <Reminder
-                     anchorEl={this.state.anchorEl}
-                    closeMenu={this.handleClose}
-                    handleGetNotes={this.handleGetNotes}
-                    handleReminderDate={this.handleReminderDate} 
-                  />
-               
+              <div>
+                <Reminder
+                  anchorEl={this.state.anchorEl}
+                  closeMenu={this.handleClose}
+                  handleGetNotes={this.handleGetNotes}
+                  handleReminderDate={this.handleReminderDate}
+                />
               </div>
               <div>
                 <Tooltip title="Collbrate">
