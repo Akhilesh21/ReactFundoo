@@ -14,12 +14,12 @@ import { createMuiTheme } from "@material-ui/core";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ColorComponent from "./colorNote";
-//import Reminder from "./reminder";
+import Reminder from "./reminder";
 
 
 import Dialog from "@material-ui/core/Dialog";
-import SvgPin from "../icons/svgPin";
-import SvgPinned from "../icons/svgUnpin";
+import unPin from "../assets/unpin.svg";
+import pin from "../assets/pin.svg";
 import { getNotes } from "../Services/NoteServices";
 const thm = createMuiTheme({
   overrides: {
@@ -41,6 +41,8 @@ class GetNote extends Component {
       noteId: "",
       title: "",
       description: "",
+      color:"",
+      reminder:"",
     }
     this.handleGetNotes()
   }
@@ -62,15 +64,22 @@ class GetNote extends Component {
   colorChange = () => {
     this.setState();
   };
-  paletteProps = (e) => {
-    console.log(e)
-    this.setState({
-      color: e
-    })
+  // paletteProps = (e) => {
+  //   console.log(e)
+  //   this.setState({
+  //     color: e
+  //   })
 
-    this.props.colorChange(e)
-    // console.log(this.state.color)
-  }
+  //   this.props.colorChange(e)
+  //   // console.log(this.state.color)
+  // }
+
+  paletteProps = (event, data) => {
+    this.setState({
+      color: data
+    });
+  };
+ 
 
   handleGetNotes = () => {
    //   let formData = new FormData();
@@ -112,7 +121,8 @@ class GetNote extends Component {
                           boxShadow: "0px 1px 7px 0px",
                           marginTop: "10%",
                           borderRadius: "15px",
-                          // background: key.color
+                          backgroundColor: this.state.color
+                        //   background: key.color
                         }}
                       >
                         <div
@@ -131,19 +141,19 @@ class GetNote extends Component {
                           </div>
 
                           <div>
-                            <Avatar
+                            <div
                                 style={{
-                           //     background: "#d2cece",
+                             //  background: "#d2cece",
                                 marginLeft: "-25px"
                               }}
-                              onClick={() => this.handlePin(key.id)}
+                              // onClick={() => this.handlePin(key.id)}
                             >
                               {key.isPinned === true ? (
-                                <SvgPinned />
+                                <img className="pin-out" src={unPin} />
                               ) : (
-                                <SvgPin />
+                                <img className="pin-over" src={pin} />
                               )}
-                            </Avatar>
+                            </div>
                           </div>
                         </div>
                         <div onClick={this.handleOpenDialogue}>
@@ -251,7 +261,7 @@ class GetNote extends Component {
                         <PersonAddOutlinedIcon />
                       </div>
                       <div>
-                        <ColorComponent paletteProps={this.paletteProps} />
+                      <ColorComponent paletteProps={this.paletteProps} />
                       </div>
                       <div>
                         <ImageOutlinedIcon />
