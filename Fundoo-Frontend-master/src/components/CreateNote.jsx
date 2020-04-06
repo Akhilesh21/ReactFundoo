@@ -18,7 +18,7 @@ import ColorComponent from "./colorNote";
 //import { keys } from "@material-ui/core/styles/createBreakpoints";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
-
+import {getNote} from "../Services/NoteServices";
 class Notes extends Component {
   constructor(props) {
     super(props);
@@ -78,10 +78,11 @@ class Notes extends Component {
       formData.append("title", this.state.title);
       formData.append("decription", this.state.description);
       formData.append("userid", this.state.userid);
+      formData.append("color", this.state.color);
       var data = {
-        title: this.state.title,
-        desription: this.state.description
-        // color:this.state.color,
+         title: this.state.title,
+           desription: this.state.description,
+         color:this.state.color,
       };
       console.log(data);
       create(formData)
@@ -183,7 +184,7 @@ class Notes extends Component {
               <p>
                 {this.state.reminder != null ? (
                   <Chip
-                    style={{ display: "flex", marginLeft: "0em" }}
+                    style={{ display: "flex", marginLeft: "0em",display: "table-cell" }}
                     icon={<AccessTimeIcon />}
                     label={this.state.reminder}
                     onDelete={this.removeReminder}

@@ -108,11 +108,11 @@
   justify-content: space-between;
 }
 
-.paint {
+/* .paint {
   margin: -37px;
   top: -70px;
   left: 111px;
-}
+} */
 .MuiSvgIcon-root {
   fill: currentColor;
   width: 7em;
@@ -129,6 +129,7 @@
   width: 76%;
   flex-wrap: wrap;
   justify-content: center;
+  
 }
 
 .getnoteicons {
