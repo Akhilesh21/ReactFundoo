@@ -116,7 +116,8 @@ class Login extends Component {
               this.props.history.push("/dashboard");
             }, 2000);
 
-            console.log("RESPONSE :", response);
+            console.log("RESPONSE :", response.data);
+            localStorage.setItem('usertoken',response.data.token)
           } else {
             console.log("qwerty");
           }
