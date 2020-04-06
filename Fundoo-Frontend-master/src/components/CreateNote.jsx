@@ -18,7 +18,7 @@ import ColorComponent from "./colorNote";
 //import { keys } from "@material-ui/core/styles/createBreakpoints";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
-import {getNote} from "../Services/NoteServices";
+import {getNotes} from "../Services/NoteServices";
 class Notes extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +38,24 @@ class Notes extends Component {
       openReminderMenu: false
     };
   }
+
+  componentDidMount() {
+    this.handleGetNotes();
+  }
+
+  handleGetNotes = () => {
+    getNotes()
+     .then(res => {
+       this.setState({
+         notes: res.data.data
+       });
+       console.log("res in notesData", this.state.notes);
+     })
+     .catch(err => {
+       console.log("err", err);
+     });
+ };
+
   openCard = () => {
     this.setState({ cardOpen: true });
   };
@@ -51,6 +69,14 @@ class Notes extends Component {
     this.setState({
       cardOpen: true
     });
+  };
+
+  handleOpenPin = noteId => {
+    this.setState({ isPinned: true });
+    let date = {
+      noteId: noteId,
+      isPinned: this.state.isPinned
+    };
   };
 
   handleClosePin = () => {
@@ -154,7 +180,7 @@ class Notes extends Component {
                 <div>
                   <InputBase
                     multiline
-                    placeholder="Ttitle"
+                    placeholder="title"
                     onChange={this.changeTitle}
                     value={this.state.title}
                   />
