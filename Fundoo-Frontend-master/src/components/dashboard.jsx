@@ -13,7 +13,14 @@ class Dashboard extends Component {
 
       notesOpen: true,
       openDialog: false,
-      getNoteArr: []
+      getNoteArr: [],
+      noteArray: [],
+      color: "",
+      note: true,
+      archive: false,
+      isDeleted: false,
+      trash: false,
+      getNotesProps: false,
     };
   }
 
@@ -24,6 +31,12 @@ class Dashboard extends Component {
   handleDraweropen = () => {
     this.setState({ open: !this.state.open });
   };
+  handleView=()=>{
+    this.setState({listView:!this.state.listView})
+  }
+  handleNote = () => {
+    this.setState({ note: true, archive: false, trash: false })
+  }
 
   render() {
     console.log("Daashboar-----------");

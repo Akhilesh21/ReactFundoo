@@ -4,5 +4,6 @@ module.exports = {
     ForgotPassword:'forgetPassword',
     createNote:'notes',
     getNotes:'getNotes',
-    color:'color'
+    noteColor:'noteColor',
+    trashNote:'trashNote'
 };

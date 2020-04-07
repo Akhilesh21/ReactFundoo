@@ -9,8 +9,26 @@ class trash extends Component {
     this.state = {
       note: [],
       isDeleted: "",
+      drawerOpen: false,
+      open: false,
     };
   }
+
+  componentDidMount() {
+    this.handleGetNotes();
+  }
+  handleGetNotes = () => {
+    getNotes()
+      .then((res) => {
+        this.setState({
+          notes: res.data.data,
+        });
+        console.log("res in notesData", this.state.notes);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
   render() {
     return (
       <div className="_notes">
@@ -59,7 +77,9 @@ class trash extends Component {
                         </Tooltip>
                       </div>
                       <div>
-                        <Tooltip title="Restore"></Tooltip>
+                        <Tooltip title="Restore">
+                          <RestoreFromTrashIcon />
+                        </Tooltip>
                       </div>
                     </div>
                   </Card>

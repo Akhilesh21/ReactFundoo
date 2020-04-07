@@ -37,11 +37,11 @@ export async function getNotes(data) {
   }
 }
 
-export async function color(data){
+export async function colorChange(colordata){
   let gettingtoken = localStorage.getItem("usertoken");
   try{
-      const response = await axios.post(process.env.REACT_APP_NOTES_URL + useConstants.color,
-        data,{
+      const response = await axios.post(process.env.REACT_APP_NOTES_URL + useConstants.colorChange,
+        colordata,{
           headers: {
               Authorization:userData.id
       }});
@@ -50,4 +50,18 @@ export async function color(data){
       return err
   }
 }
+
+export async function trashNote(trashdata){
+  try{
+      const response = await axios.post(process.env.REACT_APP_NOTES_URL + useConstants.trashNote,
+        trashdata,{
+          headers: {
+              Authorization:userData.id
+      }});
+      return response
+  } catch(err){
+      throw err
+  }
+}
+
 

@@ -7,9 +7,26 @@ import {
   MenuItem,
 } from "@material-ui/core";
 
+
 class More extends Component {
   constructor(props) {
     super(props);
+  }
+  handleDelete=  ()=>{
+    let data ={
+      noteId:this.props.id,
+      isDeleted:true
+    }
+    console.log("delted using id " ,data);
+  addNoteToTrash(data).then(res=>{
+    console.log("result of deleted is ", res); 
+    this.props.handleGetNotes();
+
+  })
+  .catch(err=>{
+    console.log("Error occured during deletion ",err);
+    
+  })
   }
   
   render() {
