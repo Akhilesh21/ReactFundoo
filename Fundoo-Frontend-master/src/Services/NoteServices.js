@@ -1,5 +1,6 @@
 import axios from "axios";
 import useConstants from "../Constants/uesConstants";
+let userData = JSON.parse(localStorage.getItem("userDetails"))
 
 let headers = {
   "Content-Type": "multipart/form-data",
@@ -35,3 +36,18 @@ export async function getNotes(data) {
     return err;
   }
 }
+
+export async function color(data){
+  let gettingtoken = localStorage.getItem("usertoken");
+  try{
+      const response = await axios.post(process.env.REACT_APP_NOTES_URL + useConstants.color,
+        data,{
+          headers: {
+              Authorization:userData.id
+      }});
+      return response
+  } catch(err){
+      return err
+  }
+}
+

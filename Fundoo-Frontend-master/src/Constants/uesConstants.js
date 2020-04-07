@@ -3,5 +3,6 @@ module.exports = {
     Login:'login',
     ForgotPassword:'forgetPassword',
     createNote:'notes',
-    getNotes:'getNotes'
+    getNotes:'getNotes',
+    color:'color'
 };
