@@ -10,7 +10,10 @@ class trash extends Component {
     }
     render() {
         return (
+            <div className="_notes">
             <div>
+
+            </div>
                 
             </div>
         )
