@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Tooltip, Card } from "@material-ui/core";
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 class trash extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +18,9 @@ class trash extends Component {
           className="_notes_"
           style={{ marginTop: "95px", flexWrap: "wrap" }}
         >
+        {this.state.notes.map(key => {
+            if( key.data().isDeleted === true) {
+                console.log("the dele is ", key.data().isDeleted);
           return(
           <div className="notes_">
             <Card
@@ -35,7 +38,6 @@ class trash extends Component {
                 //background: key.data().color
               }}
             >
-
               <div
                 style={{
                   display: "flex",
@@ -43,33 +45,31 @@ class trash extends Component {
                   padding: "5px",
                 }}
               >
-              <div>
-              <div>
-              {key.data().title}
-              </div>
-              <div style={{ marginTop: "25px" }}>
-              {key.data().decription}
-              </div>
-              </div>
+                <div>
+                  <div>{key.data().title}</div>
+                  <div style={{ marginTop: "25px" }}>
+                    {key.data().decription}
+                  </div>
+                </div>
               </div>
               <div className="getnoteicons_trash">
-              <div>
-              <Tooltip title="Delete forever">
-              <DeleteForeverIcon />
-              </Tooltip>
-              </div>
-              <div>
-              <Tooltip title="Restore">
-
-              </Tooltip>
-              </div>
+                <div>
+                  <Tooltip title="Delete forever">
+                    <DeleteForeverIcon />
+                  </Tooltip>
+                </div>
+                <div>
+                  <Tooltip title="Restore"></Tooltip>
+                </div>
               </div>
             </Card>
           </div>
           );
+        }
+       })}
         </div>
       </div>
-    );
+    )
   }
 }
 export default withRouter(trash);
