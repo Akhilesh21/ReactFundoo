@@ -14,6 +14,7 @@ class trash extends Component {
             <div className="_notes_" style={{marginTop:"95px",flexWrap:"wrap",}}>
             return(
                 <div className="notes_">
+                
                 </div>
             )
             </div>
