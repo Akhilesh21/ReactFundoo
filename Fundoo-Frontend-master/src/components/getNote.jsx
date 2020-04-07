@@ -20,6 +20,7 @@ import Reminder from "./reminder";
 import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
+
 import { getNotes } from "../Services/NoteServices";
 const thm = createMuiTheme({
   overrides: {
@@ -117,8 +118,8 @@ class GetNote extends Component {
                           boxShadow: "0px 1px 7px 0px",
                           marginTop: "10%",
                           borderRadius: "15px",
-                         // backgroundColor: this.state.color
-                         background: key.color
+                          backgroundColor: this.state.color
+                         //background: key.color
                         }}
                       >
                         <div
@@ -208,7 +209,7 @@ class GetNote extends Component {
                               </div>
                             </Tooltip>
                           </div>
-
+               
                           <div>
                             <Tooltip title="More">
                               <MoreVertOutlinedIcon
@@ -254,6 +255,7 @@ class GetNote extends Component {
                   <div className="imageAndClose">
                     <div className="dialogIcon">
                       <div>
+                      
                         <PersonAddOutlinedIcon />
                       </div>
                       <div>

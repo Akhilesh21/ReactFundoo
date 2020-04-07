@@ -18,6 +18,7 @@ import ColorComponent from "./colorNote";
 //import { keys } from "@material-ui/core/styles/createBreakpoints";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
+import correct from "../assets/correct.svg";
 import {getNotes} from "../Services/NoteServices";
 class Notes extends Component {
   constructor(props) {
@@ -189,9 +190,11 @@ class Notes extends Component {
                   {!this.state.isPinned ? (
                     <div className="pin-over" onClick={this.handleOpenPin}>
                       <img className="pin-over" src={pin} />
+                    
                     </div>
                   ) : (
                     <div className="pin-out" onClick={this.handleClosePin}>
+                    <img className="pin-over" src={correct} />
                       <img className="pin-out" src={unPin} />
                     </div>
                   )}
