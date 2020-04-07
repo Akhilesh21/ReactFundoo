@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
-export default class more extends Component {
+class more extends Component {
+    constructor(props) {
+        super(props);
+        
+      }
     render() {
         return (
             <div>
