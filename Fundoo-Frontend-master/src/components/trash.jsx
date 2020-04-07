@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
-export default class trash extends Component {
+import { withRouter } from "react-router-dom";
+class trash extends Component {
     render() {
         return (
             <div>
@@ -9,3 +9,4 @@ export default class trash extends Component {
         )
     }
 }
+export default withRouter(Trash);
