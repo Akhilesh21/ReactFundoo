@@ -14,6 +14,7 @@ import Notes from "./components/CreateNote";
 import ColorComponent from "./components/colorNote";
 import GetNote from "./components/getNote";
 import reminder from "./components/reminder";
+import more from "./components/more"
 import test from "./components/test";
 
 class App extends React.Component {
@@ -40,7 +41,7 @@ class App extends React.Component {
           <Route path="/note" component={Notes} />
           <Route path="/getNote" component={GetNote} />
           <Route path="/ColorComponent" component={ColorComponent} />
-
+          <Route path="/more" component={more}/>
           <Route path="/reminder" component={reminder} />
           <Route path="/test" component={test} />
         </Switch>

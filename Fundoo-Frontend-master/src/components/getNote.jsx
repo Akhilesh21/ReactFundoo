@@ -15,7 +15,7 @@ import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ColorComponent from "./colorNote";
 import Reminder from "./reminder";
-
+import More from "./more";
 
 import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
@@ -54,6 +54,7 @@ class GetNote extends Component {
   menuItem = e => {
     this.setState({ anchorEl: e.currentTarget });
   };
+  
   componentDidMount() {
     this.handleGetNotes();
   }
@@ -217,6 +218,12 @@ class GetNote extends Component {
                                 aria-owns="simple-menu"
                               />
                             </Tooltip>
+                            <More
+                            anchorEl={this.state.anchorEl}
+                            closeMenu={this.handleClose}
+                            id={key.id}
+                            handleGetNotes={this.handleGetNotes}
+                          />
                           </div>
                         </div>
                       </Card>
