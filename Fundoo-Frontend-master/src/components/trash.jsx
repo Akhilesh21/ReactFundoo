@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router-dom";
 class trash extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            note:[],
+            isDeleted:"",
+        }
+    }
     render() {
         return (
             <div>
@@ -9,4 +16,4 @@ class trash extends Component {
         )
     }
 }
-export default withRouter(Trash);
+export default withRouter(trash);
