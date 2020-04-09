@@ -106,10 +106,12 @@ class Notes extends Component {
       formData.append("decription", this.state.description);
       formData.append("userid", this.state.userid);
       formData.append("color", this.state.color);
+      formData.append("istrash", this.state.isDeleted);
       var data = {
          title: this.state.title,
            desription: this.state.description,
          color:this.state.color,
+         istrash: this.state.isDeleted,
       };
       console.log(data);
       create(formData)

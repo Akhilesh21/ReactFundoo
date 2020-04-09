@@ -14,14 +14,14 @@ import { createMuiTheme } from "@material-ui/core";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ColorComponent from "./colorNote";
-import Reminder from "./reminder";
+//import Reminder from "./reminder";
 import More from "./delete";
 
 import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 
-import { getNotes } from "../Services/NoteServices";
+//import { getTrash } from "../Services/NoteServices";
 const thm = createMuiTheme({
   overrides: {
     MuiCard: {
@@ -33,7 +33,7 @@ const thm = createMuiTheme({
     }
   }
 });
-class GetNote extends Component {
+class getTrashh extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,9 +44,10 @@ class GetNote extends Component {
       description: "",
       color:"",
       reminder:"",
+      istrash:false,
       openReminderMenu: false,
     }
-    this.handleGetNotes()
+    this.handlegetTrash()
   }
   menuOpen = () => {
     this.setState({ open: !this.state.open });
@@ -56,47 +57,25 @@ class GetNote extends Component {
   };
   
   componentDidMount() {
-    this.handleGetNotes();
+    this.handlegetTrash();
   }
 
 
-  handleColorClose = () => {
-    this.setState({ color: true });
-  };
-
-  colorChange = () => {
-    this.setState();
-  };
-  // paletteProps = (e) => {
-  //   console.log(e)
-  //   this.setState({
-  //     color: e
-  //   })
-
-  //   this.props.colorChange(e)
-  //   // console.log(this.state.color)
-  // }
-
-  paletteProps = (event, data) => {
-    this.setState({
-      color: data
-    });
-  };
- 
+  
   
 
-  handleGetNotes = () => {
-     getNotes()
-      .then(res => {
-        this.setState({
-          notes: res.data.data
-        });
-        console.log("res in notesData", this.state.notes);
-      })
-      .catch(err => {
-        console.log("err", err);
-      });
-  };
+  // handlegetTrash = () => {
+  //   getTrash()
+  //     .then(res => {
+  //       this.setState({
+  //         notes: res.data.data
+  //       });
+  //       console.log("res in notesData", this.state.notes);
+  //     })
+  //     .catch(err => {
+  //       console.log("err", err);
+  //     });
+  // };
 
   render() {
     return (
@@ -154,35 +133,7 @@ class GetNote extends Component {
                             </div>
                           </div>
                         </div>
-                        <div onClick={this.handleOpenDialogue}>
-                          <div className="base">
-                            <InputBase
-                              multiline
-                              onClick={() =>
-                                this.handleEditNote(
-                                  key.id,
-                                  key.title,
-                                  key.description
-                                )
-                              }
-                            />
-
-                            <div onClick={this.handleOpenDialogue}>
-                              <InputBase
-                                value={key.description}
-                                multiline
-                                onClick={() =>
-                                  this.handleEditNote(
-                                    key.id,
-                                    key.title,
-                                    key.description
-                                  )
-                                }
-                              />
-                            </div>
-                          </div>
-                        </div>
-
+                        
                         <div className="getnoteicons">
                           <div>
                             <Tooltip title="Collbrate">
@@ -193,7 +144,7 @@ class GetNote extends Component {
                             <ColorComponent
                               paletteProps={this.paletteProps}
                               id={key.id}
-                            />
+                             />
                           </div>
                           <div>
                             <Tooltip title="Add image">
@@ -222,7 +173,7 @@ class GetNote extends Component {
                             anchorEl={this.state.anchorEl}
                             closeMenu={this.handleClose}
                             id={key.id}
-                            handleGetNotes={this.handleGetNotes}
+                            handleGetTrash={this.handleGetTrash}
                           />
                           </div>
                         </div>
@@ -296,4 +247,4 @@ class GetNote extends Component {
     );
   }
 }
-export default withRouter(GetNote);
+export default withRouter(getTrashh);

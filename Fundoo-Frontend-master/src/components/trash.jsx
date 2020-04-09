@@ -3,14 +3,14 @@ import { withRouter } from "react-router-dom";
 import { Tooltip, Card } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
+import { getNotes } from "../Services/NoteServices";
 class trash extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      note: [],
-      isDeleted: "",
-      drawerOpen: false,
-      open: false,
+     
+      notes: [],
+      istrash: "",
     };
   }
 
@@ -21,7 +21,7 @@ class trash extends Component {
     getNotes()
       .then((res) => {
         this.setState({
-          notes: res.data.data,
+          notes:res.data.data,
         });
         console.log("res in notesData", this.state.notes);
       })
@@ -29,6 +29,7 @@ class trash extends Component {
         console.log("err", err);
       });
   };
+  
   render() {
     return (
       <div className="_notes">
@@ -36,13 +37,13 @@ class trash extends Component {
           className="_notes_"
           style={{ marginTop: "95px", flexWrap: "wrap" }}
         >
-          {this.state.notes.map((key) => {
-            if (key.data().isDeleted === true) {
-              console.log("the dele is ", key.data().isDeleted);
+          {this.state.notes.map(key => {
+            if (key.istrash === true) {
+              console.log("the dele is ", key.istrash);
               return (
                 <div className="notes_">
                   <Card
-                    style={{ backgroundColor: this.props.color }}
+                  //  style={{ backgroundColor: this.props.color }}
                     className="get_Nottes_card"
                     style={{
                       width: "250px",
@@ -64,9 +65,9 @@ class trash extends Component {
                       }}
                     >
                       <div>
-                        <div>{key.data().title}</div>
+                        <div>{key.title}</div>
                         <div style={{ marginTop: "25px" }}>
-                          {key.data().decription}
+                          {key.decription}
                         </div>
                       </div>
                     </div>
@@ -89,7 +90,7 @@ class trash extends Component {
           })}
         </div>
       </div>
-    );
+    )
   }
 }
 export default withRouter(trash);

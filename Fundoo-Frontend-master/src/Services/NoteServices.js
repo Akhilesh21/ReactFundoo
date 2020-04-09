@@ -31,6 +31,24 @@ export async function getNotes(data) {
       process.env.REACT_APP_BASE_URL + useConstants.getNotes,
       data
     );
+    console.log("akl",data)
+    return response;
+  } catch (err) {
+    return err;
+  }
+}
+
+
+
+
+
+export async function getTrash(data) {
+  let gettingtoken = localStorage.getItem("usertoken");
+  try {
+    let response = await axios.get(
+      process.env.REACT_APP_BASE_URL + useConstants.displaytrash,
+      data
+    );
     return response;
   } catch (err) {
     return err;
@@ -40,7 +58,7 @@ export async function getNotes(data) {
 export async function colorChange(colordata){
   let gettingtoken = localStorage.getItem("usertoken");
   try{
-      const response = await axios.post(process.env.REACT_APP_NOTES_URL + useConstants.colorChange,
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.colorChange,
         colordata,{
           headers: {
               Authorization:userData.id
@@ -51,17 +69,14 @@ export async function colorChange(colordata){
   }
 }
 
-export async function trashNote(trashdata){
+export async function trashNote(data){
   try{
-      const response = await axios.post(process.env.REACT_APP_NOTES_URL + useConstants.trashNote,
-        trashdata,{
-          headers: {
-              Authorization:userData.id
-      }});
+   // let data =trashNote.id
+   console.log(process.env.REACT_APP_BASE_URL , useConstants.trashNote,data)
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.trashNote.id,
+        data);
       return response
   } catch(err){
-      throw err
+      return err;
   }
 }
-
-
