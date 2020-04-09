@@ -5,37 +5,66 @@ import {
   MenuItem,
 } from "@material-ui/core";
 
-//import { trashNote } from "../Services/NoteServices";
-import { getTrash } from "../Services/NoteServices";
-
+import { trashNote } from "../Services/NoteServices";
+//import { getTrash } from "../Services/NoteServices";
+import { getNotes } from "../Services/NoteServices";
 
 class More extends Component {
   constructor(props) {
     super(props);
     this.state={
- 
+      istrash: false,
+     // notes: [''],
+      id:this.props.id
     }
   }
+
    handleDelete= ()=> {
-    
-    let data ={
-      id: this.props.id,
-      // id:this.props.id,
-      istrash:true
+    if(this.state.id == ""){
+      console.log("notes kjdhkah");
+    }else{
+        let formData = new FormData();
+        formData.append("id", this.state.id);
+        var data ={
+
+        id: this.state.id,
+        // id:this.props.id,
+       istrash:true
+        
+      };
+      console.log(data);
+      trashNote(formData)
+        .then(response => {
+          console.log("response in ", response);
+          if (response.status === 200) {
+            console.log("RESPONSE :", response);
+          } else {
+            console.log("qwerty");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
       
     }
-    console.log("trash using id " ,data);
-    getTrash(data).then(res=>{
-    console.log("result of deleted is ", res); 
-    this.props.handleGetNotes();
-
-  })
-  .catch(err=>{
-    console.log("Error occured during deletion ",err);
-    
-  })
+  };
+  componentDidMount() {
+    this.handleGetNotes();
   }
-  
+  handleGetNotes = () => {
+    getNotes()
+      .then((res) => {
+        this.setState({
+          notes:res.data.data,
+        });
+        console.log("res in notesData", this.state.notes);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };   
+    
+   
   render() {
     return (
       <Menu

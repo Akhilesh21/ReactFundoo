@@ -73,7 +73,7 @@ export async function trashNote(data){
   try{
    // let data =trashNote.id
    console.log(process.env.REACT_APP_BASE_URL , useConstants.trashNote,data)
-      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.trashNote.id,
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.trashNote,
         data);
       return response
   } catch(err){

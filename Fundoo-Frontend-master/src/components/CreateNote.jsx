@@ -100,7 +100,7 @@ class Notes extends Component {
     if (this.state.title === "" && this.state.description === "") {
       console.log("title and description are empty");
       this.setState({ cardOpen: false });
-    } else {
+    } else { 
       let formData = new FormData();
       formData.append("title", this.state.title);
       formData.append("decription", this.state.description);
@@ -259,7 +259,7 @@ class Notes extends Component {
                 </Tooltip>
                 <div className="lc"></div>
               </div>
-              <div>
+        {/*      <div>
                 <Tooltip title="Undo">
                   <UndoTwoToneIcon />
                 </Tooltip>
@@ -268,7 +268,7 @@ class Notes extends Component {
                 <Tooltip title="Redo">
                   <RedoTwoToneIcon />
                 </Tooltip>
-              </div>
+                </div>    */}
               <div onClick={this.newNote}>
                 {/* <Button color="primary" onClick={this.newNote} > */}
                 Close
