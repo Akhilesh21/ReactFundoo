@@ -5,37 +5,31 @@ import {
   MenuItem,
 } from "@material-ui/core";
 
-import { trashNote } from "../Services/NoteServices";
-//import { getTrash } from "../Services/NoteServices";
-import { getNotes } from "../Services/NoteServices";
+import { trashNote,getNote } from "../Services/NoteServices";
+
 
 class More extends Component {
   constructor(props) {
     super(props);
     this.state={
       istrash: false,
-     // notes: [''],
       id:this.props.id
     }
+    console.log("delete Id :  ",this.state.id)
   }
 
-   handleDelete= ()=> {
+  handleDelete= ()=> {
     if(this.state.id == ""){
       console.log("notes kjdhkah");
     }else{
         let formData = new FormData();
         formData.append("id", this.state.id);
-        var data ={
-
-        id: this.state.id,
-        // id:this.props.id,
-       istrash:true
-        
-      };
-      console.log(data);
+        formData.append("istrash", this.state.istrash);
+       console.log(this.state.id)
       trashNote(formData)
         .then(response => {
           console.log("response in ", response);
+          this.props.handleGetNotes();
           if (response.status === 200) {
             console.log("RESPONSE :", response);
           } else {
@@ -48,21 +42,7 @@ class More extends Component {
       
     }
   };
-  componentDidMount() {
-    this.handleGetNotes();
-  }
-  handleGetNotes = () => {
-    getNotes()
-      .then((res) => {
-        this.setState({
-          notes:res.data.data,
-        });
-        console.log("res in notesData", this.state.notes);
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  };   
+
     
    
   render() {

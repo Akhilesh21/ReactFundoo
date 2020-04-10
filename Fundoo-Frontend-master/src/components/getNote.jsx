@@ -14,7 +14,7 @@ import { createMuiTheme } from "@material-ui/core";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ColorComponent from "./colorNote";
-import Reminder from "./reminder";
+//import Reminder from "./reminder";
 import More from "./delete";
 
 import Dialog from "@material-ui/core/Dialog";
@@ -22,6 +22,7 @@ import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 
 import { getNotes } from "../Services/NoteServices";
+
 const thm = createMuiTheme({
   overrides: {
     MuiCard: {
@@ -44,9 +45,10 @@ class GetNote extends Component {
       description: "",
       color:"",
       reminder:"",
+      istrash:false,
       openReminderMenu: false,
     }
-    this.handleGetNotes()
+   // this.handleGetNotes()
   }
   menuOpen = () => {
     this.setState({ open: !this.state.open });
@@ -55,6 +57,9 @@ class GetNote extends Component {
     this.setState({ anchorEl: e.currentTarget });
   };
   
+  handleClose = event => {
+    this.setState({ anchorEl: null });
+  };
   componentDidMount() {
     this.handleGetNotes();
   }
@@ -67,15 +72,7 @@ class GetNote extends Component {
   colorChange = () => {
     this.setState();
   };
-  // paletteProps = (e) => {
-  //   console.log(e)
-  //   this.setState({
-  //     color: e
-  //   })
-
-  //   this.props.colorChange(e)
-  //   // console.log(this.state.color)
-  // }
+  
 
   paletteProps = (event, data) => {
     this.setState({
@@ -109,7 +106,7 @@ class GetNote extends Component {
                   // console.log("data", key.isPinned);
                   return (
                     <div className="notes_">
-                      <Card
+                      <Card 
                         style={{
                           width: "250px",
                           minHeight: "135px",
@@ -222,6 +219,7 @@ class GetNote extends Component {
                             anchorEl={this.state.anchorEl}
                             closeMenu={this.handleClose}
                             id={key.id}
+                            key={key}
                             handleGetNotes={this.handleGetNotes}
                           />
                           </div>

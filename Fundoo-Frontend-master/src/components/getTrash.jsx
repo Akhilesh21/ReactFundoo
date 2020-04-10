@@ -84,6 +84,7 @@ class getTrashh extends Component {
           {!this.state.open ? (
             <div className="_notes_">
               {this.state.notes.map(key => {
+                if (key.istrash === true)
                 {
                   // console.log("data", key.isPinned);
                   return (

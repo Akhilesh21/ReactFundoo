@@ -31,7 +31,7 @@ export async function getNotes(data) {
       process.env.REACT_APP_BASE_URL + useConstants.getNotes,
       data
     );
-    console.log("akl",data)
+    //console.log("akl",data)
     return response;
   } catch (err) {
     return err;
@@ -72,7 +72,8 @@ export async function colorChange(colordata){
 export async function trashNote(data){
   try{
    // let data =trashNote.id
-   console.log(process.env.REACT_APP_BASE_URL , useConstants.trashNote,data)
+  // console.log("jfhfhff",data);
+   console.log("NoteService Trashid ",data)
       const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.trashNote,
         data);
       return response

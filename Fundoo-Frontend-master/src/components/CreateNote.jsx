@@ -8,8 +8,8 @@ import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
-import UndoTwoToneIcon from "@material-ui/icons/UndoTwoTone";
-import RedoTwoToneIcon from "@material-ui/icons/RedoTwoTone";
+//import UndoTwoToneIcon from "@material-ui/icons/UndoTwoTone";
+//import RedoTwoToneIcon from "@material-ui/icons/RedoTwoTone";
 //import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
 import { create } from "../Services/NoteServices";
 import Reminder from "./reminder";
@@ -106,12 +106,12 @@ class Notes extends Component {
       formData.append("decription", this.state.description);
       formData.append("userid", this.state.userid);
       formData.append("color", this.state.color);
-      formData.append("istrash", this.state.isDeleted);
+     // formData.append("istrash", this.state.isDeleted);
       var data = {
          title: this.state.title,
            desription: this.state.description,
          color:this.state.color,
-         istrash: this.state.isDeleted,
+       //  istrash: this.state.isDeleted,
       };
       console.log(data);
       create(formData)
