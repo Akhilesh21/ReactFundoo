@@ -5,7 +5,7 @@ import {
   MenuItem,
 } from "@material-ui/core";
 
-import { trashNote,getNote } from "../Services/NoteServices";
+import { trashNote } from "../Services/NoteServices";
 
 
 class More extends Component {
@@ -29,7 +29,7 @@ class More extends Component {
       trashNote(formData)
         .then(response => {
           console.log("response in ", response);
-          this.props.handleGetNotes();
+          
           if (response.status === 200) {
             console.log("RESPONSE :", response);
           } else {
