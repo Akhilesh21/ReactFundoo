@@ -15,10 +15,15 @@ class More extends Component {
       istrash: false,
       id:this.props.id
     }
-    console.log("delete Id :  ",this.state.id)
   }
-
+componentWillReceiveProps(props){
+  this.setState({
+    id:props.id
+  })
+}
   handleDelete= ()=> {
+    console.log(this.state.id,"id hell");
+    
     if(this.state.id == ""){
       console.log("notes kjdhkah");
     }else{
@@ -46,17 +51,21 @@ class More extends Component {
     
    
   render() {
+    console.log(this.props.id);
+    
     return (
       <Menu
         className="x1"
         id="simple-menu"
        anchorEl={this.props.anchorEl}
-       open={Boolean(this.props.anchorEl)}
+       open={this.props.open}
         onClose={this.props.closeMenu}
       >
         <div className="x2">
           <div className="x3">
-            <MenuItem onClick={this.handleDelete}>Delete note</MenuItem>
+          <div className="deletein_trash_restore"  onClick={() => this.handleDelete(this.state.key)}>
+          </div>
+                 
             <MenuItem>Add label</MenuItem>
             <MenuItem>Add drawing</MenuItem>
             <MenuItem>Make a copy</MenuItem>

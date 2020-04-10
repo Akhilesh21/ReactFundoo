@@ -47,6 +47,7 @@ class GetNote extends Component {
       reminder:"",
       istrash:false,
       openReminderMenu: false,
+      menuOpen:false
     }
    // this.handleGetNotes()
   }
@@ -54,7 +55,11 @@ class GetNote extends Component {
     this.setState({ open: !this.state.open });
   };
   menuItem = e => {
-    this.setState({ anchorEl: e.currentTarget });
+    this.setState({ 
+      anchorEl: e.currentTarget,
+    menuOpen:!this.state.menuOpen
+    });
+
   };
   
   handleClose = event => {
@@ -102,7 +107,7 @@ class GetNote extends Component {
           {!this.state.open ? (
             <div className="_notes_">
               {this.state.notes.map(key => {
-                {
+                
                   // console.log("data", key.isPinned);
                   return (
                     <div className="notes_">
@@ -128,6 +133,7 @@ class GetNote extends Component {
                           }}
                         >
                           <div>
+                          <div>{key.id}</div>
                             <div>{key.title}</div>
 
                             <div style={{ marginTop: "30px" }}>
@@ -193,7 +199,7 @@ class GetNote extends Component {
                             />
                           </div>
                           <div>
-                            <Tooltip title="Add image">
+                             <Tooltip title="Add image">
                               <ImageOutlinedIcon />
                             </Tooltip>
                           </div>
@@ -215,20 +221,21 @@ class GetNote extends Component {
                                 aria-owns="simple-menu"
                               />
                             </Tooltip>
-                            <More
+                            {this.state.menuOpen?<More
                             anchorEl={this.state.anchorEl}
+                            open={this.state.menuOpen}
                             closeMenu={this.handleClose}
                             id={key.id}
-                            key={key}
+                           // key={key}
                             handleGetNotes={this.handleGetNotes}
-                          />
+                          />:null}
                           </div>
                         </div>
                       </Card>
                     </div>
                   );
                 }
-              })}
+              )}
             </div>
           ) : (
             <div className="cd">
