@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 
 import { trashNote } from "../Services/NoteServices";
+import { el } from "date-fns/locale";
 
 
 class More extends Component {
@@ -22,12 +23,14 @@ componentWillReceiveProps(props){
    // id:props.id
   })
 }
-  handleDelete= ()=> {
+  handleDelete= (event,id)=> {
     let data ={
       noteId:this.props.id,
       istrash:true
+      
     }
-
+    console.log("dghhdsjhjjhdhhj",id);
+    console.log("hsdg",event.target.value);
     console.log("delted using id " ,data);
     console.log(this.props.id,"id hell");
     
@@ -58,6 +61,7 @@ componentWillReceiveProps(props){
     
    
   render() {
+
     console.log(this.props.id);
     
     return (
@@ -70,7 +74,7 @@ componentWillReceiveProps(props){
       >
         <div className="x2">
           <div className="x3">
-          <MenuItem onClick={this.handleDelete}>Delete note</MenuItem>
+          <MenuItem onClick={(event)=>this.handleDelete(event,this.props.id ) } id={this.state.id}>Delete note</MenuItem>
           
                  
             <MenuItem>Add label</MenuItem>

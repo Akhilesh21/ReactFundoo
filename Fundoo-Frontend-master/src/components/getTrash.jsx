@@ -82,10 +82,7 @@ class trash extends Component {
     });
     return (
       <div
-        style={{
-          height: "100vh",
-          width: "100%",
-        }}
+        
       >
         {trashObj}
       </div>
