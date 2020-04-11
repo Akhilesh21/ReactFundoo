@@ -12,17 +12,24 @@ class More extends Component {
   constructor(props) {
     super(props);
     this.state={
-      istrash: false,
+     // istrash: false,
+
       id:this.props.id
     }
   }
 componentWillReceiveProps(props){
   this.setState({
-    id:props.id
+   // id:props.id
   })
 }
   handleDelete= ()=> {
-    console.log(this.state.id,"id hell");
+    let data ={
+      noteId:this.props.id,
+      istrash:true
+    }
+
+    console.log("delted using id " ,data);
+    console.log(this.props.id,"id hell");
     
     if(this.state.id == ""){
       console.log("notes kjdhkah");
@@ -63,8 +70,8 @@ componentWillReceiveProps(props){
       >
         <div className="x2">
           <div className="x3">
-          <div className="deletein_trash_restore"  onClick={() => this.handleDelete(this.state.key)}>
-          </div>
+          <MenuItem onClick={this.handleDelete}>Delete note</MenuItem>
+          
                  
             <MenuItem>Add label</MenuItem>
             <MenuItem>Add drawing</MenuItem>
