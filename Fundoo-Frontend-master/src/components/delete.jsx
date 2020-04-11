@@ -10,7 +10,7 @@ class More extends Component {
     super(props);
     this.state = {
       // istrash: false,
-
+        key:"",
       id: this.props.id,
     };
   }

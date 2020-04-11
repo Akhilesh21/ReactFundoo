@@ -31,10 +31,14 @@ class trash extends Component {
   };
 
   render() {
+    
     let trashObj = this.state.notes.map((key, index) => {
       if (key.istrash === 1) {
         console.log("the dele is ", key.istrash);
         return (
+          
+          <div className="_notes">
+            
           <div className="notes_">
             <Card
               style={{ backgroundColor: this.props.color }}
@@ -76,11 +80,16 @@ class trash extends Component {
                 </div>
               </div>
             </Card>
-          </div>
+            </div>
+            </div> 
+          
         );
       }
     });
-    return <div>{trashObj}</div>;
+    
+    return <div>
+    {trashObj}
+    </div>;
   }
 }
 export default withRouter(trash);
