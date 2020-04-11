@@ -19,7 +19,7 @@ import ColorComponent from "./colorNote";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 import correct from "../assets/correct.svg";
-import {getNotes} from "../Services/NoteServices";
+import { getNotes } from "../Services/NoteServices";
 class Notes extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ class Notes extends Component {
       date: "",
       time: "",
       anchorElPooper: false,
-      openReminderMenu: false
+      openReminderMenu: false,
     };
   }
 
@@ -46,37 +46,37 @@ class Notes extends Component {
 
   handleGetNotes = () => {
     getNotes()
-     .then(res => {
-       this.setState({
-         notes: res.data.data
-       });
-       console.log("res in notesData", this.state.notes);
-     })
-     .catch(err => {
-       console.log("err", err);
-     });
- };
+      .then((res) => {
+        this.setState({
+          notes: res.data.data,
+        });
+        console.log("res in notesData", this.state.notes);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
 
   openCard = () => {
     this.setState({ cardOpen: true });
   };
-  changeTitle = e => {
+  changeTitle = (e) => {
     this.setState({ title: e.currentTarget.value });
   };
-  changeDescription = e => {
+  changeDescription = (e) => {
     this.setState({ description: e.currentTarget.value });
   };
   handleOpen = () => {
     this.setState({
-      cardOpen: true
+      cardOpen: true,
     });
   };
 
-  handleOpenPin = noteId => {
+  handleOpenPin = (noteId) => {
     this.setState({ isPinned: true });
     let date = {
       noteId: noteId,
-      isPinned: this.state.isPinned
+      isPinned: this.state.isPinned,
     };
   };
 
@@ -88,7 +88,7 @@ class Notes extends Component {
   };
   paletteProps = (event, data) => {
     this.setState({
-      color: data
+      color: data,
     });
   };
   colorChange = () => {
@@ -100,22 +100,22 @@ class Notes extends Component {
     if (this.state.title === "" && this.state.description === "") {
       console.log("title and description are empty");
       this.setState({ cardOpen: false });
-    } else { 
+    } else {
       let formData = new FormData();
       formData.append("title", this.state.title);
       formData.append("decription", this.state.description);
       formData.append("userid", this.state.userid);
       formData.append("color", this.state.color);
-     // formData.append("istrash", this.state.isDeleted);
+      // formData.append("istrash", this.state.isDeleted);
       var data = {
-         title: this.state.title,
-           desription: this.state.description,
-         color:this.state.color,
-       //  istrash: this.state.isDeleted,
+        title: this.state.title,
+        desription: this.state.description,
+        color: this.state.color,
+        //  istrash: this.state.isDeleted,
       };
       console.log(data);
       create(formData)
-        .then(response => {
+        .then((response) => {
           console.log("response in ", response);
           if (response.status === 200) {
             console.log("RESPONSE :", response);
@@ -123,13 +123,13 @@ class Notes extends Component {
             console.log("qwerty");
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
       this.setState({ cardOpen: false });
     }
   };
-  handleReminderDate = date => {
+  handleReminderDate = (date) => {
     this.setState({ reminder: date });
   };
   removeReminder = () => {
@@ -175,7 +175,7 @@ class Notes extends Component {
             style={{
               backgroundColor: this.state.color,
               boxShadow: "0px 0px 3px 1px",
-              opacity: "0.9"
+              opacity: "0.9",
             }}
           >
             <div>
@@ -192,11 +192,10 @@ class Notes extends Component {
                   {!this.state.isPinned ? (
                     <div className="pin-over" onClick={this.handleOpenPin}>
                       <img className="pin-over" src={pin} />
-                    
                     </div>
                   ) : (
                     <div className="pin-out" onClick={this.handleClosePin}>
-                    <img className="pin-over" src={correct} />
+                      <img className="pin-over" src={correct} />
                       <img className="pin-out" src={unPin} />
                     </div>
                   )}
@@ -215,7 +214,11 @@ class Notes extends Component {
               <p>
                 {this.state.reminder != null ? (
                   <Chip
-                    style={{ display: "flex", marginLeft: "0em",display: "table-cell" }}
+                    style={{
+                      display: "flex",
+                      marginLeft: "0em",
+                      display: "table-cell",
+                    }}
                     icon={<AccessTimeIcon />}
                     label={this.state.reminder}
                     onDelete={this.removeReminder}
@@ -259,7 +262,7 @@ class Notes extends Component {
                 </Tooltip>
                 <div className="lc"></div>
               </div>
-        {/*      <div>
+              {/*      <div>
                 <Tooltip title="Undo">
                   <UndoTwoToneIcon />
                 </Tooltip>

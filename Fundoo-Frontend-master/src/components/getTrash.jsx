@@ -80,13 +80,7 @@ class trash extends Component {
         );
       }
     });
-    return (
-      <div
-        
-      >
-        {trashObj}
-      </div>
-    );
+    return <div>{trashObj}</div>;
   }
 }
 export default withRouter(trash);

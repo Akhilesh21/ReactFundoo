@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import {
-  Tooltip,
-  Button,
-  Menu,
-  MenuItem,
-  IconButton
-} from "@material-ui/core";
+import { Tooltip, Button, Menu, MenuItem, IconButton } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
-  KeyboardTimePicker
+  KeyboardTimePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
@@ -19,10 +13,10 @@ class Reminder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reminder: ""
+      reminder: "",
     };
   }
-  reminderMenuOpen = e => {
+  reminderMenuOpen = (e) => {
     this.setState({ reminderAnchorEl: e.currentTarget });
   };
 
@@ -85,7 +79,7 @@ class Reminder extends Component {
     this.setState({ openReminderMenu: !this.state.openReminderMenu });
   };
 
-  setDateOpen = e => {
+  setDateOpen = (e) => {
     this.setState({ openReminderMenu: !this.state.openReminderMenu });
   };
 
@@ -94,30 +88,24 @@ class Reminder extends Component {
   };
 
   render() {
-    let reminderMenuItem = !this.state.openReminderMenu ? 
-      <div >
-        
-          <Menu
-            id="reminder-menu"
-            anchorEl={this.state.reminderAnchorEl}
-            open={Boolean(this.state.reminderAnchorEl)}
-            onClose={this.reminderMenuClose}
-          >
-            <MenuItem>Reminder:</MenuItem>
-            <MenuItem onClick={this.handleTodayDate}>
-              Later today 8:00PM
-            </MenuItem>
-            <MenuItem onClick={this.handleTomorrowDate}>
-              Tomorrow 8:00AM
-            </MenuItem>
-            <MenuItem onClick={this.handleNextWeekDate}>
-              Next week Mon, 8:00AM
-            </MenuItem>
-            <MenuItem onClick={this.setDateOpen}>Pick date & time</MenuItem>
-          </Menu>
-        
+    let reminderMenuItem = !this.state.openReminderMenu ? (
+      <div>
+        <Menu
+          id="reminder-menu"
+          anchorEl={this.state.reminderAnchorEl}
+          open={Boolean(this.state.reminderAnchorEl)}
+          onClose={this.reminderMenuClose}
+        >
+          <MenuItem>Reminder:</MenuItem>
+          <MenuItem onClick={this.handleTodayDate}>Later today 8:00PM</MenuItem>
+          <MenuItem onClick={this.handleTomorrowDate}>Tomorrow 8:00AM</MenuItem>
+          <MenuItem onClick={this.handleNextWeekDate}>
+            Next week Mon, 8:00AM
+          </MenuItem>
+          <MenuItem onClick={this.setDateOpen}>Pick date & time</MenuItem>
+        </Menu>
       </div>
-    :
+    ) : (
       <div>
         <Menu
           id="reminder-menu"
@@ -136,7 +124,7 @@ class Reminder extends Component {
                   value={this.state.date}
                   onChange={(value, event) => this.handleDate(value, event)}
                   KeyboardButtonProps={{
-                    "aria-label": "change date"
+                    "aria-label": "change date",
                   }}
                 />
               </MuiPickersUtilsProvider>
@@ -150,7 +138,7 @@ class Reminder extends Component {
                   value={this.state.time}
                   onChange={(value, event) => this.handleTime(value, event)}
                   KeyboardButtonProps={{
-                    "aria-label": "change time"
+                    "aria-label": "change time",
                   }}
                 />
               </MuiPickersUtilsProvider>
@@ -166,7 +154,8 @@ class Reminder extends Component {
           </div>
         </Menu>
       </div>
-    
+    );
+
     return (
       <div>
         <IconButton aria-haspopup="true" onClick={this.reminderMenuOpen}>

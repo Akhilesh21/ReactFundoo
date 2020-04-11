@@ -129,7 +129,6 @@
   width: 76%;
   flex-wrap: wrap;
   justify-content: center;
-  
 }
 
 .getnoteicons {
@@ -158,9 +157,9 @@
   margin-top: "10%";
   border-radius: "15px";
 }
-.drop{
+.drop {
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  opacity:"0.9";
+  opacity: "0.9";
 }

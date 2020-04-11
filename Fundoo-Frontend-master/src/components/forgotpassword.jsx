@@ -1,30 +1,28 @@
 import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-//import { Container } from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import "./User.css";
 import Box from "@material-ui/core/Box";
 import { forgotpassword } from "../Services/UserServices";
 import { Snackbar, IconButton } from "@material-ui/core";
-//import { IconButton } from '@material-ui/core';
 import CloseIcon from "@material-ui/icons/Close";
 
 const defaultProps = {
   bgcolor: "background.paper",
   m: 1,
   border: 1.5,
-  style: { width: "49rem", height: "25rem", margin: "85px" }
+  style: { width: "49rem", height: "25rem", margin: "85px" },
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
 
   paper: {
     padding: theme.spacing(1),
     textAlign: "center",
-    color: theme.palette.text.secondary
-  }
+    color: theme.palette.text.secondary,
+  },
 }));
 
 class Forgotpassword extends Component {
@@ -36,19 +34,19 @@ class Forgotpassword extends Component {
       snackbarOpen: false,
       snackbarMessage: "",
       error: false,
-      message: ""
+      message: "",
     };
   }
 
-  SnackbarClose = e => {
+  SnackbarClose = (e) => {
     this.setState({ snackbarOpen: false });
   };
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.setState({ [e.target.name]: e.target.value }));
   };
 
-  onchangeEmail = event => {
+  onchangeEmail = (event) => {
     if (
       event.target.value.match("!/[a-z0-9._%+-]+@[a-z][0-9,-]+.[a-z]{2,3}$/") ==
       null
@@ -57,7 +55,7 @@ class Forgotpassword extends Component {
       this.setState({ Email: event.target.value });
       this.setState({
         snackbarOpen: true,
-        snackbarMessage: "enter proper email"
+        snackbarMessage: "enter proper email",
       });
     } else {
       console.log("on click function is working", event.target.value);
@@ -74,15 +72,15 @@ class Forgotpassword extends Component {
       formData.append("email", this.state.Email);
 
       var forgotDetails = {
-        email: this.state.Email
+        email: this.state.Email,
       };
       console.log(forgotDetails);
       forgotpassword(formData)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             this.setState({
               snackbarOpen: true,
-              snackbarMessage: response.statusText
+              snackbarMessage: response.statusText,
             });
             setTimeout(() => {
               this.props.history.push("/newpage");
@@ -117,7 +115,7 @@ class Forgotpassword extends Component {
               color: "#616161",
               fontSize: "35px",
               fontWeight: "lighter",
-              marginTop: "35px"
+              marginTop: "35px",
             }}
           >
             Fundoo
@@ -132,7 +130,7 @@ class Forgotpassword extends Component {
                   fontFamily: "serif",
                   padding: "73px",
                   marginLeft: "-175px",
-                  paddingBottom: "45px"
+                  paddingBottom: "45px",
                 }}
               >
                 Forgot Password
@@ -153,7 +151,7 @@ class Forgotpassword extends Component {
             <Snackbar
               anchorOrigin={{
                 vertical: "top",
-                horizontal: "center"
+                horizontal: "center",
               }}
               open={this.state.snackbarOpen}
               autoHideDuration={6000}

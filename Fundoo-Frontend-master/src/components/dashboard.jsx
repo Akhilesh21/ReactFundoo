@@ -4,7 +4,7 @@ import AppNavBar from "./AppBar";
 import SideNavBar from "./sideBar";
 import Notes from "./CreateNote";
 import GetNote from "./getNote";
- 
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -24,19 +24,19 @@ class Dashboard extends Component {
     };
   }
 
-  handleDialogClose = data => {
+  handleDialogClose = (data) => {
     this.setState({ openDialog: false });
   };
 
   handleDraweropen = () => {
     this.setState({ open: !this.state.open });
   };
-  handleView=()=>{
-    this.setState({listView:!this.state.listView})
-  }
+  handleView = () => {
+    this.setState({ listView: !this.state.listView });
+  };
   handleNote = () => {
-    this.setState({ note: true, archive: false, trash: false })
-  }
+    this.setState({ note: true, archive: false, trash: false });
+  };
 
   render() {
     console.log("Daashboar-----------");
@@ -53,9 +53,8 @@ class Dashboard extends Component {
           />
         </div>
         <Notes />
-        <GetNote/>
+        <GetNote />
       </div>
-      
     );
   }
 }
