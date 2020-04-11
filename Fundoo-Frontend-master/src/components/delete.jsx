@@ -38,8 +38,8 @@ componentWillReceiveProps(props){
       console.log("notes kjdhkah");
     }else{
         let formData = new FormData();
-        formData.append("id", this.state.id);
-        formData.append("istrash", this.state.istrash);
+       formData.append("id", this.state.id);
+       // formData.append("istrash", this.state.istrash);
        console.log(this.state.id)
       trashNote(formData)
         .then(response => {

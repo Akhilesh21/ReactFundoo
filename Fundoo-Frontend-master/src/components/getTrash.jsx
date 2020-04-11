@@ -31,9 +31,9 @@ class trash extends Component {
   };
 
   render() {
-    let trashObj = this.state.notes.map((el, index) => {
-      if (el.istrash === 1) {
-        console.log("the dele is ", el.istrash);
+    let trashObj = this.state.notes.map((key, index) => {
+      if (key.istrash === 1) {
+        console.log("the dele is ", key.istrash);
         return (
           <div className="notes_">
             <Card
@@ -59,8 +59,8 @@ class trash extends Component {
                 }}
               >
                 <div>
-                  <div>{el.title}</div>
-                  <div style={{ marginTop: "25px" }}>{el.decription}</div>
+                  <div>{key.title}</div>
+                  <div style={{ marginTop: "25px" }}>{key.decription}</div>
                 </div>
               </div>
               <div className="getnoteicons_trash">

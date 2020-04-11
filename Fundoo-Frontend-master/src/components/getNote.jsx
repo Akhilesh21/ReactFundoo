@@ -108,7 +108,7 @@ class GetNote extends Component {
             <div className="_notes_">
               {this.state.notes.map(key => {
                 
-                  // console.log("data", key.isPinned);
+//console.log("data", key.isPinned);
                   return (
                     <div className="notes_">
                       <Card 
@@ -226,6 +226,7 @@ class GetNote extends Component {
                             open={this.state.menuOpen}
                             closeMenu={this.handleClose}
                             id={key.id}
+                            
                            // key={key}
                             handleGetNotes={this.handleGetNotes}
                           />:null}
