@@ -52,7 +52,7 @@ class trash extends Component {
                 boxShadow: "0px 1px 7px 0px",
                 marginTop: "10%",
                 borderRadius: "15px",
-                // background: key.data().color
+                background: key.color
               }}
             >
               <div
@@ -63,6 +63,7 @@ class trash extends Component {
                 }}
               >
                 <div>
+                <div>{key.id}</div>
                   <div>{key.title}</div>
                   <div style={{ marginTop: "25px" }}>{key.decription}</div>
                 </div>

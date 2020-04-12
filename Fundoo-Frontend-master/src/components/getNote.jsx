@@ -109,8 +109,8 @@ class GetNote extends Component {
                         boxShadow: "0px 1px 7px 0px",
                         marginTop: "10%",
                         borderRadius: "15px",
-                        backgroundColor: this.state.color,
-                        //background: key.color
+                        //backgroundColor: this.state.color,
+                        background: key.color
                       }}
                     >
                       <div
