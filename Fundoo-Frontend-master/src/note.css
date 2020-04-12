@@ -128,7 +128,9 @@
   display: flex;
   width: 76%;
   flex-wrap: wrap;
-  justify-content: center;
+     
+  justify-content: space-around;
+  padding-left: 211px;
 }
 
 .getnoteicons {
@@ -143,8 +145,7 @@
 ._notes {
   display: flex;
   justify-content: center;
-  /* width: 100%; */
-  justify-content: center;
+  
 }
 
 .notes_ {

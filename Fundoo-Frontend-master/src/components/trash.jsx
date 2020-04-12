@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Tooltip, Card } from "@material-ui/core";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 import { getNotes } from "../Services/NoteServices";
 class trash extends Component {
   constructor(props) {
