@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Menu, MenuItem } from "@material-ui/core";
 
-import { trashNote } from "../Services/NoteServices";
-import { el } from "date-fns/locale";
+import { trashNote} from "../Services/NoteServices";
+//import { el } from "date-fns/locale";
 
 class More extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class More extends Component {
       trashNote(formData)
         .then((response) => {
           console.log("response in ", response);
-
+         
           if (response.status === 200) {
             console.log("RESPONSE :", response);
           } else {

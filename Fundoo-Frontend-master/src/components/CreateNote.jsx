@@ -91,9 +91,12 @@ class Notes extends Component {
       color: data,
     });
   };
+  
+
   colorChange = () => {
     this.setState();
   };
+  
 
   newNote = () => {
     // try {
@@ -101,18 +104,18 @@ class Notes extends Component {
       console.log("title and description are empty");
       this.setState({ cardOpen: false });
     } else {
-      let formData = new FormData();
+      let formData = new FormData(data);
       formData.append("title", this.state.title);
       formData.append("decription", this.state.description);
       formData.append("userid", this.state.userid);
       formData.append("color", this.state.color);
       // formData.append("istrash", this.state.isDeleted);
       var data = {
+        userid:this.state.userid,
         title: this.state.title,
         desription: this.state.description,
         color: this.state.color,
-        //  istrash: this.state.isDeleted,
-      };
+         };
       console.log(data);
       create(formData)
         .then((response) => {

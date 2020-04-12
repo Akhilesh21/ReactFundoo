@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Tooltip, Card } from "@material-ui/core";
+import { Tooltip, Card,IconButton  } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 import { getNotes } from "../Services/NoteServices";
+import { restoreNote } from "../Services/NoteServices";
+
+
 class trash extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id:Number,
       notes: [],
-      istrash: "",
+      istrash: Number,
     };
     this.handleGetNotes();
   }
@@ -29,6 +33,23 @@ class trash extends Component {
         console.log("err", err);
       });
   };
+ 
+  restore = (id) => {
+    
+    var data = {
+      id: id,
+      istrash:0
+    }
+    restoreNote(data).then(res => {
+        console.log(res)
+        this.handleGetNotes()
+    })
+        .catch(err => {
+            console.log("err", err);
+            console.log("err", this.state.id);
+
+        });
+}
 
   render() {
     
@@ -76,7 +97,9 @@ class trash extends Component {
                 </div>
                 <div>
                   <Tooltip title="Restore">
+                  <IconButton onClick={() => this.restore(key.id)}>
                     <RestoreFromTrashIcon />
+                    </IconButton>
                   </Tooltip>
                 </div>
               </div>

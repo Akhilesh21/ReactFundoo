@@ -96,7 +96,8 @@ class GetNote extends Component {
           {!this.state.open ? (
             <div className="_notes_">
               {this.state.notes.map((key) => {
-                //console.log("data", key.isPinned);
+                if (key.istrash === 0){
+              //  console.log("data", key.istrash);
                 return (
                   <div className="notes_">
                     <Card
@@ -209,21 +210,22 @@ class GetNote extends Component {
                               aria-owns="simple-menu"
                             />
                           </Tooltip>
-                          {this.state.menuOpen ? (
+                          
                             <More
                               anchorEl={this.state.anchorEl}
                               open={this.state.menuOpen}
-                              closeMenu={this.handleClose}
-                              id={key.id}
+                              closeMenu={this.handleClose} id={key.id}
+                              
                               // key={key}
                               handleGetNotes={this.handleGetNotes}
                             />
-                          ) : null}
+                          
                         </div>
                       </div>
                     </Card>
                   </div>
                 );
+                          }
               })}
             </div>
           ) : (
