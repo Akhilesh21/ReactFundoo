@@ -14,11 +14,9 @@ class More extends Component {
       id: this.props.id,
     };
   }
-  componentWillReceiveProps(props) {
-    this.setState({
-      // id:props.id
-    });
-  }
+
+  
+  
   handleDelete = (event, id) => {
     let data = {
       noteId: this.props.id,

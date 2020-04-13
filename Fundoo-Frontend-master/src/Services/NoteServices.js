@@ -75,12 +75,7 @@ export async function trashNote(data){
   // console.log("jfhfhff",data);
    console.log("NoteService Trashid ",data)
       const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.trashNote,
-        data,
-        {
-          headers: {
-              Authorization:userData
-      }}
-        );
+        data);
       return response
   } catch(err){
       return err;
