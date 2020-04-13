@@ -40,22 +40,68 @@ class trash extends Component {
 
 
  
-  restore = (id) => {
+//   restore = (id) => {
     
-    var data = {
-      id: id,
-     // istrash:0
-    }
-    restoreNote(data).then(res => {
-        console.log(res)
-        this.handleGetNotes()
-    })
-        .catch(err => {
-            console.log("err", err);
-            console.log("err", this.state.id);
+//     var data = {
+//       id: id,
+//      // istrash:0
+//     }
+//     restoreNote(data).then(res => {
+//         console.log(res)
+//         this.handleGetNotes()
+//     })
+//         .catch(err => {
+//             console.log("err", err);
+//             console.log("err", this.state.id);
 
-        });
-}
+//         });
+// }
+
+
+
+restore = (id) => {
+  let data = {
+    id: id,
+    //istrash: true,
+  };
+  console.log("dghhdsjhjjhdhhj", id);
+//  console.log("hsdg", event.target.value);
+  console.log("delted using id ", data);
+  console.log(id, "id hell");
+
+  if (this.state.id == "") {
+    console.log("notes kjdhkah");
+  } else {
+    let formData = new FormData();
+    formData.append("id", id);
+    // formData.append("istrash", this.state.istrash);
+    console.log(this.state.id);
+    restoreNote(formData)
+      .then((response) => {
+        console.log("response in ", response);
+       
+        if (response.status === 200) {
+          console.log("RESPONSE :", response);
+        } else {
+          console.log("qwerty");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
 
   render() {
     
