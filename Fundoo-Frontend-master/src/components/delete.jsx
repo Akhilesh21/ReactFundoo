@@ -14,8 +14,6 @@ class More extends Component {
       id: this.props.id,
     };
   }
-
-  
   
   handleDelete = (event, id) => {
     let data = {

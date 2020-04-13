@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Tooltip, Card, InputBase, Button, Avatar } from "@material-ui/core";
+import { Tooltip, Card, InputBase, Button, Avatar,IconButton } from "@material-ui/core";
 
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
@@ -9,13 +9,13 @@ import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ColorComponent from "./colorNote";
 //import Reminder from "./reminder";
-import More from "./delete";
+//import More from "./delete";
 
 import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 
-import { getNotes } from "../Services/NoteServices";
+import { getNotes,trashNote } from "../Services/NoteServices";
 
 const thm = createMuiTheme({
   overrides: {
@@ -87,6 +87,42 @@ class GetNote extends Component {
       .catch((err) => {
         console.log("err", err);
       });
+  };
+
+
+
+  handleDelete = (id) => {
+    let data = {
+      // noteId: this.props.id,
+    //  istrash: true,
+        id:id,
+    };
+    console.log("dghhdsjhjjhdhhj", id);
+  //  console.log("hsdg", event.target.value);
+    console.log("delted using id ", data);
+    console.log(this.props.id, "id hell");
+
+    if (this.state.id == "") {
+      console.log("notes kjdhkah");
+    } else {
+      let formData = new FormData();
+      formData.append("id",id);
+      // formData.append("istrash", this.state.istrash);
+      console.log(this.state.id);
+      trashNote(formData)
+        .then((response) => {
+          console.log("response in ", response);
+         
+          if (response.status === 200) {
+            console.log("RESPONSE :", response);
+          } else {
+            console.log("qwerty");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   render() {
@@ -205,20 +241,19 @@ class GetNote extends Component {
 
                         <div>
                           <Tooltip title="More">
-                            <MoreVertOutlinedIcon
-                              onClick={this.menuItem}
-                              aria-owns="simple-menu"
-                            />
+                          <IconButton onClick={() => this.handleDelete(key.id)}>
+                  <MoreVertOutlinedIcon onClick={this.menuItem} aria-owns="simple-menu" />
+                  </IconButton>
                           </Tooltip>
                           
-                            <More
+                         { /*  <More
                               anchorEl={this.state.anchorEl}
                               open={this.state.menuOpen}
                               closeMenu={this.handleClose} id={key.id}
                               
                               // key={key}
                               handleGetNotes={this.handleGetNotes}
-                            />
+                         />*/}
                           
                         </div>
                       </div>
