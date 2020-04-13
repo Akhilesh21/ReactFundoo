@@ -93,21 +93,17 @@ class GetNote extends Component {
 
   handleDelete = (id) => {
     let data = {
-      // noteId: this.props.id,
-    //  istrash: true,
         id:id,
     };
     console.log("dghhdsjhjjhdhhj", id);
-  //  console.log("hsdg", event.target.value);
     console.log("delted using id ", data);
     console.log(this.props.id, "id hell");
-
-    if (this.state.id == "") {
+     if (this.state.id == "") {
       console.log("notes kjdhkah");
     } else {
       let formData = new FormData();
       formData.append("id",id);
-      // formData.append("istrash", this.state.istrash);
+    
       console.log(this.state.id);
       trashNote(formData)
         .then((response) => {

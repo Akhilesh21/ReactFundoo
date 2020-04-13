@@ -19,7 +19,7 @@ import ColorComponent from "./colorNote";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 import correct from "../assets/correct.svg";
-import { getNotes } from "../Services/NoteServices";
+import { getNotes,noteColor } from "../Services/NoteServices";
 class Notes extends Component {
   constructor(props) {
     super(props);
@@ -108,13 +108,13 @@ class Notes extends Component {
       formData.append("title", this.state.title);
       formData.append("decription", this.state.description);
       formData.append("userid", this.state.userid);
-      formData.append("color", this.state.color);
-      // formData.append("istrash", this.state.isDeleted);
+    
+    
       var data = {
         userid:this.state.userid,
         title: this.state.title,
         desription: this.state.description,
-        color: this.state.color,
+
          };
       console.log(data);
       create(formData)
@@ -132,6 +132,18 @@ class Notes extends Component {
       this.setState({ cardOpen: false });
     }
   };
+
+   
+
+
+
+
+
+
+
+
+
+
   handleReminderDate = (date) => {
     this.setState({ reminder: date });
   };

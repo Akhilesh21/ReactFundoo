@@ -55,14 +55,11 @@ export async function getTrash(data) {
   }
 }
 
-export async function colorChange(colordata){
-  let gettingtoken = localStorage.getItem("usertoken");
+export async function noteColor(data){
+ // let gettingtoken = localStorage.getItem("usertoken");
   try{
-      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.colorChange,
-        colordata,{
-          headers: {
-              Authorization:userData.id
-      }});
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.noteColor,
+        data);
       return response
   } catch(err){
       return err
