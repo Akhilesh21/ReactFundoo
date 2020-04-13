@@ -106,3 +106,25 @@ export async function restoreNote(data){
       return err;
   }
 }
+
+
+
+export async function deleteNotes(data){
+  // let gettingtoken = localStorage.getItem("usertoken");
+   try{
+    // let data =trashNote.id
+   // console.log("jfhfhff",data);
+    console.log("dele ",data)
+       const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.deleteNotes,
+         data );
+       //   ,
+       //   {
+       //     headers: {
+       //         Authorization:userData.id
+       // }}
+      
+       return response
+   } catch(err){
+       return err;
+   }
+ }

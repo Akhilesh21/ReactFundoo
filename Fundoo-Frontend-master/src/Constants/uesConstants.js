@@ -7,6 +7,7 @@ module.exports = {
     noteColor:'noteColor',
     trashNote:'trashNote',
     restoreNote:'restoreNote',
+    deleteNotes:'deleteNotes',
     displayTrash:'displayTrash',
 
 };

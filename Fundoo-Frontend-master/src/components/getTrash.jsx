@@ -5,6 +5,8 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import RestoreFromTrashIcon from "@material-ui/icons/RestoreFromTrash";
 import { getNotes } from "../Services/NoteServices";
 import { restoreNote } from "../Services/NoteServices";
+import { deleteNotes } from "../Services/NoteServices";
+
 
 
 class trash extends Component {
@@ -36,26 +38,6 @@ class trash extends Component {
   };
 
 
-
-
-
- 
-//   restore = (id) => {
-    
-//     var data = {
-//       id: id,
-//      // istrash:0
-//     }
-//     restoreNote(data).then(res => {
-//         console.log(res)
-//         this.handleGetNotes()
-//     })
-//         .catch(err => {
-//             console.log("err", err);
-//             console.log("err", this.state.id);
-
-//         });
-// }
 
 
 
@@ -91,6 +73,42 @@ restore = (id) => {
       });
   }
 };
+
+
+deleteForever = (id) => {
+  let data = {
+    id: id,
+    //istrash: true,
+  };
+  console.log("dghhdsjhjjhdhhj", id);
+//  console.log("hsdg", event.target.value);
+  console.log("delted using id ", data);
+  console.log(id, "id hell");
+
+  if (this.state.id == "") {
+    console.log("notes kjdhkah");
+  } else {
+    let formData = new FormData();
+    formData.append("id", id);
+    // formData.append("istrash", this.state.istrash);
+    console.log(this.state.id);
+    deleteNotes(formData)
+      .then((response) => {
+        console.log("response in ", response);
+       
+        if (response.status === 200) {
+          console.log("RESPONSE :", response);
+        } else {
+          console.log("qwerty");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
+
+
 
 
 
@@ -144,7 +162,9 @@ restore = (id) => {
               <div className="getnoteicons_trash">
                 <div>
                   <Tooltip title="Delete forever">
+                  <IconButton onClick={() => this.deleteForever(key.id)}>
                     <DeleteForeverIcon />
+                    </IconButton>
                   </Tooltip>
                 </div>
                 <div>
