@@ -11,7 +11,8 @@ class trash extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id:Number,
+     // id:Number,
+      id:this.props.id,
       notes: [],
       istrash: Number,
     };
@@ -33,12 +34,17 @@ class trash extends Component {
         console.log("err", err);
       });
   };
+
+
+
+
+
  
   restore = (id) => {
     
     var data = {
       id: id,
-      istrash:0
+     // istrash:0
     }
     restoreNote(data).then(res => {
         console.log(res)

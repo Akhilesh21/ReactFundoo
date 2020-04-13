@@ -78,7 +78,7 @@ export async function trashNote(data){
         data,
         {
           headers: {
-              Authorization:userData.id
+              Authorization:userData
       }}
         );
       return response
@@ -88,17 +88,19 @@ export async function trashNote(data){
 }
 
 export async function restoreNote(data){
-  let gettingtoken = localStorage.getItem("usertoken");
+ // let gettingtoken = localStorage.getItem("usertoken");
   try{
    // let data =trashNote.id
   // console.log("jfhfhff",data);
    console.log("NoteService Trashid ",data)
-      const response = await axios.getItem(process.env.REACT_APP_BASE_URL + useConstants.restoreNote,
-        data,
-        {
-          headers: {
-              Authorization:userData.id
-      }});
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.restoreNote,
+        data );
+      //   ,
+      //   {
+      //     headers: {
+      //         Authorization:userData.id
+      // }}
+     
       return response
   } catch(err){
       return err;
