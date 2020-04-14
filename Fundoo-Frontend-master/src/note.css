@@ -149,7 +149,7 @@
 }
 
 .notes_ {
-  display: "flow-root";
+  display: "inline-flex";
   width: "250px";
   min-height: "135px";
   height: "auto";
@@ -176,4 +176,7 @@
  
   justify-content: center;
   
+}
+.base{
+  /* display: "inline-flex" */
 }
