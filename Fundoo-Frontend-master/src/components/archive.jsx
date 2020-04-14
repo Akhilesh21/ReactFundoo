@@ -65,8 +65,36 @@ class archive extends Component {
     }
   };
 
-
-
+  unarchiveNote = (id) => {
+    let data = {
+        id:id,
+    };
+    console.log("dghhdsjhjjhdhhj", id);
+    console.log("delted using id ", data);
+    console.log(this.props.id, "id hell");
+     if (this.state.id == "") {
+      console.log("notes kjdhkah");
+    } else {
+      let formData = new FormData();
+      formData.append("id",id);
+    
+      console.log(this.state.id);
+      trashNote(formData)
+        .then((response) => {
+          console.log("response in ", response);
+         
+          if (response.status === 200) {
+            console.log("RESPONSE :", response);
+          } else {
+            console.log("qwerty");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+   
 
 
   render() {
@@ -127,7 +155,7 @@ class archive extends Component {
                     <Tooltip title="Archive">
                       <div
                         style={{ cursor: "pointer" }}
-                        onClick={() => this.archiveNote(key.id)}
+                        onClick={() => this.unarchiveNote(key.id)}
                       >
                         <UnarchiveOutlinedIcon />
                       </div>
