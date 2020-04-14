@@ -7,7 +7,7 @@ import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import ColorComponent from "./colorNote";
 
-import { getNotes,trashNote } from "../Services/NoteServices";
+import { getNotes,trashNote,unarchiveNote } from "../Services/NoteServices";
 
 class archive extends Component {
   constructor(props) {
@@ -79,7 +79,7 @@ class archive extends Component {
       formData.append("id",id);
     
       console.log(this.state.id);
-      trashNote(formData)
+      unarchiveNote(formData)
         .then((response) => {
           console.log("response in ", response);
          

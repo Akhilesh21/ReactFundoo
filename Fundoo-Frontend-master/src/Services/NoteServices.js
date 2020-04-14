@@ -146,3 +146,17 @@ export async function editNote(data){
       return err;
   }
 }
+
+
+export async function unarchiveNote(data){
+  try{
+   // let data =trashNote.id
+  // console.log("jfhfhff",data);
+   console.log("NoteService Trashid ",data)
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.unarchiveNote,
+        data);
+      return response
+  } catch(err){
+      return err;
+  }
+}
