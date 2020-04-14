@@ -29,9 +29,9 @@ class Notes extends Component {
       color: "",
       title: "",
       description: "",
-      isPinned: false,
-      isDeleted: false,
-      archieve: false,
+      isPinned: Number,
+      
+      isarchieve:Number,
       remainder: null,
       date: "",
       time: "",
