@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Tooltip, Card, InputBase, Button, Avatar,IconButton } from "@material-ui/core";
+import {
+  Tooltip,
+  Card,
+  InputBase,
+  Button,
+  Avatar,
+  IconButton,
+} from "@material-ui/core";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import { createMuiTheme } from "@material-ui/core";
@@ -11,7 +18,13 @@ import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 
-import { getNotes,trashNote,archiveNote,noteColor,editNote} from "../Services/NoteServices";
+import {
+  getNotes,
+  trashNote,
+  archiveNote,
+  noteColor,
+  editNote,
+} from "../Services/NoteServices";
 
 const thm = createMuiTheme({
   overrides: {
@@ -39,7 +52,7 @@ class GetNote extends Component {
       openReminderMenu: false,
       menuOpen: false,
     };
-     this.handleGetNotes()
+    this.handleGetNotes();
   }
   menuOpen = () => {
     this.setState({ open: !this.state.open });
@@ -66,12 +79,11 @@ class GetNote extends Component {
     this.setState();
   };
 
-  paletteProps = async(event, data) => {
-    this.setState({
-      color: data,
-    });
-  };
-  
+  // paletteProps = async(event, data) => {
+  //   this.setState({
+  //     color: data,
+  //   });
+  // };
 
   handleGetNotes = () => {
     getNotes()
@@ -86,31 +98,28 @@ class GetNote extends Component {
       });
   };
 
-
-  
-
-  handleEditNote = (id,title,decription) => {
+  handleEditNote = (id, title, decription) => {
     let data = {
-        id:id,
-        title:title,
-        decription:decription,
+      id: id,
+      title: title,
+      decription: decription,
     };
     console.log("dghhdsjhjjhdhhj", id);
     console.log("delted using id ", data);
     console.log(this.props.id, "id hell");
-     if (this.state.id == "") {
+    if (this.state.id == "") {
       console.log("notes kjdhkah");
     } else {
       let formData = new FormData();
-      formData.append("id",id);
-      formData.append("title",title);
-      formData.append("decription",decription);
-    
+      formData.append("id", id);
+      formData.append("title", title);
+      formData.append("decription", decription);
+
       console.log(this.state.id);
       editNote(formData)
         .then((response) => {
           console.log("response in ", response);
-         
+
           if (response.status === 200) {
             console.log("RESPONSE :", response);
           } else {
@@ -123,26 +132,26 @@ class GetNote extends Component {
     }
   };
 
-
-
   handleDelete = (id) => {
     let data = {
-        id:id,
+      id: id,
+      color: this.state.color,
     };
     console.log("dghhdsjhjjhdhhj", id);
     console.log("delted using id ", data);
     console.log(this.props.id, "id hell");
-     if (this.state.id == "") {
+    if (this.state.id == "") {
       console.log("notes kjdhkah");
     } else {
       let formData = new FormData();
-      formData.append("id",id);
-    
+      formData.append("id", id);
+      formData.append("color", this.state.color);
+
       console.log(this.state.id);
       trashNote(formData)
         .then((response) => {
           console.log("response in ", response);
-         
+
           if (response.status === 200) {
             console.log("RESPONSE :", response);
           } else {
@@ -155,27 +164,24 @@ class GetNote extends Component {
     }
   };
 
-
- 
-
   archiveNote = (id) => {
     let data = {
-        id:id,
+      id: id,
     };
     console.log("dghhdsjhjjhdhhj", id);
     console.log("delted using id ", data);
     console.log(this.props.id, "id hell");
-     if (this.state.id == "") {
+    if (this.state.id == "") {
       console.log("notes kjdhkah");
     } else {
       let formData = new FormData();
-      formData.append("id",id);
-    
+      formData.append("id", id);
+
       console.log(this.state.id);
       archiveNote(formData)
         .then((response) => {
           console.log("response in ", response);
-         
+
           if (response.status === 200) {
             console.log("RESPONSE :", response);
           } else {
@@ -188,37 +194,36 @@ class GetNote extends Component {
     }
   };
 
-  // paletteProps = (id) => {
-  //   let data = {
-  //       id:id,
-  //       color:this.state.colorChange
-  //   };
-  //   console.log("dghhdsjhjjhdhhj", id);
-  //   console.log("delted using id ", data);
-  //   console.log(this.props.id, "id hell");
-  //    if (this.state.id == "") {
-  //     console.log("notes kjdhkah");
-  //   } else {
-  //     let formData = new FormData();
-  //     formData.append("id",id);
-    
-  //     console.log(this.state.id);
-  //     noteColor(formData)
-  //       .then((response) => {
-  //         console.log("response in ", response);
-         
-  //         if (response.status === 200) {
-  //           console.log("RESPONSE :", response);
-  //         } else {
-  //           console.log("qwerty");
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // };
+  paletteProps = (id) => {
+    let data = {
+      id: id,
+      color: this.state.colorChange,
+    };
+    console.log("dghhdsjhjjhdhhj", id);
+    console.log("delted using id ", data);
+    console.log(this.props.id, "id hell");
+    if (this.state.id == "") {
+      console.log("notes kjdhkah");
+    } else {
+      let formData = new FormData();
+      formData.append("id", id);
 
+      console.log(this.state.id);
+      noteColor(formData)
+        .then((response) => {
+          console.log("response in ", response);
+
+          if (response.status === 200) {
+            console.log("RESPONSE :", response);
+          } else {
+            console.log("qwerty");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   render() {
     return (
@@ -227,73 +232,59 @@ class GetNote extends Component {
           {!this.state.open ? (
             <div className="_notes_">
               {this.state.notes.map((key) => {
-                if ((key.istrash === 0)&&(key.isarchive === 0)){
-              //  console.log("data", key.istrash);
-                return (
-                  <div className="notes_">
-                    <Card
-                      style={{
-                        
-                        width: "250px",
-                        minHeight: "135px",
-                        height: "auto",
-                        margin: "5px",
-                        padding: "10px",
-                        boxShadow: "0px 1px 7px 0px",
-                        marginTop: "10%",
-                        borderRadius: "15px",
-                        //backgroundColor: this.state.color,
-                        background: key.color
-                      }}
-                    >
-                      <div
+                if (key.istrash === 0 && key.isarchive === 0) {
+                  //  console.log("data", key.istrash);
+                  return (
+                    <div className="notes_">
+                      <Card
                         style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          padding: "5px",
+                          width: "250px",
+                          minHeight: "135px",
+                          height: "auto",
+                          margin: "5px",
+                          padding: "10px",
+                          boxShadow: "0px 1px 7px 0px",
+                          marginTop: "10%",
+                          borderRadius: "15px",
+                          //backgroundColor: this.state.color,
+                          background: key.color,
                         }}
                       >
-                        <div>
-                          <div>{key.id}</div>
-                          <div>{key.title}</div>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            padding: "5px",
+                          }}
+                        >
+                          <div>
+                            <div>{key.id}</div>
+                            <div>{key.title}</div>
 
-                          <div style={{ marginTop: "30px" }}>
-                            {key.decription}
+                            <div style={{ marginTop: "30px" }}>
+                              {key.decription}
+                            </div>
+                          </div>
+
+                          <div>
+                            <div
+                              style={{
+                                //  background: "#d2cece",
+                                marginLeft: "-25px",
+                              }}
+                              // onClick={() => this.handlePin(key.id)}
+                            >
+                              {key.isPinned === true ? (
+                                <img className="pin-out" src={unPin} />
+                              ) : (
+                                <img className="pin-over" src={pin} />
+                              )}
+                            </div>
                           </div>
                         </div>
-
-                        <div>
-                          <div
-                            style={{
-                              //  background: "#d2cece",
-                              marginLeft: "-25px",
-                            }}
-                            // onClick={() => this.handlePin(key.id)}
-                          >
-                            {key.isPinned === true ? (
-                              <img className="pin-out" src={unPin} />
-                            ) : (
-                              <img className="pin-over" src={pin} />
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      <div onClick={this.handleOpenDialogue}>
-                        <div className="base">
-                          <InputBase
-                            multiline
-                            onClick={() =>
-                              this.handleEditNote(
-                                key.id,
-                                key.title,
-                                key.description
-                              )
-                            }
-                          />
-
-                          <div onClick={this.handleOpenDialogue}>
+                        <div onClick={this.handleOpenDialogue}>
+                          <div className="base">
                             <InputBase
-                              value={key.description}
                               multiline
                               onClick={() =>
                                 this.handleEditNote(
@@ -303,47 +294,64 @@ class GetNote extends Component {
                                 )
                               }
                             />
+
+                            <div onClick={this.handleOpenDialogue}>
+                              <InputBase
+                                value={key.description}
+                                multiline
+                                onClick={() =>
+                                  this.handleEditNote(
+                                    key.id,
+                                    key.title,
+                                    key.description
+                                  )
+                                }
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div className="getnoteicons">
-                        <div>
-                          <Tooltip title="Collbrate">
-                            <PersonAddOutlinedIcon />
-                          </Tooltip>
-                        </div>
-                        <div>
-                          <ColorComponent
-                            //onClick={() => this.archiveNote(key.id)}
-                           paletteProps={this.paletteProps}
-                           id={key.id}
-                          />
-                        </div>
-                        <div>
-                          <Tooltip title="Add image">
-                            <ImageOutlinedIcon />
-                          </Tooltip>
-                        </div>
-                        <div>
-                          <Tooltip title="Archive">
-                            <div
-                              style={{ cursor: "pointer" }}
-                              onClick={() => this.archiveNote(key.id)}
-                            >
-                              <ArchiveOutlinedIcon />
-                            </div>
-                          </Tooltip>
-                        </div>
+                        <div className="getnoteicons">
+                          <div>
+                            <Tooltip title="Collbrate">
+                              <PersonAddOutlinedIcon />
+                            </Tooltip>
+                          </div>
+                          <div>
+                            <ColorComponent
+                              paletteProps={this.paletteProps}
+                              id={key.id}
+                            />
+                          </div>
+                          <div>
+                            <Tooltip title="Add image">
+                              <ImageOutlinedIcon />
+                            </Tooltip>
+                          </div>
+                          <div>
+                            <Tooltip title="Archive">
+                              <div
+                                style={{ cursor: "pointer" }}
+                                onClick={() => this.archiveNote(key.id)}
+                              >
+                                <ArchiveOutlinedIcon />
+                              </div>
+                            </Tooltip>
+                          </div>
 
-                        <div>
-                          <Tooltip title="More">
-                          <IconButton onClick={() => this.handleDelete(key.id)}>
-                  <MoreVertOutlinedIcon onClick={this.menuItem} aria-owns="simple-menu" />
-                  </IconButton>
-                          </Tooltip>
-                          
-                         { /*  <More
+                          <div>
+                            <Tooltip title="More">
+                              <IconButton
+                                onClick={() => this.handleDelete(key.id)}
+                              >
+                                <MoreVertOutlinedIcon
+                                  onClick={this.menuItem}
+                                  aria-owns="simple-menu"
+                                />
+                              </IconButton>
+                            </Tooltip>
+
+                            {/*  <More
                               anchorEl={this.state.anchorEl}
                               open={this.state.menuOpen}
                               closeMenu={this.handleClose} id={key.id}
@@ -351,13 +359,12 @@ class GetNote extends Component {
                               // key={key}
                               handleGetNotes={this.handleGetNotes}
                          />*/}
-                          
+                          </div>
                         </div>
-                      </div>
-                    </Card>
-                  </div>
-                );
-                          }
+                      </Card>
+                    </div>
+                  );
+                }
               })}
             </div>
           ) : (
