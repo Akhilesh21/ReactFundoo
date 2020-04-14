@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router-dom";
 import { Tooltip, Card, IconButton } from "@material-ui/core";
+import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
+import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
+import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
+import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
+import ColorComponent from "./colorNote";
 
 import { getNotes } from "../Services/NoteServices";
 
@@ -68,10 +73,45 @@ class archive extends Component {
                         <div style={{ marginTop: "25px" }}>{key.decription}</div>
                       </div>
                     </div>
+                    
                     <div className="getnoteicons_trash">
-                      <div>
-                        
+                    <div>
+                    <Tooltip title="Collbrate">
+                      <PersonAddOutlinedIcon />
+                    </Tooltip>
+                  </div>
+                  <div>
+                    <ColorComponent
+                      //onClick={() => this.archiveNote(key.id)}
+                     paletteProps={this.paletteProps}
+                     id={key.id}
+                    />
+                  </div>
+                  <div>
+                    <Tooltip title="Add image">
+                      <ImageOutlinedIcon />
+                    </Tooltip>
+                  </div>
+                  <div>
+                    <Tooltip title="Archive">
+                      <div
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.archiveNote(key.id)}
+                      >
+                        <ArchiveOutlinedIcon />
                       </div>
+                    </Tooltip>
+                  </div>
+
+                  <div>
+                    <Tooltip title="More">
+                    <IconButton onClick={() => this.handleDelete(key.id)}>
+            <MoreVertOutlinedIcon />
+            </IconButton>
+                    </Tooltip>
+                    
+                     
+                  </div>
                       <div>
                         
                       </div>
