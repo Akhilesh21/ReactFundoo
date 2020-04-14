@@ -4,6 +4,8 @@ import AppNavBar from "./AppBar";
 import SideNavBar from "./sideBar";
 import Notes from "./CreateNote";
 import GetNote from "./getNote";
+import Trash from "./getTrash";
+import Archive from "./archive";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -21,9 +23,13 @@ class Dashboard extends Component {
       isDeleted: false,
       trash: false,
       getNotesProps: false,
+      noteRender:'createNote'
     };
   }
 
+  noteRendering = (data) => {
+    this.setState({noteRender:data})
+  }
   handleDialogClose = (data) => {
     this.setState({ openDialog: false });
   };
@@ -50,27 +56,18 @@ class Dashboard extends Component {
           <SideNavBar
             show={this.state.open}
             handleDialogOpen={this.handleDialogOpen}
+            noteRendering={this.noteRendering.bind(this)}
           />
         </div>
         <Notes />
-        <GetNote />
+        {this.state.noteRender === 'createNote'?(<GetNote />)
+        :this.state.noteRender === 'archive'?<div><Archive /></div>
+        :this.state.noteRender === 'trash'?(<Trash />)//<div>trash</div>
+        :(<GetNote />)}
+        
       </div>
     );
   }
 }
-
-//      render()
-
-//      {
-//          return(
-//              <div className="dashboard">
-//                  <h1>Welcome to react fundoo notes---------Laravel+react</h1>
-//                  <h1>Welcome to BridgeLabz</h1>
-
-//      </div>
-//          )
-//      }
-
-// }
 
 export default withRouter(Dashboard);

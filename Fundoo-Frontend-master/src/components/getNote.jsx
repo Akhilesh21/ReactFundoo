@@ -1,21 +1,17 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Tooltip, Card, InputBase, Button, Avatar,IconButton } from "@material-ui/core";
-
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import { createMuiTheme } from "@material-ui/core";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ColorComponent from "./colorNote";
-//import Reminder from "./reminder";
-//import More from "./delete";
-
 import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 
-import { getNotes,trashNote } from "../Services/NoteServices";
+import { getNotes,trashNote,archiveNote,noteColor,editNote} from "../Services/NoteServices";
 
 const thm = createMuiTheme({
   overrides: {
@@ -43,7 +39,7 @@ class GetNote extends Component {
       openReminderMenu: false,
       menuOpen: false,
     };
-    // this.handleGetNotes()
+     this.handleGetNotes()
   }
   menuOpen = () => {
     this.setState({ open: !this.state.open });
@@ -70,11 +66,12 @@ class GetNote extends Component {
     this.setState();
   };
 
-  paletteProps = (event, data) => {
+  paletteProps = async(event, data) => {
     this.setState({
       color: data,
     });
   };
+  
 
   handleGetNotes = () => {
     getNotes()
@@ -87,6 +84,43 @@ class GetNote extends Component {
       .catch((err) => {
         console.log("err", err);
       });
+  };
+
+
+  
+
+  handleEditNote = (id,title,decription) => {
+    let data = {
+        id:id,
+        title:title,
+        decription:decription,
+    };
+    console.log("dghhdsjhjjhdhhj", id);
+    console.log("delted using id ", data);
+    console.log(this.props.id, "id hell");
+     if (this.state.id == "") {
+      console.log("notes kjdhkah");
+    } else {
+      let formData = new FormData();
+      formData.append("id",id);
+      formData.append("title",title);
+      formData.append("decription",decription);
+    
+      console.log(this.state.id);
+      editNote(formData)
+        .then((response) => {
+          console.log("response in ", response);
+         
+          if (response.status === 200) {
+            console.log("RESPONSE :", response);
+          } else {
+            console.log("qwerty");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
 
@@ -121,6 +155,71 @@ class GetNote extends Component {
     }
   };
 
+
+ 
+
+  archiveNote = (id) => {
+    let data = {
+        id:id,
+    };
+    console.log("dghhdsjhjjhdhhj", id);
+    console.log("delted using id ", data);
+    console.log(this.props.id, "id hell");
+     if (this.state.id == "") {
+      console.log("notes kjdhkah");
+    } else {
+      let formData = new FormData();
+      formData.append("id",id);
+    
+      console.log(this.state.id);
+      archiveNote(formData)
+        .then((response) => {
+          console.log("response in ", response);
+         
+          if (response.status === 200) {
+            console.log("RESPONSE :", response);
+          } else {
+            console.log("qwerty");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  // paletteProps = (id) => {
+  //   let data = {
+  //       id:id,
+  //       color:this.state.colorChange
+  //   };
+  //   console.log("dghhdsjhjjhdhhj", id);
+  //   console.log("delted using id ", data);
+  //   console.log(this.props.id, "id hell");
+  //    if (this.state.id == "") {
+  //     console.log("notes kjdhkah");
+  //   } else {
+  //     let formData = new FormData();
+  //     formData.append("id",id);
+    
+  //     console.log(this.state.id);
+  //     noteColor(formData)
+  //       .then((response) => {
+  //         console.log("response in ", response);
+         
+  //         if (response.status === 200) {
+  //           console.log("RESPONSE :", response);
+  //         } else {
+  //           console.log("qwerty");
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // };
+
+
   render() {
     return (
       <div className={this.props.noteStyle}>
@@ -128,7 +227,7 @@ class GetNote extends Component {
           {!this.state.open ? (
             <div className="_notes_">
               {this.state.notes.map((key) => {
-                if (key.istrash === 0){
+                if ((key.istrash === 0)&&(key.isarchive === 0)){
               //  console.log("data", key.istrash);
                 return (
                   <div className="notes_">
@@ -215,8 +314,9 @@ class GetNote extends Component {
                         </div>
                         <div>
                           <ColorComponent
-                            paletteProps={this.paletteProps}
-                            id={key.id}
+                            //onClick={() => this.archiveNote(key.id)}
+                           paletteProps={this.paletteProps}
+                           id={key.id}
                           />
                         </div>
                         <div>

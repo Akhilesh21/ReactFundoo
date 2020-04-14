@@ -40,6 +40,17 @@ class Notes extends Component {
     };
   }
 
+  
+  openCard = () => {
+    this.setState({ cardOpen: true });
+  };
+  changeTitle = (e) => {
+    this.setState({ title: e.currentTarget.value });
+  };
+  changeDescription = (e) => {
+    this.setState({ description: e.currentTarget.value });
+  };
+  
   componentDidMount() {
     this.handleGetNotes();
   }
@@ -57,15 +68,8 @@ class Notes extends Component {
       });
   };
 
-  openCard = () => {
-    this.setState({ cardOpen: true });
-  };
-  changeTitle = (e) => {
-    this.setState({ title: e.currentTarget.value });
-  };
-  changeDescription = (e) => {
-    this.setState({ description: e.currentTarget.value });
-  };
+
+
   handleOpen = () => {
     this.setState({
       cardOpen: true,
@@ -99,7 +103,6 @@ class Notes extends Component {
   
 
   newNote = () => {
-    // try {
     if (this.state.title === "" && this.state.description === "") {
       console.log("title and description are empty");
       this.setState({ cardOpen: false });

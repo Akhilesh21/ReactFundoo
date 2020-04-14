@@ -154,6 +154,7 @@ export default function SideNavBar(props) {
                 marginBottom: "12%",
                 fontSizeAdjust: "inherit",
               }}
+              onClick={e => props.noteRendering('createNote')}
             >
               Notes
             </ListItemText>
@@ -214,6 +215,7 @@ export default function SideNavBar(props) {
           </ListItemIcon>
           <ListItemText
             style={{ width: "100%", marginLeft: "-59%", marginTop: "4%" }}
+            onClick={e => props.noteRendering('archive')}
           >
             Archive
           </ListItemText>
@@ -234,6 +236,7 @@ export default function SideNavBar(props) {
           </ListItemIcon>
           <ListItemText
             style={{ width: "100%", marginLeft: "-59%", marginTop: "4%" }}
+            onClick={e => props.noteRendering('trash')}
           >
             Trash
           </ListItemText>

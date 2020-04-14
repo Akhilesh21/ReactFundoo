@@ -120,3 +120,29 @@ export async function deleteNotes(data){
        return err;
    }
  }
+
+ export async function archiveNote(data){
+  try{
+   // let data =trashNote.id
+  // console.log("jfhfhff",data);
+   console.log("NoteService Trashid ",data)
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.archiveNote,
+        data);
+      return response
+  } catch(err){
+      return err;
+  }
+}
+
+export async function editNote(data){
+  try{
+   // let data =trashNote.id
+  // console.log("jfhfhff",data);
+   console.log("NoteService Trashid ",data)
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.editNote,
+        data);
+      return response
+  } catch(err){
+      return err;
+  }
+}

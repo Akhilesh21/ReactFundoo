@@ -106,6 +106,8 @@ class trash extends Component {
       if (key.istrash === 1) {
         console.log("the dele is ", key.istrash);
         return (
+          <div className="ttt">
+          <div>
           <div className="_notes">
             <div className="notes_">
               <Card
@@ -155,11 +157,13 @@ class trash extends Component {
               </Card>
             </div>
           </div>
+          </div>
+          </div>
         );
       }
     });
 
-    return <div>{trashObj}</div>;
+    return <div className="ttt">{trashObj}</div>;
   }
 }
 export default withRouter(trash);

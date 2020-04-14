@@ -17,6 +17,7 @@ import reminder from "./components/reminder";
 import more from "./components/delete";
 import trash from "./components/trash";
 import getTrashh from "./components/getTrash";
+import archive from "./components/archive";
 
 class App extends React.Component {
   render() {
@@ -46,6 +47,7 @@ class App extends React.Component {
           <Route path="/reminder" component={reminder} />
           <Route path="/trash" component={trash} />
           <Route path="/getTrash" component={getTrashh} />
+          <Route path="/archive" component={archive} />
         </Switch>
       </Router>
     );
