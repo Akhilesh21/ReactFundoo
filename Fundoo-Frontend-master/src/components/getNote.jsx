@@ -233,6 +233,7 @@ class GetNote extends Component {
                   <div className="notes_">
                     <Card
                       style={{
+                        
                         width: "250px",
                         minHeight: "135px",
                         height: "auto",

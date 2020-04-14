@@ -149,6 +149,7 @@
 }
 
 .notes_ {
+  display: "flow-root";
   width: "250px";
   min-height: "135px";
   height: "auto";
