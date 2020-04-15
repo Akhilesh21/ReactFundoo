@@ -97,8 +97,8 @@ class ColorComponent extends Component {
               zIndex: "9999",
               width: "115px",
               display: "flex",
-              flexDirection: "row",
-              margin: "25px",
+              // flexDirection: "row",
+              // margin: "25px",
               flexwrap: "wrap",
             }}
           >

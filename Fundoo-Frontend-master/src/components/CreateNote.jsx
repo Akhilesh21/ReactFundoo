@@ -77,7 +77,7 @@ class Notes extends Component {
   };
 
   handleOpenPin = (noteId) => {
-    this.setState({ isPinned: true });
+    this.setState({ isPinned: 1 });
     let date = {
       noteId: noteId,
       isPinned: this.state.isPinned,
@@ -85,7 +85,7 @@ class Notes extends Component {
   };
 
   handleClosePin = () => {
-    this.setState({ isPinned: false });
+    this.setState({ isPinned: 0 });
   };
   handleColorClose = () => {
     this.setState({ color: true });
@@ -94,6 +94,7 @@ class Notes extends Component {
     this.setState({
       color: data,
     });
+
   };
   
 
@@ -112,14 +113,15 @@ class Notes extends Component {
       formData.append("decription", this.state.description);
       formData.append("userid", this.state.userid);
       formData.append("color", this.state.color);
+      formData.append("color", this.state.isPinned);
     
     
       var data = {
         userid:this.state.userid,
         title: this.state.title,
         desription: this.state.description,
-        color:this.state.color
-         
+        color:this.state.color,
+        ispinned:this.state.isPinned 
          };
       console.log(data);
       create(formData)

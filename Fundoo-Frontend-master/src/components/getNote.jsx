@@ -194,20 +194,21 @@ class GetNote extends Component {
     }
   };
 
-  paletteProps = (id) => {
+  paletteProps = (key,id) => {
     let data = {
-      id: id,
-      color: this.state.colorChange,
+      id: this.props.id,
+      color: id,
     };
     console.log("dghhdsjhjjhdhhj", id);
-    console.log("delted using id ", data);
+    console.log("delted using id ", this.state.id);
     console.log(this.props.id, "id hell");
     if (this.state.id == "") {
       console.log("notes kjdhkah");
     } else {
       let formData = new FormData();
-      formData.append("id", id);
-
+      formData.append("id", this.props.id);
+      formData.append("id", key.id);
+      
       console.log(this.state.id);
       noteColor(formData)
         .then((response) => {

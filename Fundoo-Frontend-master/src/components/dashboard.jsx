@@ -50,10 +50,12 @@ class Dashboard extends Component {
       <div>
         <div>
           <AppNavBar handleDraweropen={this.handleDraweropen} />
+          
         </div>
 
         <div style={{ display: "flex", background: "" }}>
           <SideNavBar
+
             show={this.state.open}
             handleDialogOpen={this.handleDialogOpen}
             noteRendering={this.noteRendering.bind(this)}

@@ -32,10 +32,14 @@
 
 .paint {
   flex-wrap: wrap;
+  top: -7em;
+  left: 3em;
+  transform: translate3d(384px, 371px, 0px);
+  will-change: transform;
 
   /* margin: 25px; */
-    top: -6em;
-    left: 5em;
+    /* top: -6em;
+    left: 5em; */
 }
 /*
 *

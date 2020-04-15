@@ -160,3 +160,17 @@ export async function unarchiveNote(data){
       return err;
   }
 }
+
+
+export async function updatePin(data){
+  try{
+   // let data =trashNote.id
+  // console.log("jfhfhff",data);
+   console.log("NoteService Trashid ",data)
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.updatePin,
+        data);
+      return response
+  } catch(err){
+      return err;
+  }
+}

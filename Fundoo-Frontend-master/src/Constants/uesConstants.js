@@ -6,6 +6,7 @@ module.exports = {
     getNotes:'getNotes',
     archiveNote:'archiveNote',
     unarchiveNote:'unarchiveNote',
+    updatePin:'updatePin',
     editNote:'editNote',
     noteColor:'noteColor',
     trashNote:'trashNote',
