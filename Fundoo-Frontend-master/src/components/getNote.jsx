@@ -79,11 +79,11 @@ class GetNote extends Component {
     this.setState();
   };
 
-  // paletteProps = async(event, data) => {
-  //   this.setState({
-  //     color: data,
-  //   });
-  // };
+  paletteProps = async(event, data) => {
+    this.setState({
+      color: data,
+    });
+  };
 
   handleGetNotes = () => {
     getNotes()
