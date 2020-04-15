@@ -128,7 +128,7 @@
   display: flex;
   width: 76%;
   flex-wrap: wrap;
-  
+  font-variant: diagonal-fractions;
   justify-content: space-around;
   padding-left: 211px;
 }
@@ -150,6 +150,7 @@
 
 .notes_ {
   display: "inline-flex";
+  font-variant: diagonal-fractions;
   width: "250px";
   min-height: "135px";
   height: "auto";
@@ -178,5 +179,6 @@
   
 }
 .base{
-  /* display: "inline-flex" */
+  display: inline-flex
+  /* display: flex; */
 }

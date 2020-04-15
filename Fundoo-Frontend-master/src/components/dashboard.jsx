@@ -59,7 +59,7 @@ class Dashboard extends Component {
             noteRendering={this.noteRendering.bind(this)}
           />
         </div>
-        <Notes />
+                          <Notes />
         {this.state.noteRender === 'createNote'?(<GetNote />)
         :this.state.noteRender === 'archive'?<div><Archive /></div>
         :this.state.noteRender === 'trash'?(<Trash />)//<div>trash</div>

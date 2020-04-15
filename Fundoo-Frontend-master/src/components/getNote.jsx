@@ -241,6 +241,7 @@ class GetNote extends Component {
                           width: "250px",
                           minHeight: "135px",
                           height: "auto",
+                          
                           margin: "5px",
                           padding: "10px",
                           boxShadow: "0px 1px 7px 0px",

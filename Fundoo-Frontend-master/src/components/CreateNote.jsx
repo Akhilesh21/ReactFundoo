@@ -119,7 +119,7 @@ class Notes extends Component {
         title: this.state.title,
         desription: this.state.description,
         color:this.state.color
-
+         
          };
       console.log(data);
       create(formData)
