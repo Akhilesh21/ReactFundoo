@@ -143,6 +143,7 @@ export default function SideNavBar(props) {
               marginRight: "59%",
             }}
           >
+          
             <NotesIcon />{" "}
             <ListItemText
               style={{

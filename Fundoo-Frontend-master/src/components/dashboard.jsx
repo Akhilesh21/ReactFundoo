@@ -50,7 +50,7 @@ class Dashboard extends Component {
       <div>
         <div>
           <AppNavBar handleDraweropen={this.handleDraweropen} />
-          
+
         </div>
 
         <div style={{ display: "flex", background: "" }}>
@@ -61,9 +61,10 @@ class Dashboard extends Component {
             noteRendering={this.noteRendering.bind(this)}
           />
         </div>
-        <Notes />
+       
+        
         {this.state.noteRender === 'createNote'?(<GetNote />)
-        :this.state.noteRender === 'archive'?<Archive />
+        :this.state.noteRender === 'archive'?(<Archive />)
         :this.state.noteRender === 'trash'?(<Trash />)//<div>trash</div>
         :(<GetNote />)}
         

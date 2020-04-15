@@ -76,13 +76,7 @@ class Notes extends Component {
     });
   };
 
-  handleOpenPin = (noteId) => {
-    this.setState({ isPinned: 1 });
-    let date = {
-      userid: noteId,
-      ispinned: this.state.ispinned,
-    };
-  };
+  
 
   handleClosePin = () => {
     this.setState({ isPinned: 0 });
@@ -151,7 +145,14 @@ class Notes extends Component {
     }
   };
 
-
+  handleOpenPin = async () => {
+    try {
+      await this.setState({ ispinned: 1, isarchive: 0 });
+      this.newNote();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
 
