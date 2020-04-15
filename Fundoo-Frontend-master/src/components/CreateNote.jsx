@@ -29,7 +29,7 @@ class Notes extends Component {
       color: "",
       title: "",
       description: "",
-      isPinned: Number,
+      ispinned: Number,
       
       isarchieve:Number,
       remainder: null,
@@ -79,8 +79,8 @@ class Notes extends Component {
   handleOpenPin = (noteId) => {
     this.setState({ isPinned: 1 });
     let date = {
-      noteId: noteId,
-      isPinned: this.state.isPinned,
+      userid: noteId,
+      ispinned: this.state.ispinned,
     };
   };
 
@@ -111,9 +111,10 @@ class Notes extends Component {
       let formData = new FormData(data);
       formData.append("title", this.state.title);
       formData.append("decription", this.state.description);
-      formData.append("userid", this.state.userid);
+      formData.append("userid", this.state.noteId);
       formData.append("color", this.state.color);
-      formData.append("color", this.state.isPinned);
+      formData.append("ispinned", this.state.ispinned);
+      formData.append("isarchive", this.state.isarchive);
     
     
       var data = {
@@ -121,7 +122,8 @@ class Notes extends Component {
         title: this.state.title,
         desription: this.state.description,
         color:this.state.color,
-        ispinned:this.state.isPinned 
+        ispinned:this.state.ispinned ,
+        isarchive:this.state.isarchive
          };
       console.log(data);
       create(formData)
@@ -140,7 +142,14 @@ class Notes extends Component {
     }
   };
 
-   
+  createArchieveNote  = async () => {
+    try {
+      await this.setState({ ispinned: 0, isarchive: 1 });
+      this.newNote();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
 
@@ -274,7 +283,7 @@ class Notes extends Component {
               </div>
               <div>
                 <Tooltip title="Archive">
-                  <ArchiveOutlinedIcon />
+                  <ArchiveOutlinedIcon onClick={this.createArchieveNote}/>
                 </Tooltip>
               </div>
 
