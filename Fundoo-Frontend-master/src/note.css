@@ -126,7 +126,8 @@
 
 ._notes_ {
   display: flex;
-  width: 76%;
+  flex-direction: column-reverse;
+  width: 49%;
   flex-wrap: wrap;
   font-variant: diagonal-fractions;
   justify-content: space-around;
@@ -173,9 +174,11 @@
 
 .ttt{
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap;
  
-  justify-content: center;
+  justify-content: center; */
+  flex-direction: column-reverse;
+    /* display: flex; */
   
 }
 .base{

@@ -107,7 +107,7 @@ class trash extends Component {
         console.log("the dele is ", key.istrash);
         return (
           <div className="ttt">
-          <div>
+          <div >
           <div className="_notes">
             <div className="notes_">
               <Card

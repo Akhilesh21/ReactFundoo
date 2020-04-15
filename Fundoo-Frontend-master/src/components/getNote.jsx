@@ -241,7 +241,7 @@ class GetNote extends Component {
                           width: "250px",
                           minHeight: "135px",
                           height: "auto",
-                          
+                          //height:"12px",
                           margin: "5px",
                           padding: "10px",
                           boxShadow: "0px 1px 7px 0px",
@@ -262,7 +262,7 @@ class GetNote extends Component {
                             <div>{key.id}</div>
                             <div>{key.title}</div>
 
-                            <div style={{ marginTop: "30px" }}>
+                            <div style={{ marginTop: "25px" }}>
                               {key.decription}
                             </div>
                           </div>
