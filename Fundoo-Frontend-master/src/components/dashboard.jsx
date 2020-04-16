@@ -65,7 +65,7 @@ class Dashboard extends Component {
         </div>
                 
         :{this.state.noteRender === 'createNote'?(<React.Fragment><Notes /><GetNote/></React.Fragment>)
-        :this.state.noteRender === 'reminder'?(<Reminders/>) 
+        :this.state.noteRender === 'reminder'?(<React.Fragment><Notes /><Reminders/></React.Fragment>) 
         :this.state.noteRender === 'archive'?(<Archive />)
         :this.state.noteRender === 'trash'?(<Trash />)//<div>trash</div>
         :(<GetNote />)}
