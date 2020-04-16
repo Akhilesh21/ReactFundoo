@@ -30,6 +30,7 @@ class reminderComponent extends Component {
     this.handleGetNotes();
   }
 
+
   componentDidMount() {
     this.handleGetNotes();
   }
@@ -45,7 +46,12 @@ class reminderComponent extends Component {
         console.log("err", err);
       });
   };
-
+  handleReminderDate = date => {
+    this.setState({ reminder: date });
+};
+ removeReminder = () => {
+    this.setState({ reminder: null });
+};
   render() {
     let trashObj = this.state.notes.map((key, index) => {
       if (key.reminder !== null && key.isarchive === 0) {
