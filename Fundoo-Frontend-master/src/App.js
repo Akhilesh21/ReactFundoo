@@ -18,6 +18,7 @@ import more from "./components/delete";
 import trash from "./components/trash";
 import getTrashh from "./components/getTrash";
 import archive from "./components/archive";
+import reminderComponent from "./components/reminderComponent";
 
 class App extends React.Component {
   render() {
@@ -48,6 +49,8 @@ class App extends React.Component {
           <Route path="/trash" component={trash} />
           <Route path="/getTrash" component={getTrashh} />
           <Route path="/archive" component={archive} />
+          <Route path="/reminderComponent" component={reminderComponent} />
+          
         </Switch>
       </Router>
     );
