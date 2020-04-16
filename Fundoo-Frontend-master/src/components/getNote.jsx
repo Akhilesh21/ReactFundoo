@@ -7,6 +7,7 @@ import {
   Button,
   Avatar,
   IconButton,
+  Chip ,
 } from "@material-ui/core";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
@@ -18,6 +19,7 @@ import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 import Reminder from "./reminder";
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import {
   getNotes,
   trashNote,
@@ -287,6 +289,7 @@ class GetNote extends Component {
                           width: "250px",
                           minHeight: "135px",
                           height: "auto",
+                         // height: "9em",
                           //height:"12px",
                           margin: "5px",
                           padding: "10px",
@@ -308,8 +311,19 @@ class GetNote extends Component {
                             <div>{key.id}</div>
                             <div>{key.title}</div>
 
-                            <div style={{ marginTop: "25px" }}>
+                            <div style={{ marginTop: "5px" }}>
                               {key.decription}
+                            </div>
+                            <div>
+                              {key.reminder !== null ?
+                                <Chip
+                                  icon={<AccessTimeIcon />}
+                                  id={key.id}
+                                  label={key.reminder}
+                                  onDelete={this.removeReminder}
+                                  variant="outlined"
+                                />
+                                : null}
                             </div>
                           </div>
 
@@ -359,30 +373,48 @@ class GetNote extends Component {
                         </div>
 
                         <div className="getnoteicons">
+                        <div >
+                        <Reminder
+                          anchorEl={this.state.anchorEl}
+                          closeMenu={this.handleClose}
+                          handleGetNotes={this.handleGetNotes}
+                          handleReminderDate={this.handleReminderDate}
+                        />
+
+                      </div>
                           <div>
+                          <IconButton>
+
                             <Tooltip title="Collbrate">
                               <PersonAddOutlinedIcon />
                             </Tooltip>
+                          </IconButton>
+
                           </div>
                           <div>
+                          <IconButton>
                             <ColorComponent
                               paletteProps={this.paletteProps}
                               id={key.id}
                             />
+                          </IconButton>
+
                           </div>
                           <div>
                             <Tooltip title="Add image">
+                            <IconButton>
                               <ImageOutlinedIcon />
+                              </IconButton>
                             </Tooltip>
                           </div>
                           <div>
                             <Tooltip title="Archive">
-                              <div
-                                style={{ cursor: "pointer" }}
+                            <IconButton
+                               // style={{ cursor: "pointer" }}
                                 onClick={() => this.archiveNote(key.id)}
                               >
                                 <ArchiveOutlinedIcon />
-                              </div>
+                                </IconButton>
                             </Tooltip>
                           </div>
 
