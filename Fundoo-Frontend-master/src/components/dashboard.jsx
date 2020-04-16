@@ -19,6 +19,7 @@ class Dashboard extends Component {
       noteArray: [],
       color: "",
       note: true,
+      ispinned:1,
       archive: false,
       isDeleted: false,
       trash: false,
@@ -63,7 +64,7 @@ class Dashboard extends Component {
           />
         </div>
                 
-        :{this.state.noteRender === 'createNote'?(<React.Fragment><Notes /><GetNote /></React.Fragment>)
+        :{this.state.noteRender === 'createNote'?(<React.Fragment><Notes /><GetNote/></React.Fragment>)
         :this.state.noteRender === 'reminder'?(<Reminders/>) 
         :this.state.noteRender === 'archive'?(<Archive />)
         :this.state.noteRender === 'trash'?(<Trash />)//<div>trash</div>
