@@ -17,7 +17,7 @@ import ColorComponent from "./colorNote";
 import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
-
+import Reminder from "./reminder";
 import {
   getNotes,
   trashNote,

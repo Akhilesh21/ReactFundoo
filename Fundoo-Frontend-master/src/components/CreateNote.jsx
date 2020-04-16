@@ -98,6 +98,7 @@ class Notes extends Component {
   
 
   newNote  = () => {
+   // this.props.initiateGetNotes(true);
     if (this.state.title === "") {
       console.log("title and description are empty");
       this.setState({ cardOpen: false });
@@ -107,6 +108,8 @@ class Notes extends Component {
       formData.append("decription", this.state.description);
       formData.append("userid", this.state.noteId);
       formData.append("color", this.state.color);
+      formData.append("reminder", this.state.reminder);
+
     //  formData.append("ispinned", this.state.ispinned);
     //formData.append("isarchive", this.state.isarchive);
     
@@ -116,6 +119,7 @@ class Notes extends Component {
         title: this.state.title,
         desription: this.state.description,
         color:this.state.color,
+        reminder: this.state.reminder,
       //  ispinned:this.state.ispinned ,
   //    isarchive:this.state.isarchive
          };

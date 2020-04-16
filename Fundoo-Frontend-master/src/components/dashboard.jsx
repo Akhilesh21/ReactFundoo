@@ -55,7 +55,7 @@ class Dashboard extends Component {
 
         <div style={{ display: "flex", background: "" }}>
           <SideNavBar
-//where ru calling createNote here
+
 
             show={this.state.open}
             handleDialogOpen={this.handleDialogOpen}
