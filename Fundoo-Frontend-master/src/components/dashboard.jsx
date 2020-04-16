@@ -55,15 +55,16 @@ class Dashboard extends Component {
 
         <div style={{ display: "flex", background: "" }}>
           <SideNavBar
+//where ru calling createNote here
 
             show={this.state.open}
             handleDialogOpen={this.handleDialogOpen}
             noteRendering={this.noteRendering.bind(this)}
           />
         </div>
-       
-        
-        {this.state.noteRender === 'createNote'?(<GetNote />)
+                
+        :{this.state.noteRender === 'createNote'?(<React.Fragment><Notes /><GetNote /></React.Fragment>)
+
         :this.state.noteRender === 'archive'?(<Archive />)
         :this.state.noteRender === 'trash'?(<Trash />)//<div>trash</div>
         :(<GetNote />)}

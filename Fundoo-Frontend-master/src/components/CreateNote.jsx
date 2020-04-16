@@ -31,7 +31,7 @@ class Notes extends Component {
       description: "",
       ispinned: Number,
       
-      isarchieve:Number,
+      isarchive:Number,
       remainder: null,
       date: "",
       time: "",
@@ -79,7 +79,7 @@ class Notes extends Component {
   
 
   handleClosePin = () => {
-    this.setState({ isPinned: 0 });
+    this.setState({ ispinned: 0 });
   };
   handleColorClose = () => {
     this.setState({ color: true });
@@ -97,8 +97,8 @@ class Notes extends Component {
   };
   
 
-  newNote = () => {
-    if (this.state.title === "" && this.state.description === "") {
+  newNote  = () => {
+    if (this.state.title === "") {
       console.log("title and description are empty");
       this.setState({ cardOpen: false });
     } else {
@@ -107,8 +107,8 @@ class Notes extends Component {
       formData.append("decription", this.state.description);
       formData.append("userid", this.state.noteId);
       formData.append("color", this.state.color);
-      formData.append("ispinned", this.state.ispinned);
-      formData.append("isarchive", this.state.isarchive);
+    //  formData.append("ispinned", this.state.ispinned);
+    //formData.append("isarchive", this.state.isarchive);
     
     
       var data = {
@@ -116,8 +116,8 @@ class Notes extends Component {
         title: this.state.title,
         desription: this.state.description,
         color:this.state.color,
-        ispinned:this.state.ispinned ,
-        isarchive:this.state.isarchive
+      //  ispinned:this.state.ispinned ,
+  //    isarchive:this.state.isarchive
          };
       console.log(data);
       create(formData)
@@ -145,14 +145,14 @@ class Notes extends Component {
     }
   };
 
-  handleOpenPin = async () => {
-    try {
-      await this.setState({ ispinned: 1, isarchive: 0 });
-      this.newNote();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // handleOpenPin = async () => {
+  //   try {
+  //     await this.setState({ ispinned: 1, isarchive: 0 });
+  //     this.newNote();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
 
 

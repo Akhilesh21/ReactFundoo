@@ -24,6 +24,7 @@ import {
   archiveNote,
   noteColor,
   editNote,
+  updatePin
 } from "../Services/NoteServices";
 
 const thm = createMuiTheme({
@@ -47,6 +48,7 @@ class GetNote extends Component {
       title: "",
       description: "",
       color: "",
+      ispinned:Number,
       reminder: "",
       istrash: false,
       openReminderMenu: false,
@@ -63,7 +65,9 @@ class GetNote extends Component {
       menuOpen: !this.state.menuOpen,
     });
   };
-
+  handleClosePin = () => {
+    this.setState({ ispinned: 0 });
+  };
   handleClose = (event) => {
     this.setState({ anchorEl: null });
   };
@@ -79,7 +83,7 @@ class GetNote extends Component {
     this.setState();
   };
 
-  paletteProps = async(event, data) => {
+  paletteProps = async (event, data) => {
     this.setState({
       color: data,
     });
@@ -135,7 +139,6 @@ class GetNote extends Component {
   handleDelete = (id) => {
     let data = {
       id: id,
-      color: this.state.color,
     };
     console.log("dghhdsjhjjhdhhj", id);
     console.log("delted using id ", data);
@@ -145,7 +148,6 @@ class GetNote extends Component {
     } else {
       let formData = new FormData();
       formData.append("id", id);
-      formData.append("color", this.state.color);
 
       console.log(this.state.id);
       trashNote(formData)
@@ -169,8 +171,6 @@ class GetNote extends Component {
       id: id,
     };
     console.log("dghhdsjhjjhdhhj", id);
-    console.log("delted using id ", data);
-    console.log(this.props.id, "id hell");
     if (this.state.id == "") {
       console.log("notes kjdhkah");
     } else {
@@ -194,7 +194,44 @@ class GetNote extends Component {
     }
   };
 
-  paletteProps = (key,id) => {
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+    if (nextProps.getNotes) {
+      this.handleGetNotes();
+    }
+  }
+
+  handlePin= (id) => {
+    let data = {
+      id: id,
+    };
+    console.log("dghhdsjhjjhdhhj", id);
+    if (this.state.id == "") {
+      console.log("notes kjdhkah");
+    } else {
+      let formData = new FormData();
+      formData.append("id", id);
+
+      console.log(this.state.id);
+      updatePin(formData)
+        .then((response) => {
+          console.log("response in ", response);
+
+          if (response.status === 200) {
+            console.log("RESPONSE :", response);
+          } else {
+            console.log("qwerty");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+
+
+  paletteProps = (key, id) => {
     let data = {
       id: this.props.id,
       color: id,
@@ -208,7 +245,7 @@ class GetNote extends Component {
       let formData = new FormData();
       formData.append("id", this.props.id);
       formData.append("id", key.id);
-      
+
       console.log(this.state.id);
       noteColor(formData)
         .then((response) => {
@@ -274,9 +311,9 @@ class GetNote extends Component {
                                 //  background: "#d2cece",
                                 marginLeft: "-25px",
                               }}
-                              // onClick={() => this.handlePin(key.id)}
+                              onClick={() => this.handlePin(key.id)}
                             >
-                              {key.isPinned === true ? (
+                              {key.ispinned === 1 ? (
                                 <img className="pin-out" src={unPin} />
                               ) : (
                                 <img className="pin-over" src={pin} />
