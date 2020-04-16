@@ -6,7 +6,7 @@ import Notes from "./CreateNote";
 import GetNote from "./getNote";
 import Trash from "./getTrash";
 import Archive from "./archive";
-
+import Reminders from "./reminderComponent"
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -64,7 +64,7 @@ class Dashboard extends Component {
         </div>
                 
         :{this.state.noteRender === 'createNote'?(<React.Fragment><Notes /><GetNote /></React.Fragment>)
-
+        :this.state.noteRender === 'reminder'?(<Reminders/>) 
         :this.state.noteRender === 'archive'?(<Archive />)
         :this.state.noteRender === 'trash'?(<Trash />)//<div>trash</div>
         :(<GetNote />)}

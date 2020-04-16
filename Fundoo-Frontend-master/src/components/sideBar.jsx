@@ -175,7 +175,9 @@ export default function SideNavBar(props) {
           >
             <NotificationsOutlinedIcon style={{ marginTop: "-15%" }} />
           </ListItemIcon>
-          <ListItemText style={{ width: "100%", marginLeft: "-59%" }}>
+          <ListItemText style={{ width: "100%", marginLeft: "-59%" }}
+          onClick={e => props.noteRendering('reminder')}
+          >
             Reminders
           </ListItemText>
         </ListItem>

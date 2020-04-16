@@ -5,7 +5,6 @@ import {
   Card,
   InputBase,
   Button,
-  Avatar,
   IconButton,
   Chip ,
 } from "@material-ui/core";

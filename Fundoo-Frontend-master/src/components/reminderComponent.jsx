@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { getNotes } from "../Services/NoteServices";
-import { Tooltip, Card, Chip, Avatar } from "@material-ui/core";
+import { Tooltip, Card, Chip,IconButton } from "@material-ui/core";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
-import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
@@ -75,6 +74,7 @@ class reminderComponent extends Component {
                 }}
               >
                 <div>
+                  <div>{key.id}</div>
                   <div>{key.title}</div>
                   <div>{key.decription}</div>
                 </div>
@@ -96,7 +96,7 @@ class reminderComponent extends Component {
 
                 <div>
                   <div
-                    style={{ background: "#d2cece", marginLeft: "-25px" }}
+                  //  style={{ background: "#d2cece", marginLeft: "-25px" }}
                     onClick={() => this.handlePin(key.id)}
                   >
                   {key.ispinned === 1 ? (
@@ -144,10 +144,14 @@ class reminderComponent extends Component {
                 </div>
                 <div>
                   <Tooltip title="More">
+                  <IconButton
+                                onClick={() => this.handleDelete(key.id)}
+                              >
                     <MoreVertOutlinedIcon
                       onClick={this.menuItem}
                       aria-owns="simple-menu"
                     />
+                    </IconButton>
                   </Tooltip>
                 {/*  <More
                     anchorEl={this.state.anchorEl}
