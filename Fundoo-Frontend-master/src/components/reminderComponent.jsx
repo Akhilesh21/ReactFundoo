@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { getNotes } from "../Services/NoteServices";
-
+import {
+    Tooltip,
+    Card, Chip, Avatar
+} from "@material-ui/core";
+import unPin from "../assets/unpin.svg";
+import pin from "../assets/pin.svg";
+import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
+import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
+import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
+import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
+import ColorComponent from "./colorNote";
 class reminderComponent extends Component {
   constructor(props) {
     super(props);
@@ -58,6 +68,88 @@ class reminderComponent extends Component {
                     background: key.color
                 }}
             >
+            <div
+            style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "5px"
+            }}
+        >
+            <div>
+                <div>
+                    {key.data().title}
+                </div>
+                <div>{key.data().description}</div>
+
+            </div>
+            <div>
+                {key.data().reminder !== null ?
+                    <Chip
+                        style={{ display: "flex", marginLeft: "-6em", marginTop: "5em" }}
+                        icon={<AccessTimeIcon />}
+                        label={key.data().reminder}
+                        onDelete={this.removeReminder}
+                        variant="outlined" />
+                    : null}
+            </div>
+
+            <div>
+                <Avatar style={{ background: "#d2cece", marginLeft: "-25px" }}
+                    onClick={() => this.handlePin(key.id)}>
+                    {key.data().isPinned === true ? < pin /> : <pin />}
+                </Avatar>
+
+            </div>
+        </div>
+        <div className="icons2">
+            <div>
+
+                <Reminder
+                    anchorEl={this.state.anchorEl}
+                    closeMenu={this.handleClose}
+                    handleGetNotes={this.handleGetNotes}
+                    handleReminderDate={this.handleReminderDate}
+                />
+            </div>
+            <div>
+                <Tooltip title="Collbrate">
+                    <PersonAddOutlinedIcon />
+                </Tooltip>
+            </div>
+            <div>
+                <ColorComponent paletteProps={this.paletteProps} id={key.id} />
+            </div>
+            <div>
+                <Tooltip title="Add image">
+                    <ImageOutlinedIcon />
+                </Tooltip>
+            </div>
+            <div>
+                <Tooltip title="Un Archive">
+                    <div
+                        style={{ cursor: "pointer" }}
+                        onClick={() => this.archiveNote(key.id)}
+                    >
+                        <ArchiveOutlinedIcon />
+                    </div>
+                </Tooltip>
+            </div>
+            <div>
+                <Tooltip title="More">
+                    <MoreVertOutlinedIcon
+                        onClick={this.menuItem}
+                        aria-owns="simple-menu" />
+                </Tooltip>
+                <More
+                    anchorEl={this.state.anchorEl}
+                    closeMenu={this.handleClose} id={key.id}
+                    handleGetNotes={this.handleGetNotes}
+                />
+            </div>
+        </div>
+    </Card>
+</div>
+            
         );
       }
     });
