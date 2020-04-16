@@ -45,6 +45,14 @@ class Dashboard extends Component {
     this.setState({ note: true, archive: false, trash: false });
   };
 
+  initiateGetNotes = (getDataProps) => {
+    console.log("getDataProps", getDataProps);
+    this.setState({
+      getNotesProps: getDataProps
+    })
+  }
+
+
   render() {
     console.log("Daashboar-----------");
     return (
@@ -64,7 +72,7 @@ class Dashboard extends Component {
           />
         </div>
                 
-        :{this.state.noteRender === 'createNote'?(<React.Fragment><Notes /><GetNote/></React.Fragment>)
+        :{this.state.noteRender === 'createNote'?(<React.Fragment><Notes initiateGetNotes={this.initiateGetNotes} colorChange={this.colorChange} color={this.state.color}/><GetNote getNotes={this.state.getNotesProps} color={this.state.color} /></React.Fragment>)
         :this.state.noteRender === 'reminder'?(<React.Fragment><Notes /><Reminders/></React.Fragment>) 
         :this.state.noteRender === 'archive'?(<Archive />)
         :this.state.noteRender === 'trash'?(<Trash />)//<div>trash</div>

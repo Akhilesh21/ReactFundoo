@@ -91,6 +91,7 @@ class GetNote extends Component {
   };
 
   handleGetNotes = () => {
+    
     getNotes()
       .then((res) => {
         this.setState({

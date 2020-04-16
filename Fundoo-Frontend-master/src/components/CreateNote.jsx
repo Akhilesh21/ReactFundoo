@@ -29,10 +29,10 @@ class Notes extends Component {
       color: "",
       title: "",
       description: "",
-      ispinned: Number,
-      
-      isarchive:Number,
-      remainder: null,
+      ispinned: 0,
+      anchorElPooper: false,
+      isarchive:0,
+      reminder: null,
       date: "",
       time: "",
       anchorElPooper: false,
@@ -78,9 +78,7 @@ class Notes extends Component {
 
   
 
-  handleClosePin = () => {
-    this.setState({ ispinned: 0 });
-  };
+  
   handleColorClose = () => {
     this.setState({ color: true });
   };
@@ -98,9 +96,8 @@ class Notes extends Component {
   
 
   newNote  = () => {
-   // this.props.initiateGetNotes(true);
-    if (this.state.title === "") {
-      console.log("title and description are empty");
+   this.props.initiateGetNotes(true);
+    if (this.state.title === "" && this.state.description === "") {
       this.setState({ cardOpen: false });
     } else {
       let formData = new FormData(data);
@@ -109,9 +106,8 @@ class Notes extends Component {
       formData.append("userid", this.state.noteId);
       formData.append("color", this.state.color);
       formData.append("reminder", this.state.reminder);
-
-    //  formData.append("ispinned", this.state.ispinned);
-    //formData.append("isarchive", this.state.isarchive);
+      formData.append("ispinned", this.state.ispinned);
+      formData.append("isarchive", this.state.isarchive);
     
     
       var data = {
@@ -120,8 +116,8 @@ class Notes extends Component {
         desription: this.state.description,
         color:this.state.color,
         reminder: this.state.reminder,
-      //  ispinned:this.state.ispinned ,
-  //    isarchive:this.state.isarchive
+        ispinned:this.state.ispinned ,
+        isarchive:this.state.isarchive
          };
       console.log(data);
       create(formData)
@@ -149,17 +145,18 @@ class Notes extends Component {
     }
   };
 
-  // handleOpenPin = async () => {
-  //   try {
-  //     await this.setState({ ispinned: 1, isarchive: 0 });
-  //     this.newNote();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  handleOpenPin = () => {
+    this.setState({ ispinned: 1 });
+  }
+  handleClosePin = () => {
+    this.setState({ ispinned: 0 });
+  };
+  
 
 
-
+  handleClose = event => {
+    this.setState({ anchorEl: null });
+  };
 
 
 
@@ -225,7 +222,7 @@ class Notes extends Component {
                   />
                 </div>
                 <div>
-                  {!this.state.isPinned ? (
+                  {!this.state.ispinned ? (
                     <div className="pin-over" onClick={this.handleOpenPin}>
                       <img className="pin-over" src={pin} />
                     </div>

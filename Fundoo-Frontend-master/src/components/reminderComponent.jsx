@@ -23,7 +23,7 @@ class reminderComponent extends Component {
       color: "",
       istrash: 0,
       isarchive: 0,
-      ispinned: Number,
+      ispinned: 0,
       anchorEl: null,
       reminder: null,
     };
