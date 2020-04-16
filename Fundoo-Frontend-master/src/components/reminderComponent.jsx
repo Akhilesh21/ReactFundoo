@@ -38,21 +38,26 @@ class reminderComponent extends Component {
   };
 
   render() {
+      
     let trashObj = this.state.notes.map((key, index) => {
       if ((key.reminder !== null) && (key.isarchive === 0)) {
         //console.log("the dele is ", key.reminder);
         return (
-          <div
-            style={{
-              height: "200px",
-              width: "400px",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span>{key.title}</span>
-            <span>{key.decription}</span>
-          </div>
+            <div className="notes_" >
+            <Card
+                className="get_Nottes_card"
+                style={{
+                    width: "250px",
+                    minHeight: "100px",
+                    height: "auto",
+                    margin: "5px",
+                    padding: "10px",
+                    boxShadow: "0px 1px 7px 0px",
+                    marginTop: "10%",
+                    borderRadius: "15px",
+                    background: key.color
+                }}
+            >
         );
       }
     });
