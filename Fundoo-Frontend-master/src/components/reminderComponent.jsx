@@ -13,7 +13,7 @@ class reminderComponent extends Component {
         description: "",
         color: "",
         istrash: 0,
-        archieve: 0,
+        isarchive: 0,
         ispinned: 0,
         anchorEl: null,
         reminder: null,
@@ -39,7 +39,7 @@ class reminderComponent extends Component {
 
   render() {
     let trashObj = this.state.notes.map((key, index) => {
-      if (key.istrash === 1) {
+      if ((key.reminder !== null) && (key.isarchive === 0)) {
         //console.log("the dele is ", key.reminder);
         return (
           <div
