@@ -228,9 +228,17 @@ class GetNote extends Component {
         });
     }
   };
+/**
+ * 
+ */
+  handleReminderDate = date => {
+    this.setState({ reminder: date });
+  };
 
-
-
+  removeReminder = () => {
+    this.setState({ reminder: null });
+  };
+  
   paletteProps = (key, id) => {
     let data = {
       id: this.props.id,
