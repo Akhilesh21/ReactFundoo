@@ -8,11 +8,11 @@ import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import ColorComponent from "./colorNote";
 // import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
-import pin from "../assets/pin.svg";
+import   pin from "../assets/pin.svg";
 import Reminder from "./reminder";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
-import { getNotes, trashNote, unarchiveNote } from "../Services/NoteServices";
+import { getNotes, trashNote, unarchiveNote,updatePin } from "../Services/NoteServices";
 
 class archive extends Component {
   constructor(props) {
@@ -55,6 +55,35 @@ class archive extends Component {
       this.handleGetNotes();
     }
   }
+
+  handlePin= (id) => {
+    let data = {
+      id: id,
+    };
+    console.log("dghhdsjhjjhdhhj", id);
+    if (this.state.id == "") {
+      console.log("notes kjdhkah");
+    } else {
+      let formData = new FormData();
+      formData.append("id", id);
+
+      console.log(this.state.id);
+      updatePin(formData)
+        .then((response) => {
+          console.log("response in ", response);
+
+          if (response.status === 200) {
+            console.log("RESPONSE :", response);
+          } else {
+            console.log("qwerty");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+        this.handleGetNotes();
+    }
+  };
 
   handleDelete = (id) => {
     let data = {
@@ -117,10 +146,12 @@ class archive extends Component {
       this.handleGetNotes();
     }
   };
-
+  handleClosePin = () => {
+    this.setState({ ispinned: 0 });
+  };
   render() {
     let trashObj = this.state.notes.map((key, index) => {
-      if (key.isarchive === 1 && key.istrash === 0) {
+      if ((key.isarchive === 1) && (key.istrash === 0) && (key.ispinned ===0)) {
         console.log("the dele is ", key.istrash);
         return (
           <div className="_notes">
@@ -164,6 +195,21 @@ class archive extends Component {
                       ) : null}
                     </div>
                   </div>
+                  <div>
+                  <div
+                    style={{
+                      //  background: "#d2cece",
+                      marginLeft: "-25px",
+                    }}
+                    onClick={() => this.handlePin(key.id)}
+                  >
+                    {key.ispinned === 1 ? (
+                      <img className="pin-out" src={unPin} />
+                    ) : (
+                      <img className="pin-over" src={pin} />
+                    )}
+                  </div>
+                </div>
                 </div>
 
                 <div className="getnoteicons_trash">

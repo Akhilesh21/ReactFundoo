@@ -295,7 +295,7 @@ class GetNote extends Component {
           {!this.state.open ? (
             <div className="_notes_">
               {this.state.notes.map((key) => {
-                if (key.istrash === 0 && key.isarchive === 0) {
+                if ((key.istrash === 0) && (key.isarchive === 0)) {
                   //  console.log("data", key.istrash);
                   return (
                     <div className="notes_">
