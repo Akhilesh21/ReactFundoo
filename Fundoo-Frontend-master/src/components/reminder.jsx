@@ -8,7 +8,7 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
-
+import Typography from "@material-ui/core/Typography";
 class Reminder extends Component {
   constructor(props) {
     super(props);
@@ -158,11 +158,13 @@ class Reminder extends Component {
 
     return (
       <div>
-        <IconButton aria-haspopup="true" onClick={this.reminderMenuOpen}>
+     < Typography aria-haspopup="true" onClick={this.reminderMenuOpen}>
+       
           <Tooltip title="Remind me">
             <AddAlertOutlinedIcon />
           </Tooltip>
-        </IconButton>
+        
+        </Typography>
         {reminderMenuItem}
       </div>
     );

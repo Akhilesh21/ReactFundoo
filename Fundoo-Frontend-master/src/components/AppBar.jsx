@@ -16,7 +16,6 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import { Grid } from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import SettingsIcon from "@material-ui/icons/Settings";
-//import AppsIcon from '@material-ui/icons/Apps';
 import AppsTwoToneIcon from "@material-ui/icons/AppsTwoTone";
 import clsx from "clsx";
 import "./User.css";
@@ -270,7 +269,7 @@ export default function PrimarySearchAppBar(props) {
                 marginBottom: "-8px",
               }}
             >
-            <div>
+            {/*<div>
                 <h2>
                     <span style={{color:"#f28b82"}}>F</span>
                     <span style={{color:"#fff475"}}>U</span>
@@ -279,8 +278,8 @@ export default function PrimarySearchAppBar(props) {
                     <span style={{color:"#e8eaed"}}>O</span>
                     <span style={{color:"#ccff90"}}>O</span>
                  </h2>
-            </div>
-              {/*<Typography
+            </div>*/}
+              <Typography
                 style={{
                   color: "#616161",
                   fontSize: "150%",
@@ -292,7 +291,7 @@ export default function PrimarySearchAppBar(props) {
                 noWrap
               >
                 Fundoo
-              </Typography>*/}
+              </Typography>
             </Grid>
             <Grid style={{ marginLeft: "15px", marginTop: "9px" }}>
               <div className={classes.search}>

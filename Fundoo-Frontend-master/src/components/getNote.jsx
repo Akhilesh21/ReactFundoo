@@ -49,9 +49,13 @@ class GetNote extends Component {
       title: "",
       description: "",
       color: "",
-      ispinned:Number,
+      ispinned:0,
+      isarchive:0,
       reminder: "",
-      istrash: false,
+      showIcon: false,
+      anchorEl: null,
+      labels: null,
+      istrash: 0,
       openReminderMenu: false,
       menuOpen: false,
     };
@@ -60,11 +64,8 @@ class GetNote extends Component {
   menuOpen = () => {
     this.setState({ open: !this.state.open });
   };
-  menuItem = (e) => {
-    this.setState({
-      anchorEl: e.currentTarget,
-      menuOpen: !this.state.menuOpen,
-    });
+  menuItem = e => {
+    this.setState({anchorEl: e.currentTarget });
   };
   handleClosePin = () => {
     this.setState({ ispinned: 0 });
@@ -102,6 +103,7 @@ class GetNote extends Component {
       .catch((err) => {
         console.log("err", err);
       });
+     // this.handleGetNotes();
   };
 
   handleEditNote = (id, title, decription) => {
@@ -138,6 +140,16 @@ class GetNote extends Component {
     }
   };
 
+
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+    if (nextProps.getNotes) {
+      this.handleGetNotes();
+    }
+  }
+
+
+
   handleDelete = (id) => {
     let data = {
       id: id,
@@ -165,6 +177,7 @@ class GetNote extends Component {
         .catch((err) => {
           console.log(err);
         });
+       this.handleGetNotes();
     }
   };
 
@@ -193,15 +206,10 @@ class GetNote extends Component {
         .catch((err) => {
           console.log(err);
         });
+       this.handleGetNotes();
     }
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log("nextProps", nextProps);
-    if (nextProps.getNotes) {
-      this.handleGetNotes();
-    }
-  }
 
   handlePin= (id) => {
     let data = {
@@ -228,6 +236,7 @@ class GetNote extends Component {
         .catch((err) => {
           console.log(err);
         });
+        this.handleGetNotes();
     }
   };
 /**
@@ -272,6 +281,12 @@ class GetNote extends Component {
         });
     }
   };
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+    if (nextProps.getNotes) {
+      this.handleGetNotes();
+    }
+  }
 
   render() {
     return (
@@ -317,6 +332,12 @@ class GetNote extends Component {
                             <div>
                               {key.reminder !== null ?
                                 <Chip
+                                style={{
+                                  display: "flex",
+                                  marginLeft: "-1em",
+                                  marginBottom: "-3em",
+                                  //marginTop: "1em",
+                                }}
                                   icon={<AccessTimeIcon />}
                                   id={key.id}
                                   label={key.reminder}
@@ -383,51 +404,50 @@ class GetNote extends Component {
 
                       </div>
                           <div>
-                          <IconButton>
+                          
 
                             <Tooltip title="Collbrate">
                               <PersonAddOutlinedIcon />
                             </Tooltip>
-                          </IconButton>
-
+                          
                           </div>
                           <div>
-                          <IconButton>
+                         
                             <ColorComponent
                               paletteProps={this.paletteProps}
                               id={key.id}
                             />
-                          </IconButton>
+                        
 
                           </div>
                           <div>
                             <Tooltip title="Add image">
-                            <IconButton>
+                            
                               <ImageOutlinedIcon />
-                              </IconButton>
+                             
                             </Tooltip>
                           </div>
                           <div>
                             <Tooltip title="Archive">
-                            <IconButton
+                            <div
                                // style={{ cursor: "pointer" }}
                                 onClick={() => this.archiveNote(key.id)}
                               >
                                 <ArchiveOutlinedIcon />
-                                </IconButton>
+                                </div>
                             </Tooltip>
                           </div>
 
                           <div>
                             <Tooltip title="More">
-                              <IconButton
+                              <div
                                 onClick={() => this.handleDelete(key.id)}
                               >
                                 <MoreVertOutlinedIcon
                                   onClick={this.menuItem}
                                   aria-owns="simple-menu"
                                 />
-                              </IconButton>
+                              </div>
                             </Tooltip>
 
                             {/*  <More

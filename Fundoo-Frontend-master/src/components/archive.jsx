@@ -34,6 +34,13 @@ class archive extends Component {
         console.log("err", err);
       });
   };
+
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+    if (nextProps.getNotes) {
+      this.handleGetNotes();
+    }
+  }
     
   handleDelete = (id) => {
     let data = {
@@ -62,6 +69,7 @@ class archive extends Component {
         .catch((err) => {
           console.log(err);
         });
+        this.handleGetNotes();
     }
   };
 
@@ -92,6 +100,7 @@ class archive extends Component {
         .catch((err) => {
           console.log(err);
         });
+        this.handleGetNotes();
     }
   };
    
