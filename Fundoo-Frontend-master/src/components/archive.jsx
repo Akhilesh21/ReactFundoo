@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Tooltip, Card, IconButton } from "@material-ui/core";
+import { Tooltip, Card, Chip } from "@material-ui/core";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import UnarchiveOutlinedIcon from "@material-ui/icons/UnarchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import ColorComponent from "./colorNote";
+// import Dialog from "@material-ui/core/Dialog";
+import unPin from "../assets/unpin.svg";
+import pin from "../assets/pin.svg";
+import Reminder from "./reminder";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
-import { getNotes,trashNote,unarchiveNote } from "../Services/NoteServices";
+import { getNotes, trashNote, unarchiveNote } from "../Services/NoteServices";
 
 class archive extends Component {
   constructor(props) {
@@ -15,6 +20,15 @@ class archive extends Component {
     this.state = {
       notes: [],
       isarchive: "",
+      title: "",
+      description: "",
+      istrash: 0,
+      isarchive: 0,
+      ispinned: 0,
+      pin_open: false,
+      showIcon: false,
+      anchorEl: null,
+      reminder: null,
     };
     this.handleGetNotes();
   }
@@ -41,25 +55,25 @@ class archive extends Component {
       this.handleGetNotes();
     }
   }
-    
+
   handleDelete = (id) => {
     let data = {
-        id:id,
+      id: id,
     };
     console.log("dghhdsjhjjhdhhj", id);
     console.log("delted using id ", data);
     console.log(this.props.id, "id hell");
-     if (this.state.id == "") {
+    if (this.state.id == "") {
       console.log("notes kjdhkah");
     } else {
       let formData = new FormData();
-      formData.append("id",id);
-    
+      formData.append("id", id);
+
       console.log(this.state.id);
       trashNote(formData)
         .then((response) => {
           console.log("response in ", response);
-         
+
           if (response.status === 200) {
             console.log("RESPONSE :", response);
           } else {
@@ -69,28 +83,28 @@ class archive extends Component {
         .catch((err) => {
           console.log(err);
         });
-        this.handleGetNotes();
+      this.handleGetNotes();
     }
   };
 
   unarchiveNote = (id) => {
     let data = {
-        id:id,
+      id: id,
     };
     console.log("dghhdsjhjjhdhhj", id);
     console.log("delted using id ", data);
     console.log(this.props.id, "id hell");
-     if (this.state.id == "") {
+    if (this.state.id == "") {
       console.log("notes kjdhkah");
     } else {
       let formData = new FormData();
-      formData.append("id",id);
-    
+      formData.append("id", id);
+
       console.log(this.state.id);
       unarchiveNote(formData)
         .then((response) => {
           console.log("response in ", response);
-         
+
           if (response.status === 200) {
             console.log("RESPONSE :", response);
           } else {
@@ -100,11 +114,9 @@ class archive extends Component {
         .catch((err) => {
           console.log(err);
         });
-        this.handleGetNotes();
+      this.handleGetNotes();
     }
   };
-   
-
 
   render() {
     let trashObj = this.state.notes.map((key, index) => {
@@ -138,11 +150,32 @@ class archive extends Component {
                   <div>
                     <div>{key.id}</div>
                     <div>{key.title}</div>
-                    <div style={{ marginTop: "25px" }}>{key.decription}</div>
+                    <div style={{ marginTop: "5px" }}>{key.decription}</div>
+                    <div>
+                      {key.reminder !== null ? (
+                        <Chip
+                          //style={{ display: "flex", marginLeft: "-6em", marginTop: "5em" }}
+                          icon={<AccessTimeIcon />}
+                          id={key.id}
+                          label={key.reminder}
+                          onDelete={this.removeReminder}
+                          variant="outlined"
+                        />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
 
                 <div className="getnoteicons_trash">
+                  <div>
+                    <Reminder
+                      anchorEl={this.state.anchorEl}
+                      closeMenu={this.handleClose}
+                      handleGetNotes={this.handleGetNotes}
+                      handleReminderDate={this.handleReminderDate}
+                    />
+                  </div>
+
                   <div>
                     <Tooltip title="Collbrate">
                       <PersonAddOutlinedIcon />
