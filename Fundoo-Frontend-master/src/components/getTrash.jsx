@@ -35,14 +35,6 @@ class trash extends Component {
       });
   };
 
-
-  componentWillReceiveProps(nextProps) {
-    console.log("nextProps", nextProps);
-    if (nextProps.getNotes) {
-      this.handleGetNotes();
-    }
-  }
-
   restore = (id) => {
     let data = {
       id: id,
@@ -73,7 +65,6 @@ class trash extends Component {
         .catch((err) => {
           console.log(err);
         });
-        this.handleGetNotes();
     }
   };
 
@@ -107,7 +98,6 @@ class trash extends Component {
         .catch((err) => {
           console.log(err);
         });
-        this.handleGetNotes();
     }
   };
 
@@ -151,16 +141,16 @@ class trash extends Component {
                 <div className="getnoteicons_trash">
                   <div>
                     <Tooltip title="Delete forever">
-                      <div onClick={() => this.deleteForever(key.id)}>
+                      <IconButton onClick={() => this.deleteForever(key.id)}>
                         <DeleteForeverIcon />
-                      </div>
+                      </IconButton>
                     </Tooltip>
                   </div>
                   <div>
                     <Tooltip title="Restore">
-                      <div onClick={() => this.restore(key.id)}>
+                      <IconButton onClick={() => this.restore(key.id)}>
                         <RestoreFromTrashIcon />
-                      </div>
+                      </IconButton>
                     </Tooltip>
                   </div>
                 </div>

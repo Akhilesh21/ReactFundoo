@@ -88,7 +88,13 @@ class Notes extends Component {
     });
 
   };
-  
+
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+    if (nextProps.getNotes) {
+      this.handleGetNotes();
+    }
+  }
 
   colorChange = () => {
     this.setState();
@@ -132,7 +138,9 @@ class Notes extends Component {
         .catch((err) => {
           console.log(err);
         });
+        this.handleGetNotes();
       this.setState({ cardOpen: false });
+
     }
   };
 
