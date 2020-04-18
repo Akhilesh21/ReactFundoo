@@ -19,7 +19,7 @@ import ColorComponent from "./colorNote";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 import correct from "../assets/correct.svg";
-import { getNotes,noteColor } from "../Services/NoteServices";
+import { getNotes } from "../Services/NoteServices";
 class Notes extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +35,6 @@ class Notes extends Component {
       reminder: null,
       date: "",
       time: "",
-      anchorElPooper: false,
       openReminderMenu: false,
     };
   }

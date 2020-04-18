@@ -20,7 +20,7 @@ class reminderComponent extends Component {
       noteId: "",
       title: "",
       description: "",
-      color: "",
+      
       istrash: 0,
       isarchive: 0,
       ispinned: 0,

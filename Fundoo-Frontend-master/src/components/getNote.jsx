@@ -6,7 +6,7 @@ import {
   InputBase,
   Button,
   IconButton,
-  Chip ,
+  Chip,
 } from "@material-ui/core";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
@@ -18,15 +18,16 @@ import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 import Reminder from "./reminder";
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import {
   getNotes,
   trashNote,
   archiveNote,
   noteColor,
   editNote,
-  updatePin
+  updatePin,
 } from "../Services/NoteServices";
+//import correct from "../assets/correct.svg";
 
 const thm = createMuiTheme({
   overrides: {
@@ -49,8 +50,8 @@ class GetNote extends Component {
       title: "",
       description: "",
       color: "",
-      ispinned:0,
-      isarchive:0,
+      ispinned: 0,
+      isarchive: 0,
       reminder: "",
       showIcon: false,
       anchorEl: null,
@@ -64,8 +65,8 @@ class GetNote extends Component {
   menuOpen = () => {
     this.setState({ open: !this.state.open });
   };
-  menuItem = e => {
-    this.setState({anchorEl: e.currentTarget });
+  menuItem = (e) => {
+    this.setState({ anchorEl: e.currentTarget });
   };
   handleClosePin = () => {
     this.setState({ ispinned: 0 });
@@ -92,7 +93,6 @@ class GetNote extends Component {
   };
 
   handleGetNotes = () => {
-    
     getNotes()
       .then((res) => {
         this.setState({
@@ -103,7 +103,6 @@ class GetNote extends Component {
       .catch((err) => {
         console.log("err", err);
       });
-     // this.handleGetNotes();
   };
 
   handleEditNote = (id, title, decription) => {
@@ -140,15 +139,12 @@ class GetNote extends Component {
     }
   };
 
-
   componentWillReceiveProps(nextProps) {
     console.log("nextProps", nextProps);
     if (nextProps.getNotes) {
       this.handleGetNotes();
     }
   }
-
-
 
   handleDelete = (id) => {
     let data = {
@@ -177,7 +173,7 @@ class GetNote extends Component {
         .catch((err) => {
           console.log(err);
         });
-       this.handleGetNotes();
+      this.handleGetNotes();
     }
   };
 
@@ -206,12 +202,11 @@ class GetNote extends Component {
         .catch((err) => {
           console.log(err);
         });
-       this.handleGetNotes();
+      this.handleGetNotes();
     }
   };
 
-
-  handlePin= (id) => {
+  handlePin = (id) => {
     let data = {
       id: id,
     };
@@ -236,20 +231,20 @@ class GetNote extends Component {
         .catch((err) => {
           console.log(err);
         });
-        this.handleGetNotes();
+      this.handleGetNotes();
     }
   };
-/**
- * 
- */
-  handleReminderDate = date => {
+  /**
+   *
+   */
+  handleReminderDate = (date) => {
     this.setState({ reminder: date });
   };
 
   removeReminder = () => {
     this.setState({ reminder: null });
   };
-  
+
   paletteProps = (key, id) => {
     let data = {
       id: this.props.id,
@@ -295,7 +290,7 @@ class GetNote extends Component {
           {!this.state.open ? (
             <div className="_notes_">
               {this.state.notes.map((key) => {
-                if ((key.istrash === 0) && (key.isarchive === 0)) {
+                if (key.istrash === 0 && key.isarchive === 0) {
                   //  console.log("data", key.istrash);
                   return (
                     <div className="notes_">
@@ -304,7 +299,7 @@ class GetNote extends Component {
                           width: "250px",
                           minHeight: "135px",
                           height: "auto",
-                         // height: "9em",
+                          // height: "9em",
                           //height:"12px",
                           margin: "5px",
                           padding: "10px",
@@ -323,6 +318,8 @@ class GetNote extends Component {
                           }}
                         >
                           <div>
+                            {/*       <div><img className="pin-over" src={correct} /></div>*/}
+
                             <div>{key.id}</div>
                             <div>{key.title}</div>
 
@@ -330,21 +327,21 @@ class GetNote extends Component {
                               {key.decription}
                             </div>
                             <div>
-                              {key.reminder !== null ?
+                              {key.reminder !== null ? (
                                 <Chip
-                                style={{
-                                  display: "flex",
-                                  marginLeft: "-1em",
-                                  marginBottom: "-3em",
-                                  //marginTop: "1em",
-                                }}
+                                  style={{
+                                    display: "flex",
+                                    marginLeft: "-1em",
+                                    marginBottom: "-3em",
+                                    //marginTop: "1em",
+                                  }}
                                   icon={<AccessTimeIcon />}
                                   id={key.id}
                                   label={key.reminder}
                                   onDelete={this.removeReminder}
                                   variant="outlined"
                                 />
-                                : null}
+                              ) : null}
                             </div>
                           </div>
 
@@ -394,55 +391,44 @@ class GetNote extends Component {
                         </div>
 
                         <div className="getnoteicons">
-                        <div >
-                        <Reminder
-                          anchorEl={this.state.anchorEl}
-                          closeMenu={this.handleClose}
-                          handleGetNotes={this.handleGetNotes}
-                          handleReminderDate={this.handleReminderDate}
-                        />
-
-                      </div>
                           <div>
-                          
-
+                            <Reminder
+                              anchorEl={this.state.anchorEl}
+                              closeMenu={this.handleClose}
+                              handleGetNotes={this.handleGetNotes}
+                              handleReminderDate={this.handleReminderDate}
+                            />
+                          </div>
+                          <div>
                             <Tooltip title="Collbrate">
                               <PersonAddOutlinedIcon />
                             </Tooltip>
-                          
                           </div>
                           <div>
-                         
                             <ColorComponent
                               paletteProps={this.paletteProps}
                               id={key.id}
                             />
-                        
-
                           </div>
                           <div>
                             <Tooltip title="Add image">
-                            
                               <ImageOutlinedIcon />
-                             
                             </Tooltip>
                           </div>
                           <div>
                             <Tooltip title="Archive">
-                            <div
-                               // style={{ cursor: "pointer" }}
+                              <div
+                                // style={{ cursor: "pointer" }}
                                 onClick={() => this.archiveNote(key.id)}
                               >
                                 <ArchiveOutlinedIcon />
-                                </div>
+                              </div>
                             </Tooltip>
                           </div>
 
                           <div>
                             <Tooltip title="More">
-                              <div
-                                onClick={() => this.handleDelete(key.id)}
-                              >
+                              <div onClick={() => this.handleDelete(key.id)}>
                                 <MoreVertOutlinedIcon
                                   onClick={this.menuItem}
                                   aria-owns="simple-menu"

@@ -10,7 +10,6 @@ class More extends Component {
     super(props);
     this.state = {
       notes: [],
-      isarchive: "",
       title: "",
       description: "",
       istrash: 0,
@@ -48,7 +47,7 @@ class More extends Component {
     console.log("dghhdsjhjjhdhhj", id);
     console.log("delted using id ", data);
     console.log(this.props.id, "id hell");
-    if (this.state.id == "") {
+    if (this.state.id === "") {
       console.log("notes kjdhkah");
     } else {
       let formData = new FormData();

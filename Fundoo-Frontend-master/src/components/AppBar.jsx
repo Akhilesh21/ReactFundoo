@@ -269,17 +269,17 @@ export default function PrimarySearchAppBar(props) {
                 marginBottom: "-8px",
               }}
             >
-            {/*<div>
+            <Typography>
                 <h2>
-                    <span style={{color:"#f28b82"}}>F</span>
-                    <span style={{color:"#fff475"}}>U</span>
-                    <span style={{color:"#a7ffeb"}}>N</span>
-                    <span style={{color:"#f48fb1"}}>D</span>
-                    <span style={{color:"#e8eaed"}}>O</span>
+                    <span style={{color:"#aecbfa"}}>F</span>
+                    <span style={{color:"#f28b82"}}>U</span>
+                    <span style={{color:"#f28b82"}}>N</span>
+                    <span style={{color:"#aecbfa"}}>D</span>
                     <span style={{color:"#ccff90"}}>O</span>
+                    <span style={{color:"#f28b82"}}>O</span>
                  </h2>
-            </div>*/}
-              <Typography
+            </Typography>
+             {/* <Typography
                 style={{
                   color: "#616161",
                   fontSize: "150%",
@@ -291,7 +291,7 @@ export default function PrimarySearchAppBar(props) {
                 noWrap
               >
                 Fundoo
-              </Typography>
+              </Typography>*/}
             </Grid>
             <Grid style={{ marginLeft: "15px", marginTop: "9px" }}>
               <div className={classes.search}>

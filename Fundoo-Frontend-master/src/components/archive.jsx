@@ -19,7 +19,6 @@ class archive extends Component {
     super(props);
     this.state = {
       notes: [],
-      isarchive: "",
       title: "",
       description: "",
       istrash: 0,

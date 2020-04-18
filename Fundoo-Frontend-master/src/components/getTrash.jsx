@@ -35,13 +35,11 @@ class trash extends Component {
       });
   };
 
-  restore = (id) => {
+   restore = (id) => {
     let data = {
       id: id,
-      //istrash: true,
     };
     console.log("dghhdsjhjjhdhhj", id);
-    //  console.log("hsdg", event.target.value);
     console.log("delted using id ", data);
     console.log(id, "id hell");
 
@@ -50,7 +48,6 @@ class trash extends Component {
     } else {
       let formData = new FormData();
       formData.append("id", id);
-      // formData.append("istrash", this.state.istrash);
       console.log(this.state.id);
       restoreNote(formData)
         .then((response) => {
@@ -65,16 +62,15 @@ class trash extends Component {
         .catch((err) => {
           console.log(err);
         });
+      this.handleGetNotes();
     }
   };
 
   deleteForever = (id) => {
     let data = {
       id: id,
-      //istrash: true,
-    };
+       };
     console.log("dghhdsjhjjhdhhj", id);
-    //  console.log("hsdg", event.target.value);
     console.log("delted using id ", data);
     console.log(id, "id hell");
 
@@ -83,7 +79,6 @@ class trash extends Component {
     } else {
       let formData = new FormData();
       formData.append("id", id);
-      // formData.append("istrash", this.state.istrash);
       console.log(this.state.id);
       deleteNotes(formData)
         .then((response) => {
@@ -98,8 +93,16 @@ class trash extends Component {
         .catch((err) => {
           console.log(err);
         });
+      this.handleGetNotes();
     }
   };
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+    if (nextProps.getNotes) {
+      this.handleGetNotes();
+    }
+  }
+ 
 
   render() {
     let trashObj = this.state.notes.map((key, index) => {
@@ -107,57 +110,61 @@ class trash extends Component {
         console.log("the dele is ", key.istrash);
         return (
           <div className="ttt">
-          <div >
-          <div className="_notes">
-            <div className="notes_">
-              <Card
-                style={{ backgroundColor: this.props.color }}
-                className="get_Nottes_card"
-                style={{
-                  width: "250px",
-                  minHeight: "135px",
-                  height: "auto",
-                  margin: "5px",
-                  padding: "10px",
-                  boxShadow: "0px 1px 7px 0px",
-                  marginTop: "10%",
-                  borderRadius: "15px",
-                  background: key.color,
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    padding: "5px",
-                  }}
-                >
-                  <div>
-                    <div>{key.id}</div>
-                    <div>{key.title}</div>
-                    <div style={{ marginTop: "25px" }}>{key.decription}</div>
-                  </div>
+            <div>
+              <div className="_notes">
+                <div className="notes_">
+                  <Card
+                    style={{ backgroundColor: this.props.color }}
+                    className="get_Nottes_card"
+                    style={{
+                      width: "250px",
+                      minHeight: "135px",
+                      height: "auto",
+                      margin: "5px",
+                      padding: "10px",
+                      boxShadow: "0px 1px 7px 0px",
+                      marginTop: "10%",
+                      borderRadius: "15px",
+                      background: key.color,
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "5px",
+                      }}
+                    >
+                      <div>
+                        <div>{key.id}</div>
+                        <div>{key.title}</div>
+                        <div style={{ marginTop: "25px" }}>
+                          {key.decription}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="getnoteicons_trash">
+                      <div>
+                        <Tooltip title="Delete forever">
+                          <IconButton
+                            onClick={() => this.deleteForever(key.id)}
+                          >
+                            <DeleteForeverIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </div>
+                      <div>
+                        <Tooltip title="Restore">
+                          <IconButton onClick={() => this.restore(key.id)}>
+                            <RestoreFromTrashIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </div>
+                    </div>
+                  </Card>
                 </div>
-                <div className="getnoteicons_trash">
-                  <div>
-                    <Tooltip title="Delete forever">
-                      <IconButton onClick={() => this.deleteForever(key.id)}>
-                        <DeleteForeverIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </div>
-                  <div>
-                    <Tooltip title="Restore">
-                      <IconButton onClick={() => this.restore(key.id)}>
-                        <RestoreFromTrashIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </div>
-                </div>
-              </Card>
+              </div>
             </div>
-          </div>
-          </div>
           </div>
         );
       }
