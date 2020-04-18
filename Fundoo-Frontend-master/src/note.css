@@ -9,6 +9,23 @@
     width: 320px;
   }
 }
+.card1 {
+  padding: 18px;
+  /* height: 100px; */
+  width: 30em;
+  height: auto;
+  /* width: 32em;
+    padding: 18px; */
+  overflow: visible;
+  overflow-x: visible;
+  overflow-y: visible;
+}
+@media screen and (max-width: 360px) {
+  .new_card {
+    max-width: 600px;
+  }
+}
+
 .create {
   padding: 18px;
   height: 18px;
@@ -26,22 +43,12 @@
 }
 
 .card_open {
-  margin-top: 125px;
+  margin-top: 105px;
   display: flex;
   justify-content: center;
 }
 
-.card1 {
-  padding: 18px;
-  /* height: 100px; */
-  width: 30em;
-  height: auto;
-  /* width: 32em;
-    padding: 18px; */
-  overflow: visible;
-  overflow-x: visible;
-  overflow-y: visible;
-}
+
 .pin {
   justify-content: flex-end;
   width: -14em;
@@ -85,11 +92,6 @@
   padding: 5px;
 }
 
-@media screen and (max-width: 360px) {
-  .new_card {
-    max-width: 600px;
-  }
-}
 
 .pin-over {
   height: 1.6em;
@@ -123,15 +125,27 @@
   flex-shrink: 0;
   user-select: none;
 }
-
-._notes_ {
+.tamtam{
   display: flex;
+    flex-wrap: wrap;
+    padding-bottom: -23px;
+    width: 100%;
+    padding-left: 333px;
+    padding-top: 100px;
+}
+._notes_ {
+  /* display: flex;
   flex-direction: column-reverse;
   width: 49%;
   flex-wrap: wrap;
   font-variant: diagonal-fractions;
   justify-content: space-around;
-  padding-left: 211px;
+  padding-left: 211px; */
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 80%;
+    padding-left: 211px;
 }
 
 .getnoteicons {
@@ -176,9 +190,16 @@
 
 .ttt{
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-left: 80px;
+  padding-top: 40px;
+/*  width:200%;
+   /* width: 80%;
+    padding-left: 211px;
   /* flex-wrap: wrap;
  
-  justify-content: center; */
+  justify-content: center; 
   flex-direction: column-reverse;
     /* display: flex; */
   

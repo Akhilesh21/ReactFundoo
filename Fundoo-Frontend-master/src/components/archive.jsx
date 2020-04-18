@@ -149,12 +149,16 @@ class archive extends Component {
     this.setState({ ispinned: 0 });
   };
   render() {
-    let trashObj = this.state.notes.map((key, index) => {
+   
+    let trashObj = this.state.notes.reverse().map((key, index) => {
       if ((key.isarchive === 1) && (key.istrash === 0) && (key.ispinned ===0)) {
         console.log("the dele is ", key.istrash);
         return (
-          <div className="_notes">
-            <div className="notes_">
+          <div >
+          <div className="ttt">
+          <div className="">
+         
+            <div className="">
               <Card
                 style={{ backgroundColor: this.props.color }}
                 className="get_Nottes_card"
@@ -263,6 +267,8 @@ class archive extends Component {
                 </div>
               </Card>
             </div>
+            </div>
+          </div>
           </div>
         );
       }

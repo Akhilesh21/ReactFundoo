@@ -53,7 +53,7 @@ class reminderComponent extends Component {
     this.setState({ reminder: null });
 };
   render() {
-    let trashObj = this.state.notes.map((key, index) => {
+    let trashObj = this.state.notes.reverse().map((key, index) => {
       if (key.reminder !== null && key.isarchive === 0) {
         //console.log("the dele is ", key.reminder);
         return (

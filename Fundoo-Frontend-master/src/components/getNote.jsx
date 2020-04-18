@@ -289,10 +289,11 @@ class GetNote extends Component {
         <div className="_notes">
           {!this.state.open ? (
             <div className="_notes_">
-              {this.state.notes.map((key) => {
+              {this.state.notes.reverse().map((key) => {
                 if (key.istrash === 0 && key.isarchive === 0) {
                   //  console.log("data", key.istrash);
                   return (
+                    
                     <div className="notes_">
                       <Card
                         style={{

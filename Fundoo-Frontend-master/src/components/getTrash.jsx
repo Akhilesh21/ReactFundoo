@@ -105,7 +105,7 @@ class trash extends Component {
  
 
   render() {
-    let trashObj = this.state.notes.map((key, index) => {
+    let trashObj = this.state.notes.reverse().map((key, index) => {
       if (key.istrash === 1) {
         console.log("the dele is ", key.istrash);
         return (
