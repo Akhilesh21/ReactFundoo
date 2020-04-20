@@ -10,7 +10,7 @@
   }
 }
 .card1 {
-  padding: 18px;
+  padding: 20px;
   /* height: 100px; */
   width: 30em;
   height: auto;
@@ -186,13 +186,25 @@
 .getnoteicons_trash{
   display: flex;
   justify-content: space-around;
+  padding: "12px";
+  /* padding-bottom: "0px"; */
+}
+.ttd{
+  display: inline-block;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding-left: 30px;
+    width: auto;
+    padding-top: 40px;
 }
 
 .ttt{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  padding-left: 80px;
+  /* justify-content: flex-end; */
+  /* justify-content: space-between; */
+  justify-content: space-evenly;
+  padding-left: 120px;
   padding-top: 40px;
 /*  width:200%;
    /* width: 80%;

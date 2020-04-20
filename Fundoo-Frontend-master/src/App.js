@@ -14,7 +14,8 @@ import Notes from "./components/CreateNote";
 import ColorComponent from "./components/colorNote";
 import GetNote from "./components/getNote";
 import reminder from "./components/reminder";
-import more from "./components/delete";
+//import more from "./components/delete";
+import More from "./components/more";
 import trash from "./components/trash";
 import getTrashh from "./components/getTrash";
 import archive from "./components/archive";
@@ -44,7 +45,8 @@ class App extends React.Component {
           <Route path="/note" component={Notes} />
           <Route path="/getNote" component={GetNote} />
           <Route path="/ColorComponent" component={ColorComponent} />
-          <Route path="/more" component={more} />
+         {/* <Route path="/more" component={more} />*/}
+         <Route path="/more" component={More} />
           <Route path="/reminder" component={reminder} />
           <Route path="/trash" component={trash} />
           <Route path="/getTrash" component={getTrashh} />

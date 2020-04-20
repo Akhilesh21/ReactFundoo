@@ -154,11 +154,11 @@ class archive extends Component {
       if ((key.isarchive === 1) && (key.istrash === 0) && (key.ispinned ===0)) {
         console.log("the dele is ", key.istrash);
         return (
-          <div >
-          <div className="ttt">
-          <div className="">
+          <div className="ttd">
+          <div className="ttt" >
+          <div className="_notes_">
          
-            <div className="">
+            <div className="notes_">
               <Card
                 style={{ backgroundColor: this.props.color }}
                 className="get_Nottes_card"

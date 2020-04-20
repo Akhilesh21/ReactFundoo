@@ -57,6 +57,9 @@ class reminderComponent extends Component {
       if (key.reminder !== null && key.isarchive === 0) {
         //console.log("the dele is ", key.reminder);
         return (
+          <div className="ttd">
+          <div className="ttt" >
+          <div className="_notes_">
           <div className="notes_">
             <Card
               className="get_Nottes_card"
@@ -168,6 +171,9 @@ class reminderComponent extends Component {
                 </div>
               </div>
             </Card>
+          </div>
+          </div>
+          </div>
           </div>
         );
       }

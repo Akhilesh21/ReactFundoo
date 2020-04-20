@@ -25,7 +25,7 @@ export async function create(data) {
 }
 
 export async function getNotes(data) {
-  let gettingtoken = localStorage.getItem("usertoken");
+//  let gettingtoken = localStorage.getItem("usertoken");
   try {
     let response = await axios.get(
       process.env.REACT_APP_BASE_URL + useConstants.getNotes,
@@ -43,7 +43,7 @@ export async function getNotes(data) {
 
 
 export async function getTrash(data) {
-  let gettingtoken = localStorage.getItem("usertoken");
+//  let gettingtoken = localStorage.getItem("usertoken");
   try {
     let response = await axios.get(
       process.env.REACT_APP_BASE_URL + useConstants.displaytrash,
@@ -56,7 +56,7 @@ export async function getTrash(data) {
 }
 
 export async function noteColor(data){
- let gettingtoken = localStorage.getItem("usertoken");
+ //let gettingtoken = localStorage.getItem("usertoken");
   try{
       const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.noteColor,
         data);
@@ -67,7 +67,7 @@ export async function noteColor(data){
 }
 
 export async function trashNote(data){
-  let gettingtoken = localStorage.getItem("usertoken");
+  //let gettingtoken = localStorage.getItem("usertoken");
 
   try{
    // let data =trashNote.id
@@ -82,7 +82,7 @@ export async function trashNote(data){
 }
 
 export async function restoreNote(data){
- let gettingtoken = localStorage.getItem("usertoken");
+// let gettingtoken = localStorage.getItem("usertoken");
   try{
    // let data =trashNote.id
   // console.log("jfhfhff",data);
@@ -104,7 +104,7 @@ export async function restoreNote(data){
 
 
 export async function deleteNotes(data){
-  let gettingtoken = localStorage.getItem("usertoken");
+  //let gettingtoken = localStorage.getItem("usertoken");
    try{
     // let data =trashNote.id
    // console.log("jfhfhff",data);

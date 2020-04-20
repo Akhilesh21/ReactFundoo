@@ -18,10 +18,11 @@ import Dialog from "@material-ui/core/Dialog";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 import Reminder from "./reminder";
+import More from "./more";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import {
   getNotes,
-  trashNote,
+  // trashNote,
   archiveNote,
   noteColor,
   editNote,
@@ -55,10 +56,11 @@ class GetNote extends Component {
       reminder: "",
       showIcon: false,
       anchorEl: null,
-      labels: null,
+      //labels: null,
       istrash: 0,
       openReminderMenu: false,
       menuOpen: false,
+      noteData:"",
     };
     this.handleGetNotes();
   }
@@ -82,15 +84,6 @@ class GetNote extends Component {
     this.setState({ color: true });
   };
 
-  colorChange = () => {
-    this.setState();
-  };
-
-  paletteProps = async (event, data) => {
-    this.setState({
-      color: data,
-    });
-  };
 
   handleGetNotes = () => {
     getNotes()
@@ -146,36 +139,36 @@ class GetNote extends Component {
     }
   }
 
-  handleDelete = (id) => {
-    let data = {
-      id: id,
-    };
-    console.log("dghhdsjhjjhdhhj", id);
-    console.log("delted using id ", data);
-    console.log(this.props.id, "id hell");
-    if (this.state.id == "") {
-      console.log("notes kjdhkah");
-    } else {
-      let formData = new FormData();
-      formData.append("id", id);
+  // handleDelete = (id) => {
+  //   let data = {
+  //     id: id,
+  //   };
+  //   console.log("dghhdsjhjjhdhhj", id);
+  //   console.log("delted using id ", data);
+  //   console.log(this.props.id, "id hell");
+  //   if (this.state.id == "") {
+  //     console.log("notes kjdhkah");
+  //   } else {
+  //     let formData = new FormData();
+  //     formData.append("id", id);
 
-      console.log(this.state.id);
-      trashNote(formData)
-        .then((response) => {
-          console.log("response in ", response);
+  //     console.log(this.state.id);
+  //     trashNote(formData)
+  //       .then((response) => {
+  //         console.log("response in ", response);
 
-          if (response.status === 200) {
-            console.log("RESPONSE :", response);
-          } else {
-            console.log("qwerty");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      this.handleGetNotes();
-    }
-  };
+  //         if (response.status === 200) {
+  //           console.log("RESPONSE :", response);
+  //         } else {
+  //           console.log("qwerty");
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //     this.handleGetNotes();
+  //   }
+  // };
 
   archiveNote = (id) => {
     let data = {
@@ -245,43 +238,35 @@ class GetNote extends Component {
     this.setState({ reminder: null });
   };
 
-  paletteProps = (key, id) => {
-    let data = {
-      id: this.props.id,
-      color: id,
-    };
-    console.log("dghhdsjhjjhdhhj", id);
-    console.log("delted using id ", this.state.id);
-    console.log(this.props.id, "id hell");
-    if (this.state.id == "") {
-      console.log("notes kjdhkah");
-    } else {
-      let formData = new FormData();
-      formData.append("id", this.props.id);
-      formData.append("id", key.id);
-
-      console.log(this.state.id);
-      noteColor(formData)
-        .then((response) => {
-          console.log("response in ", response);
-
-          if (response.status === 200) {
-            console.log("RESPONSE :", response);
-          } else {
-            console.log("qwerty");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+  noteColor = () => {
+    this.setState();
   };
+  paletteProps =async (id, data) => {
+    console.log(id);
+    this.setState({
+      color: data,
+    });
+    const dataa = {
+     id: id,
+      color: this.state.color
+    }
+    noteColor(dataa).then(res => {
+      this.handleGetNotes();
+    })
+
+  };
+
+  
+ 
   componentWillReceiveProps(nextProps) {
     console.log("nextProps", nextProps);
     if (nextProps.getNotes) {
       this.handleGetNotes();
     }
   }
+  removeReminder = () => {
+    this.setState({ reminder: null });
+  };
 
   render() {
     return (
@@ -289,11 +274,10 @@ class GetNote extends Component {
         <div className="_notes">
           {!this.state.open ? (
             <div className="_notes_">
-              {this.state.notes.reverse().map((key) => {
+              {this.state.notes.map((key, index) => {
                 if (key.istrash === 0 && key.isarchive === 0) {
-                  //  console.log("data", key.istrash);
+                  //  console.log("data", key);
                   return (
-                    
                     <div className="notes_">
                       <Card
                         style={{
@@ -407,8 +391,7 @@ class GetNote extends Component {
                           </div>
                           <div>
                             <ColorComponent
-                              paletteProps={this.paletteProps}
-                              id={key.id}
+                              paletteProps={this.paletteProps} id={key.id}
                             />
                           </div>
                           <div>
@@ -420,14 +403,31 @@ class GetNote extends Component {
                             <Tooltip title="Archive">
                               <div
                                 // style={{ cursor: "pointer" }}
-                                onClick={() => this.archiveNote(key.id)}
+                              onClick={() => this.archiveNote(key.id)}
                               >
                                 <ArchiveOutlinedIcon />
                               </div>
                             </Tooltip>
                           </div>
-
+                    {/* testing*/ }
                           <div>
+                          <Tooltip title="  ">
+                            <MoreVertOutlinedIcon
+                              onClick={this.menuItem}
+                              aria-owns="simple-menu"
+                            />
+                          </Tooltip>
+                          </div> 
+                          <More
+                            //noteData={key}
+                            noteData={key.id}
+                            anchorEl={this.state.anchorEl}
+                            closeMenu={this.handleClose} id={key.id}
+                            handleGetNotes={this.handleGetNotes}
+                          />
+                        
+
+                          {/*<div>
                             <Tooltip title="More">
                               <div onClick={() => this.handleDelete(key.id)}>
                                 <MoreVertOutlinedIcon
@@ -436,7 +436,7 @@ class GetNote extends Component {
                                 />
                               </div>
                             </Tooltip>
-
+                          </div>*/}
                             {/*  <More
                               anchorEl={this.state.anchorEl}
                               open={this.state.menuOpen}
@@ -445,7 +445,7 @@ class GetNote extends Component {
                               // key={key}
                               handleGetNotes={this.handleGetNotes}
                          />*/}
-                          </div>
+                          
                         </div>
                       </Card>
                     </div>

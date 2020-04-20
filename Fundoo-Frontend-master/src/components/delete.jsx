@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Menu, MenuItem } from "@material-ui/core";
 
-import { trashNote,getNotes} from "../Services/NoteServices";
+//import { trashNote,getNotes} from "../Services/NoteServices";
 //import { el } from "date-fns/locale";
 
 class More extends Component {
@@ -25,7 +25,7 @@ class More extends Component {
   componentDidMount() {
     this.handleGetNotes();
   }
-  handleGetNotes = () => {
+ /* handleGetNotes = () => {
     getNotes()
       .then(async (res) => {
         await this.setState({
@@ -71,7 +71,7 @@ class More extends Component {
     }
   };
 
-
+*/
   
   // handleDelete = (event, id) => {
   //   let data = {
