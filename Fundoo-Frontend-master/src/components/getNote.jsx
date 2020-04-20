@@ -19,6 +19,8 @@ import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 import Reminder from "./reminder";
 import More from "./more";
+import ArchiveIcon from "@material-ui/icons/Archive";
+import UnarchiveIcon from "@material-ui/icons/Unarchive";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import {
   getNotes,
@@ -319,6 +321,25 @@ class GetNote extends Component {
   };
 
   render() {
+    let archieveIcon = !this.archive ? (
+      <IconButton onClick={this.archiveNote}>
+        <Tooltip title="Archieve">
+          <ArchiveIcon />
+        </Tooltip>
+      </IconButton>
+    ) : (
+        <IconButton onClick={this.archiveNote}>
+          <Tooltip title="UnArchieve">
+            <UnarchiveIcon />
+          </Tooltip>
+        </IconButton>
+      );
+
+    let archieveIconShow = !this.state.showIcon ? (
+      <IconButton></IconButton>
+    ) : (
+        archieveIcon
+      );
     return (
       <div className={this.props.noteStyle}>
         <div className="_notes">

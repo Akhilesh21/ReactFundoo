@@ -11,9 +11,9 @@ class More extends Component {
     };
   }
 
-  componentDidMount() {
-    this.handleGetNotes();
-  }
+  // componentDidMount() {
+  //   this.handleGetNotes();
+  // }
 
 
   handleGetNotes = () => {
@@ -23,7 +23,7 @@ class More extends Component {
           notes: res.data.data,
         });
         console.log("res in notesData", this.state.notes);
-        this.state.notes.map((key) => {});
+        //this.state.notes.map((key) => {});
       })
       .catch((err) => {
         console.log("err", err);
