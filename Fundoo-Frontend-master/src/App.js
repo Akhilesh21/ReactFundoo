@@ -53,6 +53,7 @@ class App extends React.Component {
           <Route path="/archive" component={archive} />
           <Route path="/reminderComponent" component={reminderComponent} />
           
+          
         </Switch>
       </Router>
     );

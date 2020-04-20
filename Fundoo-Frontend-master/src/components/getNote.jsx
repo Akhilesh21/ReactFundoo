@@ -60,7 +60,7 @@ class GetNote extends Component {
       istrash: 0,
       openReminderMenu: false,
       menuOpen: false,
-      noteData:"",
+      noteData: "",
     };
     this.handleGetNotes();
   }
@@ -84,7 +84,6 @@ class GetNote extends Component {
     this.setState({ color: true });
   };
 
-
   handleGetNotes = () => {
     getNotes()
       .then((res) => {
@@ -98,39 +97,93 @@ class GetNote extends Component {
       });
   };
 
-  handleEditNote = (id, title, decription) => {
-    let data = {
-      id: id,
-      title: title,
-      decription: decription,
-    };
-    console.log("dghhdsjhjjhdhhj", id);
-    console.log("delted using id ", data);
-    console.log(this.props.id, "id hell");
-    if (this.state.id == "") {
-      console.log("notes kjdhkah");
-    } else {
-      let formData = new FormData();
-      formData.append("id", id);
-      formData.append("title", title);
-      formData.append("decription", decription);
-
-      console.log(this.state.id);
-      editNote(formData)
-        .then((response) => {
-          console.log("response in ", response);
-
-          if (response.status === 200) {
-            console.log("RESPONSE :", response);
-          } else {
-            console.log("qwerty");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+  handleOpenDialogue = () => {
+    this.setState({
+      open: !this.state.open,
+    });
   };
+
+  handleEditNote = async (id, title, decription, color, reminder) => {
+    await this.setState({
+      id: id,
+      open: false,
+      title: title,
+      description: decription,
+      color: color,
+      reminder: reminder,
+    });
+  };
+  saveEditNote = () => {
+    let data = {
+      id: this.state.id,
+      title: this.state.title,
+      description: this.state.description,
+      reminder: this.state.reminder,
+    };
+    console.log("result of editData", data);
+    editNote(data)
+      .then((res) => {
+        console.log("result of  editNote", res);
+        this.setState({ open: false });
+        this.handleGetNotes();
+      })
+      .catch((err) => {
+        console.log("err in editNote component ", err);
+      });
+  };
+  handleTitle = (event) => {
+    let title = event.target.value;
+    this.setState({
+      title: title,
+    });
+  };
+
+  handleDescription = (event) => {
+    let description = event.target.value;
+    this.setState({
+      decription: description,
+    });
+  };
+  handleTimeChange = (event) => {
+    let time = event.target.value;
+    this.setState({
+      time: time,
+    });
+  };
+
+  // handleEditNote = (id, title, decription) => {
+  //   let data = {
+  //     id: id,
+  //     title: title,
+  //     decription: decription,
+  //   };
+  //   console.log("dghhdsjhjjhdhhj", id);
+  //   console.log("delted using id ", data);
+  //   console.log(this.props.id, "id hell");
+  //   if (this.state.id == "") {
+  //     console.log("notes kjdhkah");
+  //   } else {
+  //     let formData = new FormData();
+  //     formData.append("id", id);
+  //     formData.append("title", title);
+  //     formData.append("decription", decription);
+
+  //     console.log(this.state.id);
+  //     editNote(formData)
+  //       .then((response) => {
+  //         console.log("response in ", response);
+
+  //         if (response.status === 200) {
+  //           console.log("RESPONSE :", response);
+  //         } else {
+  //           console.log("qwerty");
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // };
 
   componentWillReceiveProps(nextProps) {
     console.log("nextProps", nextProps);
@@ -241,23 +294,20 @@ class GetNote extends Component {
   noteColor = () => {
     this.setState();
   };
-  paletteProps =async (id, data) => {
+  paletteProps = async (id, data) => {
     console.log(id);
     this.setState({
       color: data,
     });
     const dataa = {
-     id: id,
-      color: this.state.color
-    }
-    noteColor(dataa).then(res => {
+      id: id,
+      color: this.state.color,
+    };
+    noteColor(dataa).then((res) => {
       this.handleGetNotes();
-    })
-
+    });
   };
 
-  
- 
   componentWillReceiveProps(nextProps) {
     console.log("nextProps", nextProps);
     if (nextProps.getNotes) {
@@ -391,7 +441,8 @@ class GetNote extends Component {
                           </div>
                           <div>
                             <ColorComponent
-                              paletteProps={this.paletteProps} id={key.id}
+                              paletteProps={this.paletteProps}
+                              id={key.id}
                             />
                           </div>
                           <div>
@@ -403,29 +454,29 @@ class GetNote extends Component {
                             <Tooltip title="Archive">
                               <div
                                 // style={{ cursor: "pointer" }}
-                              onClick={() => this.archiveNote(key.id)}
+                                onClick={() => this.archiveNote(key.id)}
                               >
                                 <ArchiveOutlinedIcon />
                               </div>
                             </Tooltip>
                           </div>
-                    {/* testing*/ }
+                          {/* testing*/}
                           <div>
-                          <Tooltip title="  ">
-                            <MoreVertOutlinedIcon
-                              onClick={this.menuItem}
-                              aria-owns="simple-menu"
-                            />
-                          </Tooltip>
-                          </div> 
+                            <Tooltip title="  ">
+                              <MoreVertOutlinedIcon
+                                onClick={this.menuItem}
+                                aria-owns="simple-menu"
+                              />
+                            </Tooltip>
+                          </div>
                           <More
-                            //noteData={key}
-                            noteData={key.id}
+                            noteData={key}
+                            // noteData={key.id}
                             anchorEl={this.state.anchorEl}
-                            closeMenu={this.handleClose} id={key.id}
+                            closeMenu={this.handleClose}
+                            id={key.id}
                             handleGetNotes={this.handleGetNotes}
                           />
-                        
 
                           {/*<div>
                             <Tooltip title="More">
@@ -437,7 +488,7 @@ class GetNote extends Component {
                               </div>
                             </Tooltip>
                           </div>*/}
-                            {/*  <More
+                          {/*  <More
                               anchorEl={this.state.anchorEl}
                               open={this.state.menuOpen}
                               closeMenu={this.handleClose} id={key.id}
@@ -445,7 +496,6 @@ class GetNote extends Component {
                               // key={key}
                               handleGetNotes={this.handleGetNotes}
                          />*/}
-                          
                         </div>
                       </Card>
                     </div>
@@ -475,13 +525,21 @@ class GetNote extends Component {
                       <InputBase
                         multiline
                         placeholder="Take a note..."
-                        value={this.state.description}
+                        value={this.state.desription}
                         onChange={this.handleDescription}
                       />
                     </div>
                   </div>
                   <div className="imageAndClose">
                     <div className="dialogIcon">
+                      <div>
+                        <Reminder
+                          anchorEl={this.state.anchorEl}
+                          closeMenu={this.handleClose}
+                          handleGetNotes={this.handleGetNotes}
+                          handleReminderDate={this.handleReminderDate}
+                        />
+                      </div>
                       <div>
                         <PersonAddOutlinedIcon />
                       </div>

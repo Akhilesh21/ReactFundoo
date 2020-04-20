@@ -11,6 +11,11 @@ class More extends Component {
     };
   }
 
+  componentDidMount() {
+    this.handleGetNotes();
+  }
+
+
   handleGetNotes = () => {
     getNotes()
       .then(async (res) => {
