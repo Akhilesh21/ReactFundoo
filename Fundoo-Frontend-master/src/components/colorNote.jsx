@@ -38,8 +38,9 @@ class ColorComponent extends Component {
     });
   };
   handleChangeColor = (e, data) => {
+    //that e is not id its event check now no
     console.log("hiii" + e);
-    this.props.paletteProps(e.target.value, data);
+    this.props.paletteProps(this.props.id, data);
   };
   handleClose = () => {
     this.setState({

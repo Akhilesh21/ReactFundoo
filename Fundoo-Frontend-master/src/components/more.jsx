@@ -30,12 +30,12 @@ class More extends Component {
       });
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log("nextProps", nextProps);
-    if (nextProps.getNotes) {
-      this.handleGetNotes();
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log("nextProps", nextProps);
+  //   if (nextProps.getNotes) {
+  //     this.handleGetNotes();
+  //   }
+  // }
 
   handleDelete = () => {
     // let data = {

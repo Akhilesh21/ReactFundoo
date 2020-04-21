@@ -19,9 +19,8 @@ import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 import Reminder from "./reminder";
 import More from "./more";
-import ArchiveIcon from "@material-ui/icons/Archive";
-import UnarchiveIcon from "@material-ui/icons/Unarchive";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
+
 import {
   getNotes,
   // trashNote,
@@ -296,8 +295,9 @@ class GetNote extends Component {
   noteColor = () => {
     this.setState();
   };
-  paletteProps = async (id, data) => {
+  paletteProps =  (id, data) => {
     console.log(id);
+  
     this.setState({
       color: data,
     });
@@ -321,25 +321,7 @@ class GetNote extends Component {
   };
 
   render() {
-    let archieveIcon = !this.archive ? (
-      <IconButton onClick={this.archiveNote}>
-        <Tooltip title="Archieve">
-          <ArchiveIcon />
-        </Tooltip>
-      </IconButton>
-    ) : (
-        <IconButton onClick={this.archiveNote}>
-          <Tooltip title="UnArchieve">
-            <UnarchiveIcon />
-          </Tooltip>
-        </IconButton>
-      );
-
-    let archieveIconShow = !this.state.showIcon ? (
-      <IconButton></IconButton>
-    ) : (
-        archieveIcon
-      );
+    
     return (
       <div className={this.props.noteStyle}>
         <div className="_notes">
@@ -364,7 +346,7 @@ class GetNote extends Component {
                           borderRadius: "15px",
                           //backgroundColor: this.state.color,
                           background: key.color,
-                        }}
+                         }}
                       >
                         <div
                           style={{
@@ -425,7 +407,9 @@ class GetNote extends Component {
                                 this.handleEditNote(
                                   key.id,
                                   key.title,
-                                  key.description
+                                  key.decription,
+                                  key.color,
+                                  key.reminder
                                 )
                               }
                             />
@@ -438,7 +422,8 @@ class GetNote extends Component {
                                   this.handleEditNote(
                                     key.id,
                                     key.title,
-                                    key.description
+                                    key.description,
+                                    key.color
                                   )
                                 }
                               />
@@ -532,6 +517,7 @@ class GetNote extends Component {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
               >
+           
                 <Card className="dialogCard">
                   <div className="editcard">
                     <div>
@@ -546,7 +532,7 @@ class GetNote extends Component {
                       <InputBase
                         multiline
                         placeholder="Take a note..."
-                        value={this.state.desription}
+                        value={this.state.description}
                         onChange={this.handleDescription}
                       />
                     </div>

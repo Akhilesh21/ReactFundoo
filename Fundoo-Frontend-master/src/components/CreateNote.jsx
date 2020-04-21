@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Tooltip, Card, InputBase, Chip } from "@material-ui/core";
+import { Tooltip, Card, InputBase, Button, IconButton, Chip,
+  Menu,
+  MenuItem,
+  Popover, FormControl, Checkbox, FormControlLabel, } from "@material-ui/core";
+  import SearchIcon from "@material-ui/icons/Search";
+  import AddIcon from "@material-ui/icons/Add";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
@@ -31,15 +36,63 @@ class Notes extends Component {
       description: "",
       ispinned: 0,
       anchorElPooper: false,
-      isarchive:0,
+      isarchive: 0,
       reminder: null,
       date: "",
       time: "",
       openReminderMenu: false,
+      labelAnchorEl: null,
+      createLabelAnchorEl: null,
+      displayButton: "button-hide",
+      label: "",
+
+      labels: [],
     };
   }
+  handleCheckBoxClick = (e) => {
+    if (e.target.checked) {
+      this.setState({
+        labels: [
+          ...this.state.labels,
+          { id: e.target.id, label: e.target.value },
+        ],
+      });
+    }
+  };
+  removeLabel = (e) => {
+    const labels = this.state.labels.filter((item) => item.id !== e.target.id);
+    this.setState({ labels: labels });
+  };
 
-  
+  createLabelDialogOpen = (e) => {
+    this.setState({
+      createLabelAnchorEl: e.currentTarget,
+      labelAnchorEl: null,
+    });
+  };
+  handleLabel = async (e) => {
+    await this.setState({
+      label: e.target.value,
+      displayButton: "button-display",
+    });
+    this.state.label === ""
+      ? this.setState({ displayButton: "button-hide" })
+      : this.setState({ displayButton: "button-display" });
+  };
+
+  createLabelDialogClose = () => {
+    this.setState({ createLabelAnchorEl: null });
+  };
+
+  labelMenuOpen = (e) => {
+    this.setState({ labelAnchorEl: e.currentTarget });
+  };
+
+  labelMenuClose = () => {
+    this.setState({ labelAnchorEl: null });
+  };
+  /**/
+
   openCard = () => {
     this.setState({ cardOpen: true });
   };
@@ -49,7 +102,7 @@ class Notes extends Component {
   changeDescription = (e) => {
     this.setState({ description: e.currentTarget.value });
   };
-  
+
   componentDidMount() {
     this.handleGetNotes();
   }
@@ -67,17 +120,12 @@ class Notes extends Component {
       });
   };
 
-
-
   handleOpen = () => {
     this.setState({
       cardOpen: true,
     });
   };
 
-  
-
-  
   handleColorClose = () => {
     this.setState({ color: true });
   };
@@ -85,7 +133,6 @@ class Notes extends Component {
     this.setState({
       color: data,
     });
-
   };
 
   componentWillReceiveProps(nextProps) {
@@ -98,10 +145,9 @@ class Notes extends Component {
   colorChange = () => {
     this.setState();
   };
-  
 
-  newNote  = () => {
-   this.props.initiateGetNotes(true);
+  newNote = () => {
+    this.props.initiateGetNotes(true);
     if (this.state.title === "" && this.state.description === "") {
       this.setState({ cardOpen: false });
     } else {
@@ -113,17 +159,16 @@ class Notes extends Component {
       formData.append("reminder", this.state.reminder);
       formData.append("ispinned", this.state.ispinned);
       formData.append("isarchive", this.state.isarchive);
-    
-    
+
       var data = {
-        userid:this.state.userid,
+        userid: this.state.userid,
         title: this.state.title,
         desription: this.state.description,
-        color:this.state.color,
+        color: this.state.color,
         reminder: this.state.reminder,
-        ispinned:this.state.ispinned ,
-        isarchive:this.state.isarchive
-         };
+        ispinned: this.state.ispinned,
+        isarchive: this.state.isarchive,
+      };
       console.log(data);
       create(formData)
         .then((response) => {
@@ -137,13 +182,12 @@ class Notes extends Component {
         .catch((err) => {
           console.log(err);
         });
-        this.handleGetNotes();
+      this.handleGetNotes();
       this.setState({ cardOpen: false });
-
     }
   };
 
-  createArchieveNote  = async () => {
+  createArchieveNote = async () => {
     try {
       await this.setState({ ispinned: 0, isarchive: 1 });
       this.newNote();
@@ -154,20 +198,14 @@ class Notes extends Component {
 
   handleOpenPin = () => {
     this.setState({ ispinned: 1 });
-  }
+  };
   handleClosePin = () => {
     this.setState({ ispinned: 0 });
   };
-  
 
-
-  handleClose = event => {
+  handleClose = (event) => {
     this.setState({ anchorEl: null });
   };
-
-
-
-
 
   handleReminderDate = (date) => {
     this.setState({ reminder: date });
@@ -292,31 +330,89 @@ class Notes extends Component {
               </div>
               <div>
                 <Tooltip title="Archive">
-                  <ArchiveOutlinedIcon onClick={this.createArchieveNote}/>
+                  <ArchiveOutlinedIcon onClick={this.createArchieveNote} />
                 </Tooltip>
               </div>
 
-              <div className="full_label">
+              {/*<div className="full_label">
                 <Tooltip title="More">
                   <MoreVertIcon />
                 </Tooltip>
                 <div className="lc"></div>
-              </div>
-              {/*      <div>
-                <Tooltip title="Undo">
-                  <UndoTwoToneIcon />
-                </Tooltip>
-              </div>
-              <div>
-                <Tooltip title="Redo">
-                  <RedoTwoToneIcon />
-                </Tooltip>
-                </div>    */}
-              <div onClick={this.newNote}>
-                {/* <Button color="primary" onClick={this.newNote} > */}
-                Close
-                {/* </Button> */}
-              </div>
+                  </div>*/}
+
+                  <div className="full_label">
+                  <IconButton
+                    aria-controls="label-menu"
+                    aria-haspopup="true"
+                    onClick={this.labelMenuOpen} >
+                    <Tooltip title="More">
+                      <MoreVertIcon />
+                    </Tooltip>
+                  </IconButton>
+                  <Menu
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "center"
+                    }}
+
+                    id="label-menu"
+                    anchorEl={this.state.labelAnchorEl}
+                    keepMounted
+                    open={Boolean(this.state.labelAnchorEl)}
+                    onClose={this.labelMenuClose}>
+                    <MenuItem
+                      onClick={this.createLabelDialogOpen}
+                      aria-controls="create-label-menu"
+                      aria-haspopup="true">
+                      Add Label
+                  </MenuItem>
+                    <MenuItem>Add Darawing</MenuItem>
+                  </Menu>
+                  <div className="lc">
+                    <Popover style={{ height: "250px" }}
+                      id="create-label-menu"
+                      anchorEl={this.state.createLabelAnchorEl}
+                      open={Boolean(this.state.createLabelAnchorEl)}
+                      onClose={this.createLabelDialogClose}>
+                      <div className="label-input">
+                        <div className="label-note">
+                          <span>Label Note</span>
+                        </div>
+                        <div>
+                          <div>
+                            <InputBase
+                              name="label"
+                              value={this.state.label}
+                              onChange={this.handleLabel}
+                              placeholder="Enter label Name"
+                              id="inputRoot" />
+
+                          </div>
+                          <div className="search_icon">
+                            <SearchIcon />
+                          </div>
+                        </div>
+
+                        <div className="label1">
+                         {/* {labelData}*/}
+                        </div>
+                        <div className={this.state.displayButton}>
+                          <Button
+                            variant="contained"
+                            color="default"
+                            startIcon={<AddIcon />}
+                            onClick={this.createLabel}>
+                            Create
+                    </Button>
+                          "{this.state.label}"
+                  </div>
+                      </div>
+                    </Popover>
+                  </div>
+                </div>   
+
+              <div onClick={this.newNote}>Close</div>
             </div>
           </Card>
         </div>
