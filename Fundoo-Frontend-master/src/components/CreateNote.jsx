@@ -91,6 +91,8 @@ class Notes extends Component {
   labelMenuClose = () => {
     this.setState({ labelAnchorEl: null });
   };
+
+
   /**/
 
   openCard = () => {
@@ -215,6 +217,7 @@ class Notes extends Component {
   };
 
   render() {
+    
     return !this.state.cardOpen ? (
       <div className="new_card" onClick={this.handleOpen}>
         <Card
@@ -352,7 +355,7 @@ class Notes extends Component {
                   </IconButton>
                   <Menu
                     anchorOrigin={{
-                      vertical: "bottom",
+                      vertical: "bottom", 
                       horizontal: "center"
                     }}
 
