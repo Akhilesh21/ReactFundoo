@@ -190,3 +190,14 @@ export async function createLabel(data){
   }
 }
 
+export async function addcollaboratorsNotes(user,noteID){
+  try{
+      const response = await axios.post(process.env.REACT_APP_BASE_URL+noteID+'/AddcollaboratorsNotes',user,{
+          headers: {
+              Authorization:userData.id
+      }});
+      return response
+  } catch(err){
+      return err
+  }
+}

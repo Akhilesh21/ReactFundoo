@@ -70,7 +70,7 @@ class Notes extends Component {
       
       createLabel(formData).then(res => {
         console.log("result label", res);
-        this.setState({ labels: res, label: "", displayButton: "button-hide" });
+        this.setState({ labels: res, labelname: "", displayButton: "button-hide" });
         //  this.props.updateLabel();
         this.handleGetNotes()
       });
@@ -249,42 +249,7 @@ class Notes extends Component {
   };
 
   render() {
-    // let labels = "";
-    // if (this.state.labels.length > 0) {
-    //   labels = this.state.labels.map(item => {
-    //     return (
-    //       <Chip
-    //         label={item.label}
-    //         id={item.id}
-    //         onDelete={event => this.removeLabel(event)}
-    //         deleteIcon={<CancelIcon id={item.id} />}
-    //         variant="outlined"
-    //       />
-    //     );
-    //   });
-    // }
-    // let labelData = "";
-    // if (this.props.labelData.length > 0) {
-    //   labelData = this.props.labelData.map(item => {
-    //     return (
-    //       <div>
-    //         <FormControlLabel
-    //           control={
-    //             <Checkbox
-    //               color="primary"
-    //               id={item.id}
-    //               name={item.label}
-    //               value={item.label}
-    //               onChange={event => this.handleCheckBoxClick(event)}
-    //             />
-    //           }
-    //           label={item.label}
-    //           labelPlacement="end"
-    //         />
-    //       </div>
-    //     );
-    //   });
-    // }
+    
     return !this.state.cardOpen ? (
       <div className="new_card" onClick={this.handleOpen}>
         <Card
