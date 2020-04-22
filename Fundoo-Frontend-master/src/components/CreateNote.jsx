@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Tooltip, Card, InputBase, Chip,Popover, MenuItem,
-  Menu,IconButton, Button } from "@material-ui/core";
+  Menu,IconButton, Button,Checkbox, FormControlLabel } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+
+import CancelIcon from "@material-ui/icons/Cancel";
 import AddIcon from "@material-ui/icons/Add";
 import SearchIcon from "@material-ui/icons/Search";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -188,6 +190,8 @@ class Notes extends Component {
       formData.append("reminder", this.state.reminder);
       formData.append("ispinned", this.state.ispinned);
       formData.append("isarchive", this.state.isarchive);
+      
+      //formData.append("labelname", this.state.labels);
 
       var data = {
         userid: this.state.userid,
@@ -197,6 +201,7 @@ class Notes extends Component {
         reminder: this.state.reminder,
         ispinned: this.state.ispinned,
         isarchive: this.state.isarchive,
+        //labelname: this.state.labels,
       };
       console.log(data);
       create(formData)
@@ -244,6 +249,42 @@ class Notes extends Component {
   };
 
   render() {
+    // let labels = "";
+    // if (this.state.labels.length > 0) {
+    //   labels = this.state.labels.map(item => {
+    //     return (
+    //       <Chip
+    //         label={item.label}
+    //         id={item.id}
+    //         onDelete={event => this.removeLabel(event)}
+    //         deleteIcon={<CancelIcon id={item.id} />}
+    //         variant="outlined"
+    //       />
+    //     );
+    //   });
+    // }
+    // let labelData = "";
+    // if (this.props.labelData.length > 0) {
+    //   labelData = this.props.labelData.map(item => {
+    //     return (
+    //       <div>
+    //         <FormControlLabel
+    //           control={
+    //             <Checkbox
+    //               color="primary"
+    //               id={item.id}
+    //               name={item.label}
+    //               value={item.label}
+    //               onChange={event => this.handleCheckBoxClick(event)}
+    //             />
+    //           }
+    //           label={item.label}
+    //           labelPlacement="end"
+    //         />
+    //       </div>
+    //     );
+    //   });
+    // }
     return !this.state.cardOpen ? (
       <div className="new_card" onClick={this.handleOpen}>
         <Card
@@ -417,7 +458,7 @@ class Notes extends Component {
                         </div>
 
                         <div className="label1">
-                         {/* {labelData}*/}
+                          {/*labelData*/}
                         </div>
                         <div className={this.state.displayButton}>
                           <Button
