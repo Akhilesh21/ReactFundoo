@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Tooltip, Card, InputBase, Button, IconButton, Chip,
-  Menu,
-  MenuItem,
-  Popover, FormControl, Checkbox, FormControlLabel, } from "@material-ui/core";
-  import SearchIcon from "@material-ui/icons/Search";
-  import AddIcon from "@material-ui/icons/Add";
+import { Tooltip, Card, InputBase, Chip,Popover, MenuItem,
+  Menu,IconButton, Button } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import AddIcon from "@material-ui/icons/Add";
+import SearchIcon from "@material-ui/icons/Search";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
@@ -24,7 +22,7 @@ import ColorComponent from "./colorNote";
 import unPin from "../assets/unpin.svg";
 import pin from "../assets/pin.svg";
 import correct from "../assets/correct.svg";
-import { getNotes } from "../Services/NoteServices";
+import { getNotes,createLabel } from "../Services/NoteServices";
 class Notes extends Component {
   constructor(props) {
     super(props);
@@ -40,40 +38,46 @@ class Notes extends Component {
       reminder: null,
       date: "",
       time: "",
-      openReminderMenu: false,
       labelAnchorEl: null,
       createLabelAnchorEl: null,
       displayButton: "button-hide",
       label: "",
-
       labels: [],
+      openReminderMenu: false,
     };
   }
-  handleCheckBoxClick = (e) => {
-    if (e.target.checked) {
-      this.setState({
-        labels: [
-          ...this.state.labels,
-          { id: e.target.id, label: e.target.value },
-        ],
+
+  createLabelDialogOpen = e => {
+    this.setState({
+      createLabelAnchorEl: e.currentTarget,
+      labelAnchorEl: null
+    });
+  };
+
+  createLabel = () => {
+    this.setState({ createLabelAnchorEl: null });
+
+    if (this.state.label !== "") {
+      const data = {
+        label: this.state.label
+      };
+      let formData = new FormData();
+     // formData.append("userid", this.state.noteId);
+      formData.append("token", "1");
+      formData.append("labelname", this.state.label);
+      
+      createLabel(formData).then(res => {
+        console.log("result label", res);
+        this.setState({ labels: res, label: "", displayButton: "button-hide" });
+        //  this.props.updateLabel();
+        this.handleGetNotes()
       });
     }
   };
-  removeLabel = (e) => {
-    const labels = this.state.labels.filter((item) => item.id !== e.target.id);
-    this.setState({ labels: labels });
-  };
-
-  createLabelDialogOpen = (e) => {
-    this.setState({
-      createLabelAnchorEl: e.currentTarget,
-      labelAnchorEl: null,
-    });
-  };
-  handleLabel = async (e) => {
+  handleLabel = async e => {
     await this.setState({
       label: e.target.value,
-      displayButton: "button-display",
+      displayButton: "button-display"
     });
     this.state.label === ""
       ? this.setState({ displayButton: "button-hide" })
@@ -84,7 +88,7 @@ class Notes extends Component {
     this.setState({ createLabelAnchorEl: null });
   };
 
-  labelMenuOpen = (e) => {
+  labelMenuOpen = e => {
     this.setState({ labelAnchorEl: e.currentTarget });
   };
 
@@ -92,8 +96,31 @@ class Notes extends Component {
     this.setState({ labelAnchorEl: null });
   };
 
+  menuOpen = () => {
+    this.setState({ open: !this.state.open });
+  };
+  menuItem = e => {
+    this.setState({ anchorEl: e.currentTarget });
+  };
+  handleCheckBoxClick = e => {
+    if (e.target.checked) {
+      this.setState({
+        labels: [
+          ...this.state.labels,
+          { id: e.target.id, label: e.target.value }
+        ]
+      });
+    }
+  };
+  removeLabel = e => {
+    const labels = this.state.labels.filter(item => item.id !== e.target.id);
+    this.setState({ labels: labels });
+  };
 
-  /**/
+
+
+
+
 
   openCard = () => {
     this.setState({ cardOpen: true });
@@ -217,7 +244,6 @@ class Notes extends Component {
   };
 
   render() {
-    
     return !this.state.cardOpen ? (
       <div className="new_card" onClick={this.handleOpen}>
         <Card
@@ -337,14 +363,7 @@ class Notes extends Component {
                 </Tooltip>
               </div>
 
-              {/*<div className="full_label">
-                <Tooltip title="More">
-                  <MoreVertIcon />
-                </Tooltip>
-                <div className="lc"></div>
-                  </div>*/}
-
-                  <div className="full_label">
+              <div className="full_label">
                   <IconButton
                     aria-controls="label-menu"
                     aria-haspopup="true"
@@ -355,7 +374,7 @@ class Notes extends Component {
                   </IconButton>
                   <Menu
                     anchorOrigin={{
-                      vertical: "bottom", 
+                      vertical: "bottom",
                       horizontal: "center"
                     }}
 
@@ -413,7 +432,7 @@ class Notes extends Component {
                       </div>
                     </Popover>
                   </div>
-                </div>   
+                </div>
 
               <div onClick={this.newNote}>Close</div>
             </div>

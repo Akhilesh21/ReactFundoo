@@ -13,5 +13,6 @@ module.exports = {
     restoreNote:'restoreNote',
     deleteNotes:'deleteNotes',
     displayTrash:'displayTrash',
+    createLabel:'createLabel',
 
 };

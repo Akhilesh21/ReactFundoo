@@ -176,3 +176,17 @@ export async function updatePin(data){
       return err;
   }
 }
+
+export async function createLabel(data){
+  try{
+   // let data =trashNote.id
+  // console.log("jfhfhff",data);
+   console.log("NoteService Trashid ",data)
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + useConstants.createLabel,
+        data);
+      return response
+  } catch(err){
+      return err;
+  }
+}
+

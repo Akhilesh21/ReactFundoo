@@ -161,7 +161,10 @@ export default function PrimarySearchAppBar(props) {
     handleMobileMenuClose();
   };
 
-  const handleSignout = () => {};
+  
+  const handleSignout = () => {
+    
+  };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -305,7 +308,7 @@ export default function PrimarySearchAppBar(props) {
                 />
               </div>
             </Grid>
-            <Grid style={{ marginLeft: "595px" }}>
+            <Grid style={{ marginLeft: "42em" }}>
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
                 <IconButton aria-label="show 4 new mails" color="inherit">

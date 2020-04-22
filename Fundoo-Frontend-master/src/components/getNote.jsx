@@ -20,7 +20,6 @@ import pin from "../assets/pin.svg";
 import Reminder from "./reminder";
 import More from "./more";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
-
 import {
   getNotes,
   // trashNote,
@@ -52,16 +51,17 @@ class GetNote extends Component {
       title: "",
       description: "",
       color: "",
+      ChangeColor:"",
       ispinned: 0,
       isarchive: 0,
       reminder: "",
       showIcon: false,
       anchorEl: null,
-      //labels: null,
+      labels: null,
       istrash: 0,
       openReminderMenu: false,
       menuOpen: false,
-      noteData: "",
+      noteData:"",
     };
     this.handleGetNotes();
   }
@@ -85,6 +85,7 @@ class GetNote extends Component {
     this.setState({ color: true });
   };
 
+
   handleGetNotes = () => {
     getNotes()
       .then((res) => {
@@ -98,93 +99,39 @@ class GetNote extends Component {
       });
   };
 
-  handleOpenDialogue = () => {
-    this.setState({
-      open: !this.state.open,
-    });
-  };
-
-  handleEditNote = async (id, title, decription, color, reminder) => {
-    await this.setState({
-      id: id,
-      open: false,
-      title: title,
-      description: decription,
-      color: color,
-      reminder: reminder,
-    });
-  };
-  saveEditNote = () => {
+  handleEditNote = (id, title, decription) => {
     let data = {
-      id: this.state.id,
-      title: this.state.title,
-      description: this.state.description,
-      reminder: this.state.reminder,
-    };
-    console.log("result of editData", data);
-    editNote(data)
-      .then((res) => {
-        console.log("result of  editNote", res);
-        this.setState({ open: false });
-        this.handleGetNotes();
-      })
-      .catch((err) => {
-        console.log("err in editNote component ", err);
-      });
-  };
-  handleTitle = (event) => {
-    let title = event.target.value;
-    this.setState({
+      id: id,
       title: title,
-    });
+      decription: decription,
+    };
+    console.log("dghhdsjhjjhdhhj", id);
+    console.log("delted using id ", data);
+    console.log(this.props.id, "id hell");
+    if (this.state.id == "") {
+      console.log("notes kjdhkah");
+    } else {
+      let formData = new FormData();
+      formData.append("id", id);
+      formData.append("title", title);
+      formData.append("decription", decription);
+
+      console.log(this.state.id);
+      editNote(formData)
+        .then((response) => {
+          console.log("response in ", response);
+
+          if (response.status === 200) {
+            console.log("RESPONSE :", response);
+          } else {
+            console.log("qwerty");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
-
-  handleDescription = (event) => {
-    let description = event.target.value;
-    this.setState({
-      decription: description,
-    });
-  };
-  handleTimeChange = (event) => {
-    let time = event.target.value;
-    this.setState({
-      time: time,
-    });
-  };
-
-  // handleEditNote = (id, title, decription) => {
-  //   let data = {
-  //     id: id,
-  //     title: title,
-  //     decription: decription,
-  //   };
-  //   console.log("dghhdsjhjjhdhhj", id);
-  //   console.log("delted using id ", data);
-  //   console.log(this.props.id, "id hell");
-  //   if (this.state.id == "") {
-  //     console.log("notes kjdhkah");
-  //   } else {
-  //     let formData = new FormData();
-  //     formData.append("id", id);
-  //     formData.append("title", title);
-  //     formData.append("decription", decription);
-
-  //     console.log(this.state.id);
-  //     editNote(formData)
-  //       .then((response) => {
-  //         console.log("response in ", response);
-
-  //         if (response.status === 200) {
-  //           console.log("RESPONSE :", response);
-  //         } else {
-  //           console.log("qwerty");
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // };
 
   componentWillReceiveProps(nextProps) {
     console.log("nextProps", nextProps);
@@ -292,24 +239,44 @@ class GetNote extends Component {
     this.setState({ reminder: null });
   };
 
-  noteColor = () => {
-    this.setState();
+  ChangeColor = (color) => {
+    this.setState(color);
   };
-  paletteProps =  (id, data) => {
+  paletteProps =async (id, data) => {
     console.log(id);
-  
     this.setState({
       color: data,
     });
     const dataa = {
       id: id,
-      color: this.state.color,
-    };
-    noteColor(dataa).then((res) => {
+      color: this.state.color
+    }
+    let formData = new FormData();
+    formData.append("id", id);
+  //  formData.append("color", this.state.ChangeColor);
+    formData.append("color", "Red");
+    //formData.append("color", "Orange");
+    //formData.append("color", "Yellow");
+
+    console.log(this.state.id);
+    noteColor(formData)
+      .then((response) => {
+        console.log("response in ", response);
+
+        if (response.status === 200) {
+          console.log("RESPONSE :", response);
+        } else {
+          console.log("qwerty");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
       this.handleGetNotes();
-    });
   };
 
+  
+ 
   componentWillReceiveProps(nextProps) {
     console.log("nextProps", nextProps);
     if (nextProps.getNotes) {
@@ -321,7 +288,6 @@ class GetNote extends Component {
   };
 
   render() {
-    
     return (
       <div className={this.props.noteStyle}>
         <div className="_notes">
@@ -346,7 +312,7 @@ class GetNote extends Component {
                           borderRadius: "15px",
                           //backgroundColor: this.state.color,
                           background: key.color,
-                         }}
+                        }}
                       >
                         <div
                           style={{
@@ -356,8 +322,7 @@ class GetNote extends Component {
                           }}
                         >
                           <div>
-                            {/*       <div><img className="pin-over" src={correct} /></div>*/}
-
+                           
                             <div>{key.id}</div>
                             <div>{key.title}</div>
 
@@ -407,9 +372,7 @@ class GetNote extends Component {
                                 this.handleEditNote(
                                   key.id,
                                   key.title,
-                                  key.decription,
-                                  key.color,
-                                  key.reminder
+                                  key.description
                                 )
                               }
                             />
@@ -422,8 +385,7 @@ class GetNote extends Component {
                                   this.handleEditNote(
                                     key.id,
                                     key.title,
-                                    key.description,
-                                    key.color
+                                    key.description
                                   )
                                 }
                               />
@@ -447,8 +409,7 @@ class GetNote extends Component {
                           </div>
                           <div>
                             <ColorComponent
-                              paletteProps={this.paletteProps}
-                              id={key.id}
+                              paletteProps={this.paletteProps} id={key.id}
                             />
                           </div>
                           <div>
@@ -460,29 +421,29 @@ class GetNote extends Component {
                             <Tooltip title="Archive">
                               <div
                                 // style={{ cursor: "pointer" }}
-                                onClick={() => this.archiveNote(key.id)}
+                              onClick={() => this.archiveNote(key.id)}
                               >
                                 <ArchiveOutlinedIcon />
                               </div>
                             </Tooltip>
                           </div>
-                          {/* testing*/}
+                    {/* testing*/ }
                           <div>
-                            <Tooltip title="  ">
-                              <MoreVertOutlinedIcon
-                                onClick={this.menuItem}
-                                aria-owns="simple-menu"
-                              />
-                            </Tooltip>
-                          </div>
+                          <Tooltip title="  ">
+                            <MoreVertOutlinedIcon
+                              onClick={this.menuItem}
+                              aria-owns="simple-menu"
+                            />
+                          </Tooltip>
+                          </div> 
                           <More
-                            noteData={key}
-                            // noteData={key.id}
+                            //noteData={key}
+                            noteData={key.id}
                             anchorEl={this.state.anchorEl}
-                            closeMenu={this.handleClose}
-                            id={key.id}
+                            closeMenu={this.handleClose} id={key.id}
                             handleGetNotes={this.handleGetNotes}
                           />
+                        
 
                           {/*<div>
                             <Tooltip title="More">
@@ -494,7 +455,7 @@ class GetNote extends Component {
                               </div>
                             </Tooltip>
                           </div>*/}
-                          {/*  <More
+                            {/*  <More
                               anchorEl={this.state.anchorEl}
                               open={this.state.menuOpen}
                               closeMenu={this.handleClose} id={key.id}
@@ -502,6 +463,7 @@ class GetNote extends Component {
                               // key={key}
                               handleGetNotes={this.handleGetNotes}
                          />*/}
+                          
                         </div>
                       </Card>
                     </div>
@@ -517,7 +479,6 @@ class GetNote extends Component {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
               >
-           
                 <Card className="dialogCard">
                   <div className="editcard">
                     <div>
@@ -539,14 +500,6 @@ class GetNote extends Component {
                   </div>
                   <div className="imageAndClose">
                     <div className="dialogIcon">
-                      <div>
-                        <Reminder
-                          anchorEl={this.state.anchorEl}
-                          closeMenu={this.handleClose}
-                          handleGetNotes={this.handleGetNotes}
-                          handleReminderDate={this.handleReminderDate}
-                        />
-                      </div>
                       <div>
                         <PersonAddOutlinedIcon />
                       </div>
