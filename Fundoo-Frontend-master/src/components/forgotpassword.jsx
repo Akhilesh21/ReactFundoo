@@ -102,7 +102,7 @@ class Forgotpassword extends Component {
     const classes = { useStyles };
 
     return (
-      <div style={{ paddingRight: "40%", marginLeft: "100px" }}>
+      <div >
         <Box
           display="flex"
           justifyContent="center"

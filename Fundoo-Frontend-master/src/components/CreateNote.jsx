@@ -45,6 +45,7 @@ class Notes extends Component {
       displayButton: "button-hide",
       label: "",
       labels: [],
+      getContentAnchorEl:null,
       openReminderMenu: false,
     };
   }
@@ -67,12 +68,12 @@ class Notes extends Component {
      // formData.append("userid", this.state.noteId);
       formData.append("token", "1");
       formData.append("labelname", this.state.label);
+    //  formData.append("noteid", this.state.noteId);
       
       createLabel(formData).then(res => {
         console.log("result label", res);
         this.setState({ labels: res, labelname: "", displayButton: "button-hide" });
-        //  this.props.updateLabel();
-        this.handleGetNotes()
+         this.handleGetNotes()
       });
     }
   };
@@ -191,7 +192,7 @@ class Notes extends Component {
       formData.append("ispinned", this.state.ispinned);
       formData.append("isarchive", this.state.isarchive);
       
-      //formData.append("labelname", this.state.labels);
+      formData.append("labelname", this.state.labels);
 
       var data = {
         userid: this.state.userid,
@@ -201,7 +202,7 @@ class Notes extends Component {
         reminder: this.state.reminder,
         ispinned: this.state.ispinned,
         isarchive: this.state.isarchive,
-        //labelname: this.state.labels,
+        labelname: this.state.labels,
       };
       console.log(data);
       create(formData)

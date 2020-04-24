@@ -38,7 +38,20 @@ export async function getNotes(data) {
   }
 }
 
-
+export async function getLabel(data) {
+  //  let gettingtoken = localStorage.getItem("usertoken");
+    try {
+      let response = await axios.get(
+        process.env.REACT_APP_BASE_URL + useConstants.getLabel,
+        data
+      );
+      //console.log("akl",data)
+      return response;
+    } catch (err) {
+      return err;
+    }
+  }
+  
 
 
 

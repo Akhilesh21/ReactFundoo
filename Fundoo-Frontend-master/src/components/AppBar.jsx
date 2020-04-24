@@ -1,5 +1,7 @@
-import React from "react";
-import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
+import React,{useState } from "react";
+import { fade, makeStyles, useTheme  } from "@material-ui/core/styles";
+import Popover from "@material-ui/core/Popover";
+import { Tooltip } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,7 +18,13 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import { Grid } from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import SettingsIcon from "@material-ui/icons/Settings";
+import Divider from "@material-ui/core/Divider";
+import AddAPhotoRoundedIcon from "@material-ui/icons/AddAPhotoRounded";
 import AppsTwoToneIcon from "@material-ui/icons/AppsTwoTone";
+import Avatar from "@material-ui/core/Avatar";
+import Card from "@material-ui/core/Card";
+import ImgUpload from "./ImgUpload"
+
 import clsx from "clsx";
 import "./User.css";
 
@@ -138,6 +146,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PrimarySearchAppBar(props) {
+  let owner = localStorage.getItem("owner");
+  let tooltip1 = "fundoo account : ";
+  let tooltippic = tooltip1.concat(owner);
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -145,8 +157,10 @@ export default function PrimarySearchAppBar(props) {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const theme = useTheme();
-
+  const [changePic, setchangePic] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [view, setview] = useState(false);
+  
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -160,8 +174,22 @@ export default function PrimarySearchAppBar(props) {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
-
-  
+  /**
+   * 
+   */
+  const handleViewAppbar = () => {
+    setview(!view);
+    props.handleView();
+  };
+  const handleEditPicture = async () => {
+    await setchangePic(!changePic);
+  };
+    
+  const handleMenuClickAway = async () => {
+    setchangePic(false);
+    setAnchorEl(null);
+    console.log("the picture URL :", props.profilePicture);
+  };
   const handleSignout = () => {
     
   };
@@ -172,19 +200,82 @@ export default function PrimarySearchAppBar(props) {
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Sign out</MenuItem>
-    </Menu>
+    <Popover
+    anchorEl={anchorEl}
+    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+    keepMounted
+    id="profile-popover"
+    transformOrigin={{ vertical: "bottom", horizontal: "left" }}
+    open={isMenuOpen}
+    onClose={handleMenuClickAway}
+  >
+    <Card id="card_decor8">
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: "8px",
+            paddingBottom: "5px",
+          }}
+        >
+          <Badge
+            badgeContent={
+              <div>
+                <Tooltip title="Edit" placement="right">
+                  <IconButton onClick={handleEditPicture}>
+                    <AddAPhotoRoundedIcon />
+                  </IconButton>
+                </Tooltip>
+              </div>
+            }
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+          >
+            <div>
+              <Avatar
+                edge="end"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                src={props.profilePicture}
+                onClick={handleProfileMenuOpen}
+                className={classes.large}
+              />
+              {/* <img
+                src={profilePicture}
+                style={{
+                  height: "2cm",
+                  width: "2cm",
+                  borderRadius: "50%",
+                  border: "2px solid grey",
+                }}
+              /> */}
+            </div>
+          </Badge>
+        </div>
+        <div className="profilepic-owner">
+          <span style={{ fontWeight: "bold" }}>{owner}</span>
+        </div>
+        {changePic ? (
+          <div>
+            <Divider />
+            <Toolbar id="profile-toolbar">
+              <ImgUpload />
+            </Toolbar>
+          </div>
+        ) : null}
+        <Divider />
+        <div className="signout-button-div">
+          <button onClick={props.handleSignout} className="signout-button">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </Card>
+  </Popover>
+
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";

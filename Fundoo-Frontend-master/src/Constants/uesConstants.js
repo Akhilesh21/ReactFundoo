@@ -14,5 +14,6 @@ module.exports = {
     deleteNotes:'deleteNotes',
     displayTrash:'displayTrash',
     createLabel:'createLabel',
+    getLabel:'getLabel',
 
 };

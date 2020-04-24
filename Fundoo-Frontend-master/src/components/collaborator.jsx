@@ -13,7 +13,7 @@ class Collaborator extends Component {
           listOpen: false,
           listAnchorEl: null,
           searchedList: [],
-          profileImage : JSON.parse(localStorage.getItem('userProfileImage'))
+         
         };
     render() {
         return (

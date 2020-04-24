@@ -27,6 +27,7 @@ import {
   noteColor,
   editNote,
   updatePin,
+  getLabel
 } from "../Services/NoteServices";
 //import correct from "../assets/correct.svg";
 
@@ -62,6 +63,7 @@ class GetNote extends Component {
       openReminderMenu: false,
       menuOpen: false,
       noteData: "",
+      
     };
     this.handleGetNotes();
   }
@@ -84,6 +86,24 @@ class GetNote extends Component {
   handleColorClose = () => {
     this.setState({ color: true });
   };
+
+  componentDidMount() {
+    this.handleGetNotes();
+    this.getLabels();
+  }
+  getLabels = () => {
+    getLabel().then(res => {
+      console.log('label resuly',res);
+      
+      this.setState({ labels: res })
+    })
+    .catch(err => {
+      console.log("err", err);
+    });
+  }
+  removeLabel = () => {
+    this.setState({ labels: null })
+  }
 
   handleGetNotes = () => {
     getNotes()
@@ -321,8 +341,9 @@ class GetNote extends Component {
           {!this.state.open ? (
             <div className="_notes_">
               {this.state.notes.map((key, index) => {
-                if (key.istrash === 0 && key.isarchive === 0) {
+                if (key.istrash === 0 && key.isarchive === 0 ) {
                   //  console.log("data", key);
+                  console.log("The labels are ", key.labelname);
                   return (
                     <div className="notes_">
                       <Card
@@ -366,7 +387,7 @@ class GetNote extends Component {
                                   }}
                                   icon={<AccessTimeIcon />}
                                   id={key.id}
-                                  label={key.reminder}
+                                  label={key.reminder }
                                   onDelete={this.removeReminder}
                                   variant="outlined"
                                 />
