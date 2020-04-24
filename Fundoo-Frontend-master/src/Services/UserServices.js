@@ -37,20 +37,12 @@ export async function forgotpassword(data) {
   return response;
 }
 
-// export async function create(data) {
+export async function updateProfile(data) {
+  let response = axios.post(
+    process.env.REACT_APP_BASE_URL + useConstants.updateProfile,
+    data
+  );
+  console.log("to check for response", response.id);
+  return response;
+}
 
-//   let gettingtoken = localStorage.getItem('usertoken')
-
-//   console.log("token is comuing",gettingtoken)
-//   let response = axios.post(process.env.REACT_APP_BASE_URL + useConstants.createNote, data).then((res=>{
-//     console.log("res",res);
-//    // localStorage.setItem('email', res.success.email);
-
-//   })).catch((err)=>{
-//     console.log("err",err);
-
-//   })
-//   console.log("to check for response", response)
-//   return response
-
-// }

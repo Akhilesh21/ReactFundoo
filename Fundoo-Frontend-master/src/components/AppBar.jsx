@@ -150,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar(props) {
   let owner = localStorage.getItem("owner");
-  let tooltip1 = "fundoo account : ";
+  let tooltip1 = "fundoo account :Akhilesh.";
   let tooltippic = tooltip1.concat(owner);
 
   const classes = useStyles();
@@ -181,8 +181,11 @@ export default function PrimarySearchAppBar(props) {
    * 
    */
   const handleViewAppbar = () => {
+    let data=!view
     setview(!view);
-    props.handleView();
+    console.log(data,"doooono");
+    
+    props.handleView(data);
   };
   const handleEditPicture = async () => {
     await setchangePic(!changePic);
@@ -265,7 +268,7 @@ export default function PrimarySearchAppBar(props) {
           <div>
             <Divider />
             <Toolbar id="profile-toolbar">
-              <ImgUpload />
+              <ImgUpload uploadImage={props.uploadImage} />
             </Toolbar>
           </div>
         ) : null}

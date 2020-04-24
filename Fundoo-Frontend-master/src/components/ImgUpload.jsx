@@ -4,13 +4,16 @@ const formdata = new FormData()
 
 export default class ImgUpload extends Component {
 getImage = (event) =>{
-    formdata.append()
+    formdata.append('profile',event.target.files[0]);
+    this.props.uploadImage(formdata);
 }
+
     render() {
+        console.log(this.state)
 
         return (
             <div>
-                
+            <input className='uploadImageInput'onChange={this.getImage} type='file' name='file' ></input>
             </div>
         )
     }

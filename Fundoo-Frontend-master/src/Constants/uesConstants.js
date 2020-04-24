@@ -15,5 +15,6 @@ module.exports = {
     displayTrash:'displayTrash',
     createLabel:'createLabel',
     getLabel:'getLabel',
+    updateProfile:'updateProfile',
 
 };

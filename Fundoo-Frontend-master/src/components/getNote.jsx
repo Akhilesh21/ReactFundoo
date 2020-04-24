@@ -335,6 +335,10 @@ class GetNote extends Component {
   };
 
   render() {
+    console.log(this.props,"props");
+    
+    console.log(this.props.listGrid,"list");
+    
     return (
       <div className={this.props.noteStyle}>
         <div className="_notes">
@@ -348,7 +352,7 @@ class GetNote extends Component {
                     <div className="notes_">
                       <Card
                         style={{
-                          width: "250px",
+                          width: this.props.listGrid?"250px":"600px",
                           minHeight: "135px",
                           height: "auto",
                           // height: "9em",
