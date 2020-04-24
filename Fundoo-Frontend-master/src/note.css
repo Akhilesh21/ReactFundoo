@@ -249,3 +249,10 @@
   /* justify-content: flex-start; */
  /* // padding: 11px; */
 }
+
+.avatar-icon {
+  padding-top: 6px;
+  padding-right: -5px;
+  padding-left: 7px;
+  cursor: pointer;
+}

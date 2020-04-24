@@ -23,6 +23,9 @@ import AddAPhotoRoundedIcon from "@material-ui/icons/AddAPhotoRounded";
 import AppsTwoToneIcon from "@material-ui/icons/AppsTwoTone";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
+import ViewListRoundedIcon from "@material-ui/icons/ViewListRounded";
+import ViewCompactRoundedIcon from "@material-ui/icons/ViewCompactRounded";
+import RefreshOutlinedIcon from "@material-ui/icons/RefreshOutlined";
 import ImgUpload from "./ImgUpload"
 
 import clsx from "clsx";
@@ -278,49 +281,9 @@ export default function PrimarySearchAppBar(props) {
 
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
-
+  
   return (
-    <Grid>
+    
       <div className={classes.root}>
         <AppBar position="fixed" className={classes.palette}>
           <Toolbar>
@@ -373,19 +336,7 @@ export default function PrimarySearchAppBar(props) {
                     <span style={{color:"#f28b82"}}>O</span>
                  </h2>
             </Typography>
-             {/* <Typography
-                style={{
-                  color: "#616161",
-                  fontSize: "150%",
-                  marginLeft: "40px",
-                  marginTop: "-8px",
-                }}
-                className={classes.title}
-                variant="h6"
-                noWrap
-              >
-                Fundoo
-              </Typography>*/}
+            
             </Grid>
             <Grid style={{ marginLeft: "15px", marginTop: "9px" }}>
               <div className={classes.search}>
@@ -399,49 +350,64 @@ export default function PrimarySearchAppBar(props) {
                 />
               </div>
             </Grid>
-            <Grid style={{ marginLeft: "42em" }}>
-              <div className={classes.grow} />
-              <div className={classes.sectionDesktop}>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                  <RefreshIcon
-                    style={{ color: "#424242", paddingBottom: "65%" }}
-                  />
-                </IconButton>
-
-                <IconButton
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <SettingsIcon
-                    style={{ color: "#424242", paddingBottom: "65%" }}
-                  />
-                </IconButton>
-
-                <IconButton>
-                  <AppsTwoToneIcon
-                    style={{ color: "#424242", paddingBottom: "65%" }}
-                  />
-                </IconButton>
-
-                <IconButton
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
-                  color="inherit"
-                >
-                  <AccountCircle
-                    style={{ color: "#424242", paddingBottom: "65%" }}
-                  />
-                </IconButton>
+            <div
+              style={{
+                // width: "14%",
+                // paddingTop: "5px",
+                // display: "flex",
+                // justifyContent: "space-around",
+                // paddingRight: "10px",
+                 width: "14%",
+               paddingTop: "5px",
+              display: "flex",
+              justifyContent: "space-around",
+              paddingLeft: "44em",
+              }}
+            >
+              <div>
               </div>
-            </Grid>
+              {!view ? (
+                <div>
+                  <Tooltip title="List View">
+                    <IconButton onClick={handleViewAppbar}>
+                      <ViewListRoundedIcon
+                        style={{ color: "#616161" }}
+                        id="refresh-icon"
+                      />
+                    </IconButton>
+                  </Tooltip>
+                </div>
+              ) : (
+                <div>
+                  <Tooltip title="Grid View">
+                    <IconButton onClick={handleViewAppbar}>
+                      <ViewCompactRoundedIcon
+                        style={{ color: "#616161" }}
+                        id="refresh-icon"
+                      />
+                    </IconButton>
+                  </Tooltip>
+                </div>
+              )}
+              <div className="avatar-icon">
+                <Tooltip title={tooltippic}>
+                  <Avatar
+                    edge="end"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    src={props.profilePicture}
+                    onClick={handleProfileMenuOpen}
+                    fontSize="large"
+                  />
+                </Tooltip>
+              </div>
+            </div>
+         
           </Toolbar>
         </AppBar>
-        {renderMobileMenu}
+      
         {renderMenu}
       </div>
-    </Grid>
+   
   );
 }
